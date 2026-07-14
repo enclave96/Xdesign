@@ -308,6 +308,24 @@
     }
   }
 
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
   .animate-progress-indeterminate {
     animation: progress-indeterminate 1.5s ease-in-out infinite;
   }
@@ -368,6 +386,14 @@
   .animate-pill-two {
     animation: pill-two 5.4s ease-in-out infinite 0.7s;
     transform-origin: center;
+  }
+
+  .animate-accordion-down {
+    animation: accordion-down 220ms ease-out;
+  }
+
+  .animate-accordion-up {
+    animation: accordion-up 180ms ease-out;
   }
 
   /* Smooth custom scrollbar for glass panels */

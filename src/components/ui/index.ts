@@ -35,6 +35,20 @@ export {
   DialogTitle,
   DialogTrigger,
 } from "./dialog";
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./accordion";
+export { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+export {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuRadioGroup,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuTrigger,
+} from "./dropdown-menu";
 
 export { Badge } from "./Badge";
 export type { BadgeProps, BadgeSeverity, BadgeSize } from "./Badge";

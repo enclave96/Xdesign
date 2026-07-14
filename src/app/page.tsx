@@ -3,6 +3,7 @@ import { ArrowRight, Check, FileImage, Globe2, ShieldCheck, Sparkles } from "luc
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { GlassButton } from "@/components/ui/GlassButton";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { DesignAuditIllustration } from "@/components/illustrations/DesignAuditIllustration";
 import { XdesignLogo } from "@/components/brand/XdesignLogo";
 
@@ -34,6 +35,24 @@ const features = [
       "Upload screenshots, capture live websites, or import Figma frames — all in one workflow.",
     icon: Globe2,
     accent: "from-orange-400 to-pink-600",
+  },
+];
+
+const faqs = [
+  {
+    question: "What can I analyze?",
+    answer:
+      "Upload a screenshot or image, paste a public website URL, or bring in a public Figma frame. Xdesign turns it into a visual UX and accessibility review.",
+  },
+  {
+    question: "What does the report cover?",
+    answer:
+      "Every report includes visual hierarchy, readability, consistency, navigation clarity, contrast, typography, touch targets, and WCAG-oriented recommendations.",
+  },
+  {
+    question: "Can I share the findings with my team?",
+    answer:
+      "Yes. Each project retains its history and can export an HTML report with scores, annotated issues, and prioritised next steps.",
   },
 ];
 
@@ -147,6 +166,27 @@ export default function LandingPage() {
               );
             })}
           </div>
+        </section>
+
+        <section className="mx-auto mt-24 max-w-3xl">
+          <div className="text-center">
+            <p className="text-[var(--text-sm)] font-[var(--font-weight-semibold)] uppercase tracking-[0.16em] text-[var(--color-text-accent)]">
+              FAQ
+            </p>
+            <h2 className="mt-3 text-[var(--text-2xl)] font-[var(--font-weight-semibold)] tracking-tight sm:text-4xl">
+              Good questions, clear answers.
+            </h2>
+          </div>
+          <GlassPanel variant="subtle" padding="md" className="mt-8">
+            <Accordion type="single" collapsible>
+              {faqs.map((faq, index) => (
+                <AccordionItem key={faq.question} value={`faq-${index}`}>
+                  <AccordionTrigger>{faq.question}</AccordionTrigger>
+                  <AccordionContent>{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </GlassPanel>
         </section>
 
         {/* CTA */}

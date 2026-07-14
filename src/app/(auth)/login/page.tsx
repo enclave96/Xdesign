@@ -9,6 +9,7 @@ import { GlassInput } from "@/components/ui/GlassInput";
 import { GlassField } from "@/components/ui/GlassField";
 import { GlassAlert } from "@/components/ui/GlassAlert";
 import { useAuth, getAuthErrorMessage } from "@/hooks/useAuth";
+import { XdesignLogo } from "@/components/brand/XdesignLogo";
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -40,16 +41,8 @@ export default function LoginPage() {
 
       <div className="relative z-10 w-full max-w-md">
         <div className="mb-8 text-center">
-          <Link href="/" className="inline-flex items-center gap-3 transition-opacity hover:opacity-80">
-            <div
-              aria-hidden
-              className="flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-[var(--gradient-accent)] shadow-[var(--glow-button)]"
-            >
-              <span className="text-sm font-bold text-white">X</span>
-            </div>
-            <span className="text-[var(--text-xl)] font-[var(--font-weight-semibold)] tracking-tight text-[var(--color-text-primary)]">
-              Xdesign
-            </span>
+          <Link href="/" className="inline-flex transition-opacity hover:opacity-80">
+            <XdesignLogo markClassName="h-11 w-11" className="gap-3" />
           </Link>
         </div>
 

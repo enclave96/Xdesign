@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { GlassPanel } from "@/components/ui/GlassPanel";
+import { XdesignLogo } from "@/components/brand/XdesignLogo";
 
 export interface NavItem {
   label: string;
@@ -61,17 +62,12 @@ export function AppShell({
           <div className="flex h-16 items-center justify-between gap-4 px-4 sm:px-6">
             {/* Brand */}
             <div className="flex items-center gap-3">
-              {logo ?? (
-                <div
-                  aria-hidden
-                  className="flex h-9 w-9 items-center justify-center rounded-[var(--radius-md)] bg-[var(--gradient-accent)] shadow-[var(--glow-button)]"
-                >
-                  <span className="text-sm font-bold text-white">X</span>
-                </div>
+              {logo ?? <XdesignLogo />}
+              {logo && (
+                <span className="text-[var(--text-lg)] font-[var(--font-weight-semibold)] tracking-tight text-[var(--color-text-primary)]">
+                  {title}
+                </span>
               )}
-              <span className="text-[var(--text-lg)] font-[var(--font-weight-semibold)] tracking-tight text-[var(--color-text-primary)]">
-                {title}
-              </span>
             </div>
 
             {/* Navigation */}

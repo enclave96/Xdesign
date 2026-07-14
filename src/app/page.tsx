@@ -4,6 +4,7 @@ import { GlassPanel } from "@/components/ui/GlassPanel";
 import { GlassButton } from "@/components/ui/GlassButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { DesignAuditIllustration } from "@/components/illustrations/DesignAuditIllustration";
+import { XdesignLogo } from "@/components/brand/XdesignLogo";
 
 const features = [
   {
@@ -50,17 +51,7 @@ export default function LandingPage() {
       <header className="relative z-10 px-4 pt-4 sm:px-6 lg:px-8">
         <GlassPanel variant="elevated" padding="none" className="mx-auto max-w-7xl">
           <div className="flex h-16 items-center justify-between px-4 sm:px-6">
-            <div className="flex items-center gap-3">
-              <div
-                aria-hidden
-                className="flex h-9 w-9 items-center justify-center rounded-[var(--radius-md)] bg-[var(--gradient-accent)] shadow-[var(--glow-button)]"
-              >
-                <span className="text-sm font-bold text-white">X</span>
-              </div>
-              <span className="text-[var(--text-lg)] font-[var(--font-weight-semibold)] text-[var(--color-text-primary)]">
-                Xdesign
-              </span>
-            </div>
+            <XdesignLogo />
             <div className="flex items-center gap-2 sm:gap-3">
               <Link href="/login">
                 <GlassButton variant="ghost" size="sm">

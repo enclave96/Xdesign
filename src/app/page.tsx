@@ -1,39 +1,53 @@
 import Link from "next/link";
-import { ArrowRight, Check, FileImage, Globe2, ShieldCheck, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Gallery,
+  Global,
+  MagicStar,
+  ShieldTick,
+  TickCircle,
+} from "iconsax-reactjs";
+import type { Icon } from "iconsax-reactjs";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { GlassButton } from "@/components/ui/GlassButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { DesignAuditIllustration } from "@/components/illustrations/DesignAuditIllustration";
 import { XdesignLogo } from "@/components/brand/XdesignLogo";
+import { iconProps } from "@/components/icons";
 
-const features = [
+const features: {
+  title: string;
+  description: string;
+  icon: Icon;
+  accent: string;
+}[] = [
   {
     title: "Instant UX Scoring",
     description:
       "Get an overall score plus category breakdowns for hierarchy, navigation, readability, and more.",
-    icon: Sparkles,
+    icon: MagicStar,
     accent: "from-sky-400 to-blue-600",
   },
   {
     title: "Accessibility Checks",
     description:
       "Identify WCAG contrast issues, touch target problems, and typography concerns automatically.",
-    icon: ShieldCheck,
+    icon: ShieldTick,
     accent: "from-violet-400 to-purple-600",
   },
   {
     title: "Annotated Reports",
     description:
       "Visual issue markers on your design with actionable recommendations you can share with your team.",
-    icon: Check,
+    icon: TickCircle,
     accent: "from-emerald-400 to-teal-600",
   },
   {
     title: "Multiple Sources",
     description:
       "Upload screenshots, capture live websites, or import Figma frames — all in one workflow.",
-    icon: Globe2,
+    icon: Global,
     accent: "from-orange-400 to-pink-600",
   },
 ];
@@ -108,12 +122,12 @@ export default function LandingPage() {
             </p>
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:items-start">
               <Link href="/register">
-                <GlassButton variant="primary" size="lg" rightIcon={<ArrowRight className="h-4 w-4" />}>
+                <GlassButton variant="primary" size="lg" rightIcon={<ArrowRight {...iconProps("sm")} />}>
                   Analyze a design
                 </GlassButton>
               </Link>
               <Link href="/upload">
-                <GlassButton variant="secondary" size="lg" leftIcon={<FileImage className="h-4 w-4" />}>
+                <GlassButton variant="secondary" size="lg" leftIcon={<Gallery {...iconProps("sm")} />}>
                   Try an upload
                 </GlassButton>
               </Link>
@@ -121,7 +135,7 @@ export default function LandingPage() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[var(--text-sm)] text-[var(--color-text-secondary)] lg:justify-start">
               {["WCAG contrast", "Visual hierarchy", "Actionable fixes"].map((item) => (
                 <span key={item} className="inline-flex items-center gap-1.5">
-                  <Check className="h-4 w-4 text-emerald-500" strokeWidth={2.5} />
+                  <TickCircle {...iconProps("sm", "text-emerald-500", "Bold")} />
                   {item}
                 </span>
               ))}
@@ -157,7 +171,7 @@ export default function LandingPage() {
               return (
               <GlassCard key={feature.title} title={feature.title} hoverLift className="animate-enter-up" style={{ animationDelay: `${index * 90}ms` }}>
                 <span className={`mb-5 flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-gradient-to-br ${feature.accent} text-white shadow-[0_8px_20px_rgba(99,102,241,0.22)]`} aria-hidden>
-                  <Icon className="h-5 w-5" strokeWidth={1.8} />
+                  <Icon {...iconProps("md", "text-white", "Bold")} />
                 </span>
                 <p className="text-[var(--text-sm)] text-[var(--color-text-secondary)]">
                   {feature.description}
@@ -196,7 +210,7 @@ export default function LandingPage() {
             <div aria-hidden className="absolute -bottom-16 -left-12 h-36 w-36 rounded-full bg-sky-300/35 blur-3xl animate-aurora-breathe [animation-delay:1.2s]" />
             <div className="relative">
               <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-[var(--radius-lg)] bg-[var(--gradient-accent)] text-white shadow-[var(--glow-button)]">
-                <Sparkles className="h-5 w-5" />
+                <MagicStar {...iconProps("md", "text-white", "Bold")} />
               </div>
               <h2 className="text-[var(--text-2xl)] font-[var(--font-weight-semibold)] tracking-tight sm:text-3xl">
                 Turn every design review into momentum.
@@ -205,7 +219,7 @@ export default function LandingPage() {
                 Start with a screenshot, a Figma frame, or a live link. Xdesign does the first pass for you.
               </p>
               <Link href="/upload" className="mt-8 inline-block">
-                <GlassButton variant="primary" size="lg" rightIcon={<ArrowRight className="h-4 w-4" />}>
+                <GlassButton variant="primary" size="lg" rightIcon={<ArrowRight {...iconProps("sm")} />}>
                   Upload your first design
                 </GlassButton>
               </Link>

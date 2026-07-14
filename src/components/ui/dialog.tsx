@@ -1,9 +1,10 @@
 "use client";
 
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { X } from "lucide-react";
+import { CloseCircle } from "iconsax-reactjs";
 import { forwardRef, type ComponentPropsWithoutRef, type ElementRef, type HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
+import { iconProps } from "@/components/icons";
 
 const Dialog = DialogPrimitive.Root;
 const DialogTrigger = DialogPrimitive.Trigger;
@@ -52,7 +53,7 @@ const DialogContent = forwardRef<
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-[var(--glass-shine)]" />
       <div className="relative">{children}</div>
       <DialogPrimitive.Close className="absolute right-4 top-4 rounded-[var(--radius-sm)] p-1.5 text-[var(--color-text-muted)] transition-colors hover:bg-white/60 hover:text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]">
-        <X className="h-4 w-4" />
+        <CloseCircle {...iconProps("sm")} />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>

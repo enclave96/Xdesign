@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { Mail, Lock, User } from "lucide-react";
+import { Lock, Message, User } from "iconsax-reactjs";
 import { GlassButton } from "@/components/ui/GlassButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { GlassInput } from "@/components/ui/GlassInput";
@@ -10,6 +10,7 @@ import { GlassField } from "@/components/ui/GlassField";
 import { GlassAlert } from "@/components/ui/GlassAlert";
 import { useAuth, getAuthErrorMessage } from "@/hooks/useAuth";
 import { XdesignLogo } from "@/components/brand/XdesignLogo";
+import { iconProps } from "@/components/icons";
 
 export default function RegisterPage() {
   const { register } = useAuth();
@@ -62,7 +63,7 @@ export default function RegisterPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Jane Designer"
-                leftIcon={<User className="h-4 w-4" strokeWidth={1.75} />}
+                leftIcon={<User {...iconProps("sm")} />}
               />
             </GlassField>
 
@@ -75,7 +76,7 @@ export default function RegisterPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                leftIcon={<Mail className="h-4 w-4" strokeWidth={1.75} />}
+                leftIcon={<Message {...iconProps("sm")} />}
               />
             </GlassField>
 
@@ -89,7 +90,7 @@ export default function RegisterPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                leftIcon={<Lock className="h-4 w-4" strokeWidth={1.75} />}
+                leftIcon={<Lock {...iconProps("sm")} />}
               />
             </GlassField>
 

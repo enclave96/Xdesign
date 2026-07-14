@@ -1,6 +1,7 @@
 import { type ReactNode } from "react";
-import { AlertCircle, CheckCircle2, Info, AlertTriangle } from "lucide-react";
+import { Danger, InfoCircle, TickCircle, Warning2 } from "iconsax-reactjs";
 import { cn } from "@/lib/utils";
+import { iconProps } from "@/components/icons";
 
 export type GlassAlertVariant = "error" | "success" | "warning" | "info";
 
@@ -18,23 +19,23 @@ const variantConfig: Record<
   error: {
     container:
       "border-[var(--color-severity-critical-border)] bg-[var(--color-severity-critical-bg)]",
-    icon: <AlertCircle className="h-4 w-4 shrink-0 text-[var(--color-severity-critical)]" />,
+    icon: <Danger {...iconProps("sm", "text-[var(--color-severity-critical)]", "Bold")} />,
     title: "text-[var(--color-severity-critical)]",
   },
   success: {
     container: "border-[var(--color-severity-low-border)] bg-[var(--color-severity-low-bg)]",
-    icon: <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--color-severity-low)]" />,
+    icon: <TickCircle {...iconProps("sm", "text-[var(--color-severity-low)]", "Bold")} />,
     title: "text-[var(--color-severity-low)]",
   },
   warning: {
     container:
       "border-[var(--color-severity-medium-border)] bg-[var(--color-severity-medium-bg)]",
-    icon: <AlertTriangle className="h-4 w-4 shrink-0 text-[var(--color-severity-medium)]" />,
+    icon: <Warning2 {...iconProps("sm", "text-[var(--color-severity-medium)]", "Bold")} />,
     title: "text-[var(--color-severity-medium)]",
   },
   info: {
     container: "border-[var(--color-severity-info-border)] bg-[var(--color-severity-info-bg)]",
-    icon: <Info className="h-4 w-4 shrink-0 text-[var(--color-severity-info)]" />,
+    icon: <InfoCircle {...iconProps("sm", "text-[var(--color-severity-info)]")} />,
     title: "text-[var(--color-severity-info)]",
   },
 };

@@ -1,9 +1,10 @@
 "use client";
 
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { ChevronDown } from "lucide-react";
+import { ArrowDown } from "iconsax-reactjs";
 import { forwardRef, type ComponentPropsWithoutRef, type ElementRef } from "react";
 import { cn } from "@/lib/utils";
+import { iconProps } from "@/components/icons";
 
 const Accordion = AccordionPrimitive.Root;
 
@@ -38,7 +39,9 @@ const AccordionTrigger = forwardRef<
       {...props}
     >
       {children}
-      <ChevronDown className="h-4 w-4 shrink-0 text-[var(--color-text-muted)] transition-transform duration-[var(--transition-base)] group-data-[state=open]:rotate-180" />
+      <ArrowDown
+        {...iconProps("sm", "text-[var(--color-text-muted)] transition-transform duration-[var(--transition-base)] group-data-[state=open]:rotate-180")}
+      />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));

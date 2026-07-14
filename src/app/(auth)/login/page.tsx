@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { Mail, Lock } from "lucide-react";
+import { Lock, Message } from "iconsax-reactjs";
 import { GlassButton } from "@/components/ui/GlassButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { GlassInput } from "@/components/ui/GlassInput";
@@ -10,6 +10,7 @@ import { GlassField } from "@/components/ui/GlassField";
 import { GlassAlert } from "@/components/ui/GlassAlert";
 import { useAuth, getAuthErrorMessage } from "@/hooks/useAuth";
 import { XdesignLogo } from "@/components/brand/XdesignLogo";
+import { iconProps } from "@/components/icons";
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -59,7 +60,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                leftIcon={<Mail className="h-4 w-4" strokeWidth={1.75} />}
+                leftIcon={<Message {...iconProps("sm")} />}
               />
             </GlassField>
 
@@ -72,7 +73,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                leftIcon={<Lock className="h-4 w-4" strokeWidth={1.75} />}
+                leftIcon={<Lock {...iconProps("sm")} />}
               />
             </GlassField>
 

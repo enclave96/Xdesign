@@ -1,7 +1,7 @@
 "use client";
 
 import { AppShell } from "@/components/layout/AppShell";
-import { LogOut, Settings, UserRound } from "lucide-react";
+import { Logout, ProfileCircle, Setting2 } from "iconsax-reactjs";
 import {
   Avatar,
   AvatarFallback,
@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui";
+import { iconProps } from "@/components/icons";
 import { useRequireAuth } from "@/hooks/useAuth";
 
 const navItems = [
@@ -73,16 +74,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <UserRound className="h-4 w-4" />
+              <ProfileCircle {...iconProps("sm")} />
               Profile
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Settings className="h-4 w-4" />
+              <Setting2 {...iconProps("sm")} />
               Preferences
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onSelect={() => logout()} className="text-[var(--color-severity-critical)] focus:text-[var(--color-severity-critical)]">
-              <LogOut className="h-4 w-4" />
+              <Logout {...iconProps("sm")} />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

@@ -1,8 +1,9 @@
 "use client";
 
 import { forwardRef, type SelectHTMLAttributes } from "react";
-import { ChevronDown } from "lucide-react";
+import { ArrowDown } from "iconsax-reactjs";
 import { cn } from "@/lib/utils";
+import { iconProps } from "@/components/icons";
 
 export type GlassSelectSize = "sm" | "md" | "lg";
 
@@ -46,10 +47,12 @@ export const GlassSelect = forwardRef<HTMLSelectElement, GlassSelectProps>(
         >
           {children}
         </select>
-        <ChevronDown
+        <span
           aria-hidden
-          className="pointer-events-none absolute right-3 top-1/2 z-[2] h-4 w-4 -translate-y-1/2 text-[var(--color-text-muted)]"
-        />
+          className="pointer-events-none absolute right-3 top-1/2 z-[2] -translate-y-1/2 text-[var(--color-text-muted)]"
+        >
+          <ArrowDown {...iconProps("sm")} />
+        </span>
       </div>
     );
   }

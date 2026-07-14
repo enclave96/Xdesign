@@ -1,10 +1,11 @@
 "use client";
 
 import { useCallback, useRef, useState, type DragEvent } from "react";
-import { Upload } from "lucide-react";
+import { DocumentUpload } from "iconsax-reactjs";
 import { cn } from "@/lib/utils";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { validateFile } from "@/lib/api";
+import { iconProps } from "@/components/icons";
 
 export interface DropZoneProps {
   onFileSelect: (file: File) => void;
@@ -108,7 +109,7 @@ export function DropZone({ onFileSelect, disabled, className }: DropZoneProps) {
             )}
           >
             <div className="absolute inset-x-0 top-0 h-1/2 rounded-t-[var(--radius-xl)] bg-gradient-to-b from-white/35 to-transparent" />
-            <Upload className="relative h-7 w-7 text-white" strokeWidth={1.75} />
+            <DocumentUpload {...iconProps(28, "relative text-white", "Bold")} />
           </div>
 
           <div>

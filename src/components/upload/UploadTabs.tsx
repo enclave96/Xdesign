@@ -1,8 +1,9 @@
 "use client";
 
-import { FileImage, Globe, PenTool } from "lucide-react";
+import { Gallery, Global, PenTool } from "iconsax-reactjs";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { iconProps } from "@/components/icons";
 
 export type UploadTab = "file" | "url" | "figma";
 
@@ -22,19 +23,19 @@ const tabs: {
     id: "file",
     label: "Upload",
     description: "Images & screenshots",
-    icon: <FileImage className="h-4 w-4" strokeWidth={1.75} />,
+    icon: <Gallery {...iconProps("sm")} />,
   },
   {
     id: "url",
     label: "Website",
     description: "Live URL capture",
-    icon: <Globe className="h-4 w-4" strokeWidth={1.75} />,
+    icon: <Global {...iconProps("sm")} />,
   },
   {
     id: "figma",
     label: "Figma",
     description: "Frame export",
-    icon: <PenTool className="h-4 w-4" strokeWidth={1.75} />,
+    icon: <PenTool {...iconProps("sm")} />,
   },
 ];
 

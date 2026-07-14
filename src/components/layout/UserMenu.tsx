@@ -1,9 +1,11 @@
 "use client";
 
+import { useMemo } from "react";
 import { Logout, ProfileCircle, Setting2 } from "iconsax-reactjs";
 import {
   Avatar,
   AvatarFallback,
+  AvatarImage,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -12,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui";
 import { iconProps } from "@/components/icons";
+import { getUserAvatarUrl } from "@/lib/avatar";
 import type { User } from "@/lib/api";
 
 export interface UserMenuProps {
@@ -32,6 +35,7 @@ function getInitials(user: User): string {
 
 export function UserMenu({ user, onLogout, compact = false }: UserMenuProps) {
   const initials = getInitials(user);
+  const avatarUrl = useMemo(() => getUserAvatarUrl(user), [user]);
 
   return (
     <DropdownMenu>
@@ -46,6 +50,7 @@ export function UserMenu({ user, onLogout, compact = false }: UserMenuProps) {
           aria-label="Open account menu"
         >
           <Avatar className={compact ? "h-9 w-9" : undefined}>
+            <AvatarImage src={avatarUrl} alt={user.name ?? user.email} />
             <AvatarFallback>{initials}</AvatarFallback>
           </Avatar>
           {compact ? (
@@ -67,12 +72,18 @@ export function UserMenu({ user, onLogout, compact = false }: UserMenuProps) {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align={compact ? "start" : "end"} side={compact ? "top" : "bottom"}>
-        <DropdownMenuLabel>
-          <span className="block text-sm font-semibold text-foreground">
-            {user.name ?? "Your account"}
-          </span>
-          <span className="mt-0.5 block truncate text-xs font-normal text-muted-foreground">
-            {user.email}
+        <DropdownMenuLabel className="flex items-center gap-3">
+          <Avatar className="h-9 w-9">
+            <AvatarImage src={avatarUrl} alt={user.name ?? user.email} />
+            <AvatarFallback>{initials}</AvatarFallback>
+          </Avatar>
+          <span className="min-w-0 flex-1">
+            <span className="block text-sm font-semibold text-foreground">
+              {user.name ?? "Your account"}
+            </span>
+            <span className="mt-0.5 block truncate text-xs font-normal text-muted-foreground">
+              {user.email}
+            </span>
           </span>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />

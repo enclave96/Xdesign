@@ -324,7 +324,17 @@
   .animate-hero-pill-bar-4 { animation-delay: 0.45s; }
 
   .animate-hero-callout {
-    animation: hero-callout-float 4.2s ease-in-out infinite;
+    animation: hero-callout-float 5s ease-in-out infinite;
+    transform-origin: top left;
+  }
+
+  .animate-hero-cursor {
+    animation: hero-cursor-move 5s ease-in-out infinite;
+    transform-origin: 4px 4px;
+  }
+
+  .animate-hero-callout-line {
+    animation: hero-callout-line 2.8s linear infinite;
   }
 
   @keyframes hero-marker-pulse {
@@ -404,10 +414,38 @@
   @keyframes hero-callout-float {
     0%,
     100% {
-      transform: translateY(0);
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(10px, -12px);
     }
     50% {
-      transform: translateY(-5px);
+      transform: translate(18px, -6px);
+    }
+    75% {
+      transform: translate(8px, -16px);
+    }
+  }
+
+  @keyframes hero-cursor-move {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(-12deg);
+    }
+    25% {
+      transform: translate(6px, -4px) rotate(-6deg);
+    }
+    50% {
+      transform: translate(12px, 2px) rotate(-18deg);
+    }
+    75% {
+      transform: translate(4px, -8px) rotate(-10deg);
+    }
+  }
+
+  @keyframes hero-callout-line {
+    to {
+      stroke-dashoffset: -22;
     }
   }
 

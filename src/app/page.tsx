@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { DesignAuditIllustration } from "@/components/illustrations/DesignAuditIllustration";
+import { HeroReviewerCallout } from "@/components/illustrations/HeroReviewerCallout";
 import {
   FeatureIllustration,
   type FeatureIllustrationType,
@@ -144,41 +145,16 @@ export default function LandingPage() {
             </dl>
           </div>
 
-          <div className="animate-enter-scale relative">
+          <div className="animate-enter-scale relative overflow-visible">
             <div
               aria-hidden
               className="absolute -inset-10 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(246,91,25,0.18)_0%,transparent_65%)]"
             />
 
-            <Card className="relative p-3 shadow-md">
+            <Card className="relative overflow-visible p-3 shadow-md">
               <DesignAuditIllustration />
+              <HeroReviewerCallout />
             </Card>
-
-            <div className="absolute -left-2 top-[28%] hidden sm:block animate-hero-callout" aria-hidden>
-              <div className="flex items-center">
-                <svg viewBox="0 0 12 12" className="h-3.5 w-3.5 -rotate-[18deg] text-[#F65B19]" fill="currentColor">
-                  <path d="M0 0L12 5L5.5 6.5L4 12L0 0Z" />
-                </svg>
-                <span className="ml-1.5 inline-flex items-center gap-2 rounded-full border border-orange-200/80 bg-white/95 px-3 py-1.5 text-xs font-semibold text-orange-900 shadow-[0_8px_24px_rgba(246,91,25,0.12)]">
-                  <span className="h-2 w-2 rounded-full bg-[#F65B19] shadow-[0_0_0_3px_rgba(246,91,25,0.18)]" />
-                  Maya Chen
-                </span>
-              </div>
-              <svg
-                viewBox="0 0 80 48"
-                className="ml-6 mt-1 h-10 w-16 text-[#F65B19]/35"
-                fill="none"
-                aria-hidden
-              >
-                <path
-                  d="M4 4C28 8 42 30 76 44"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeDasharray="4 5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
 
             <div className="absolute -bottom-6 left-1/2 hidden w-max -translate-x-1/2 items-center gap-3 sm:flex" aria-hidden>
               {[

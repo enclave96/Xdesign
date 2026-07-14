@@ -66,6 +66,7 @@ export default function LoginPage() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center bg-muted/30 px-4 py-12">
+      <div className="auth-aurora" aria-hidden />
       <div className="relative z-10 w-full max-w-[26rem]">
         <div className="mb-8 text-center">
           <Link href="/" className="inline-flex transition-opacity hover:opacity-80">

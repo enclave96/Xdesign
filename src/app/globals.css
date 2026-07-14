@@ -283,7 +283,7 @@
   }
 
   .animate-hero-sparkline {
-    stroke-dasharray: 220;
+    stroke-dasharray: 170;
     animation: hero-sparkline-draw 3.2s ease-in-out infinite alternate;
   }
 
@@ -383,7 +383,7 @@
 
   @keyframes hero-sparkline-draw {
     0% {
-      stroke-dashoffset: 220;
+      stroke-dashoffset: 170;
       opacity: 0.45;
     }
     100% {
@@ -408,6 +408,69 @@
     }
     50% {
       transform: translateY(-5px);
+    }
+  }
+
+  /* Animated orange gradient backdrop (auth pages) */
+  .auth-aurora {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .auth-aurora::before,
+  .auth-aurora::after {
+    content: "";
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(72px);
+    will-change: transform;
+  }
+
+  .auth-aurora::before {
+    width: 34rem;
+    height: 34rem;
+    top: -10rem;
+    left: -8rem;
+    background: radial-gradient(
+      circle at center,
+      rgba(246, 91, 25, 0.32) 0%,
+      rgba(255, 122, 51, 0.16) 45%,
+      transparent 70%
+    );
+    animation: auth-aurora-drift-a 13s ease-in-out infinite alternate;
+  }
+
+  .auth-aurora::after {
+    width: 30rem;
+    height: 30rem;
+    bottom: -9rem;
+    right: -7rem;
+    background: radial-gradient(
+      circle at center,
+      rgba(255, 147, 77, 0.3) 0%,
+      rgba(246, 91, 25, 0.14) 45%,
+      transparent 70%
+    );
+    animation: auth-aurora-drift-b 16s ease-in-out infinite alternate;
+  }
+
+  @keyframes auth-aurora-drift-a {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+    100% {
+      transform: translate(4rem, 3rem) scale(1.18);
+    }
+  }
+
+  @keyframes auth-aurora-drift-b {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+    100% {
+      transform: translate(-3.5rem, -3rem) scale(1.14);
     }
   }
 

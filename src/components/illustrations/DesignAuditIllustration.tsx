@@ -3,12 +3,13 @@
 import { useId } from "react";
 
 const BRAND_FROM = "#F65B19";
-const BRAND_TO = "#FF934D";
 const BRAND_MID = "#FF7A33";
+const BRAND_TO = "#FF934D";
 
 /**
- * Decorative, motion-safe SVG illustration for the Orbital landing hero.
- * Visualizes a design canvas with UX audit overlays, charts, and issue markers.
+ * Decorative, motion-safe SVG illustration for the Xdesign landing hero.
+ * A design canvas under audit: dashed issue highlights connected to labeled
+ * markers, a floating analytics panel, and a UX score card.
  */
 export function DesignAuditIllustration() {
   const uid = useId().replace(/:/g, "");
@@ -30,7 +31,7 @@ export function DesignAuditIllustration() {
             <stop stopColor="#FFFFFF" stopOpacity="0.98" />
             <stop offset="1" stopColor="#FFF7F2" stopOpacity="0.9" />
           </linearGradient>
-          <linearGradient id={`${uid}-brand`} x1="195" y1="205" x2="410" y2="340" gradientUnits="userSpaceOnUse">
+          <linearGradient id={`${uid}-brand`} x1="234" y1="128" x2="520" y2="224" gradientUnits="userSpaceOnUse">
             <stop stopColor={BRAND_FROM} />
             <stop offset="1" stopColor={BRAND_TO} />
           </linearGradient>
@@ -44,7 +45,7 @@ export function DesignAuditIllustration() {
             <stop offset="1" stopColor={BRAND_TO} />
           </linearGradient>
           <linearGradient id={`${uid}-line`} x1="0" y1="0" x2="1" y2="0">
-            <stop stopColor={BRAND_FROM} stopOpacity="0.35" />
+            <stop stopColor={BRAND_FROM} stopOpacity="0.4" />
             <stop offset="0.5" stopColor={BRAND_MID} />
             <stop offset="1" stopColor={BRAND_TO} />
           </linearGradient>
@@ -64,243 +65,250 @@ export function DesignAuditIllustration() {
           </filter>
         </defs>
 
-        {/* Design canvas */}
+        {/* ===== Design canvas ===== */}
         <g className="animate-illustration-float">
           <rect
             x="92"
             y="54"
             width="456"
             height="366"
-            rx="30"
+            rx="28"
             fill={`url(#${uid}-canvas)`}
             stroke="rgba(255,255,255,0.95)"
             strokeWidth="3"
             filter={`url(#${uid}-soft)`}
           />
-          <rect x="92" y="54" width="456" height="50" rx="30" fill="rgba(255,255,255,0.72)" />
+
+          {/* Browser chrome */}
+          <path d="M92 82C92 66.536 104.536 54 120 54H520C535.464 54 548 66.536 548 82V104H92V82Z" fill="rgba(255,255,255,0.8)" />
           <path d="M92 104H548" stroke="rgba(246,91,25,0.12)" strokeWidth="1.5" />
-          <circle cx="124" cy="79" r="6" fill="#FDA4AF" />
-          <circle cx="143" cy="79" r="6" fill="#FCD34D" />
-          <circle cx="162" cy="79" r="6" fill="#86EFAC" />
+          <circle cx="122" cy="79" r="5.5" fill="#FDA4AF" />
+          <circle cx="140" cy="79" r="5.5" fill="#FCD34D" />
+          <circle cx="158" cy="79" r="5.5" fill="#86EFAC" />
+          <rect x="238" y="70" width="164" height="18" rx="9" fill="rgba(226,232,240,0.6)" />
+          <rect x="252" y="77" width="90" height="4" rx="2" fill="#94A3B8" fillOpacity=".5" />
 
           {/* Sidebar */}
-          <rect x="122" y="130" width="92" height="260" rx="17" fill="rgba(255,237,228,0.55)" />
-          <rect x="139" y="153" width="49" height="8" rx="4" fill={BRAND_FROM} fillOpacity=".35" />
-          <rect x="139" y="184" width="58" height="7" rx="3.5" fill="#FDBA74" fillOpacity=".55" />
-          <rect x="139" y="207" width="42" height="7" rx="3.5" fill="#FED7AA" />
-          <rect x="139" y="230" width="54" height="7" rx="3.5" fill="#FED7AA" />
-          <rect x="139" y="268" width="58" height="7" rx="3.5" fill="#FED7AA" fillOpacity=".7" />
-          <rect x="139" y="291" width="46" height="7" rx="3.5" fill="#FFEDD5" />
+          <rect x="118" y="128" width="92" height="264" rx="16" fill="rgba(255,237,228,0.55)" />
+          <rect x="134" y="148" width="52" height="8" rx="4" fill={BRAND_FROM} fillOpacity=".38" />
+          <rect x="134" y="176" width="60" height="6" rx="3" fill="#FDBA74" fillOpacity=".6" />
+          <rect x="134" y="196" width="44" height="6" rx="3" fill="#FED7AA" />
+          <rect x="134" y="216" width="54" height="6" rx="3" fill="#FED7AA" />
+          <rect x="134" y="236" width="48" height="6" rx="3" fill="#FED7AA" fillOpacity=".7" />
+          <rect x="134" y="256" width="58" height="6" rx="3" fill="#FFEDD5" />
 
           {/* Hero block */}
-          <rect x="238" y="130" width="278" height="101" rx="18" fill={`url(#${uid}-brand)`} />
-          <rect x="263" y="157" width="136" height="11" rx="5.5" fill="white" fillOpacity=".94" />
-          <rect x="263" y="180" width="95" height="7" rx="3.5" fill="white" fillOpacity=".62" />
-          <rect x="263" y="198" width="67" height="7" rx="3.5" fill="white" fillOpacity=".48" />
-          <rect x="263" y="212" width="58" height="10" rx="5" fill="white" fillOpacity=".88" />
+          <rect x="234" y="128" width="286" height="96" rx="16" fill={`url(#${uid}-brand)`} />
+          <rect x="258" y="150" width="140" height="11" rx="5.5" fill="white" fillOpacity=".95" />
+          <rect x="258" y="171" width="98" height="7" rx="3.5" fill="white" fillOpacity=".6" />
+          <rect x="258" y="192" width="62" height="14" rx="7" fill="white" fillOpacity=".9" />
 
           {/* Content cards */}
-          <rect x="238" y="253" width="132" height="137" rx="18" fill="white" fillOpacity=".82" stroke="rgba(246,91,25,0.08)" strokeWidth="1.5" />
-          <rect x="386" y="253" width="130" height="137" rx="18" fill="white" fillOpacity=".82" stroke="rgba(246,91,25,0.08)" strokeWidth="1.5" />
-          <circle cx="282" cy="298" r="20" fill="#FFF1E8" />
-          <path d="M274 298L280 304L291 292" stroke={BRAND_FROM} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-          <rect x="263" y="334" width="77" height="8" rx="4" fill="#FDBA74" fillOpacity=".45" />
-          <rect x="263" y="352" width="53" height="7" rx="3.5" fill="#FED7AA" />
-          <circle cx="431" cy="298" r="20" fill="#FFF1E8" />
-          <rect x="416" y="288" width="30" height="20" rx="6" fill="none" stroke={BRAND_FROM} strokeWidth="2.5" strokeDasharray="4 3" />
-          <rect x="409" y="334" width="82" height="8" rx="4" fill="#FDBA74" fillOpacity=".45" />
-          <rect x="409" y="352" width="56" height="7" rx="3.5" fill="#FED7AA" />
+          <rect x="234" y="240" width="136" height="152" rx="16" fill="white" fillOpacity=".85" stroke="rgba(246,91,25,0.1)" strokeWidth="1.5" />
+          <rect x="386" y="240" width="134" height="152" rx="16" fill="white" fillOpacity=".85" stroke="rgba(246,91,25,0.1)" strokeWidth="1.5" />
 
-          {/* Issue highlight overlays on the design */}
-          <g opacity="0.92">
-            <rect
-              x="258"
-              y="208"
-              width="68"
-              height="18"
-              rx="5"
-              fill={BRAND_FROM}
-              fillOpacity="0.1"
-              stroke={BRAND_FROM}
-              strokeWidth="1.5"
-              strokeDasharray="5 4"
-            />
-            <rect
-              x="404"
-              y="283"
-              width="54"
-              height="34"
-              rx="8"
-              fill={BRAND_FROM}
-              fillOpacity="0.08"
-              stroke={BRAND_TO}
-              strokeWidth="1.5"
-              strokeDasharray="5 4"
-            />
-            <path
-              d="M326 217C350 217 368 200 388 186"
-              stroke={BRAND_FROM}
-              strokeWidth="1.5"
-              strokeDasharray="4 4"
-              strokeLinecap="round"
-              opacity="0.55"
-            />
-            <path
-              d="M458 301C472 301 484 292 498 278"
-              stroke={BRAND_TO}
-              strokeWidth="1.5"
-              strokeDasharray="4 4"
-              strokeLinecap="round"
-              opacity="0.55"
-            />
-          </g>
+          {/* Left card content */}
+          <circle cx="278" cy="284" r="20" fill="#FFF1E8" />
+          <path d="M270 284L276 290L287 278" stroke={BRAND_FROM} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+          <rect x="258" y="320" width="88" height="8" rx="4" fill="#FDBA74" fillOpacity=".5" />
+          <rect x="258" y="338" width="60" height="6" rx="3" fill="#FED7AA" />
+          <rect x="258" y="356" width="72" height="6" rx="3" fill="#FFEDD5" />
 
-          {/* Analytics overlay panel on top of the design */}
-          <g filter={`url(#${uid}-soft)`}>
-            <rect
-              x="332"
-              y="272"
-              width="196"
-              height="132"
-              rx="16"
-              fill="rgba(255,255,255,0.9)"
-              stroke="rgba(246,91,25,0.18)"
-              strokeWidth="1.5"
-            />
-            <rect x="348" y="288" width="72" height="6" rx="3" fill="#1E293B" fillOpacity=".75" />
-            <rect x="348" y="300" width="48" height="4" rx="2" fill="#94A3B8" fillOpacity=".55" />
+          {/* Right card content */}
+          <circle cx="428" cy="284" r="20" fill="#FFF1E8" />
+          <rect x="413" y="275" width="30" height="19" rx="5" fill="none" stroke={BRAND_FROM} strokeWidth="2.2" strokeDasharray="4 3" />
+          <rect x="408" y="320" width="90" height="8" rx="4" fill="#FDBA74" fillOpacity=".5" />
+          <rect x="408" y="338" width="62" height="6" rx="3" fill="#FED7AA" />
+          <rect x="408" y="356" width="76" height="6" rx="3" fill="#FFEDD5" />
 
-            {/* Mini bar chart */}
-            <g transform="translate(348, 318)">
-              {[
-                { h: 34, delay: "0s" },
-                { h: 48, delay: "0.12s" },
-                { h: 28, delay: "0.24s" },
-                { h: 56, delay: "0.36s" },
-                { h: 40, delay: "0.48s" },
-              ].map((bar, i) => (
-                <rect
-                  key={bar.h}
-                  x={i * 18}
-                  y={60 - bar.h}
-                  width="11"
-                  height={bar.h}
-                  rx="3"
-                  fill={`url(#${uid}-bar)`}
-                  className={`animate-hero-bar animate-hero-bar-${i + 1}`}
-                  style={{ animationDelay: bar.delay }}
-                />
-              ))}
-            </g>
+          {/* Issue highlight: CTA contrast (hero block) */}
+          <rect
+            x="250"
+            y="186"
+            width="78"
+            height="26"
+            rx="8"
+            fill="white"
+            fillOpacity="0.12"
+            stroke="white"
+            strokeOpacity="0.9"
+            strokeWidth="1.6"
+            strokeDasharray="5 4"
+          />
+          {/* Connector: CTA highlight → contrast marker */}
+          <path
+            d="M330 196C384 188 424 176 452 162"
+            stroke={BRAND_FROM}
+            strokeWidth="1.6"
+            strokeDasharray="4 4"
+            strokeLinecap="round"
+            opacity="0.6"
+          />
 
-            {/* Sparkline */}
-            <path
-              d="M348 418C368 404 382 412 402 396C418 384 432 390 448 376C464 362 478 368 494 354"
-              stroke={`url(#${uid}-line)`}
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="animate-hero-sparkline"
-            />
-            <circle cx="494" cy="354" r="4" fill={BRAND_FROM} className="animate-hero-spark-dot" />
-            <path
-              d="M348 418H510"
-              stroke="rgba(148,163,184,0.25)"
-              strokeWidth="1"
-              strokeDasharray="3 4"
-            />
-          </g>
+          {/* Issue highlight: tap target (right card icon) */}
+          <rect
+            x="404"
+            y="266"
+            width="48"
+            height="36"
+            rx="10"
+            fill={BRAND_FROM}
+            fillOpacity="0.08"
+            stroke={BRAND_TO}
+            strokeWidth="1.6"
+            strokeDasharray="5 4"
+          />
+          {/* Connector: tap highlight → tap marker */}
+          <path
+            d="M404 296C384 312 368 328 356 342"
+            stroke={BRAND_TO}
+            strokeWidth="1.6"
+            strokeDasharray="4 4"
+            strokeLinecap="round"
+            opacity="0.6"
+          />
 
           {/* Scan beam */}
           <g className="animate-scan-line">
             <rect x="106" y="116" width="428" height="3" rx="1.5" fill={`url(#${uid}-scan)`} filter={`url(#${uid}-glow)`} />
           </g>
 
-          {/* Issue pointer markers */}
+          {/* Marker: contrast */}
           <g className="animate-marker-one">
             <circle cx="473" cy="156" r="22" fill={BRAND_FROM} fillOpacity="0.14" className="animate-marker-ring" />
-            <circle cx="473" cy="156" r="18" fill="#FFF" fillOpacity=".96" />
-            <circle cx="473" cy="156" r="12" fill={BRAND_FROM} />
-            <path d="M473 150V157" stroke="white" strokeWidth="3" strokeLinecap="round" />
-            <circle cx="473" cy="163" r="1.6" fill="white" />
-            <rect x="492" y="142" width="52" height="22" rx="8" fill="white" fillOpacity=".95" stroke="rgba(246,91,25,0.2)" strokeWidth="1.2" />
-            <text x="502" y="157" fill="#9A3412" fontSize="9.5" fontWeight="700">
-              Contrast
-            </text>
+            <circle cx="473" cy="156" r="17" fill="#FFF" fillOpacity=".97" />
+            <circle cx="473" cy="156" r="11" fill={BRAND_FROM} />
+            <path d="M473 150.5V157" stroke="white" strokeWidth="2.8" strokeLinecap="round" />
+            <circle cx="473" cy="161.5" r="1.5" fill="white" />
+            <g filter={`url(#${uid}-soft)`}>
+              <rect x="494" y="144" width="50" height="24" rx="9" fill="white" fillOpacity=".97" stroke="rgba(246,91,25,0.22)" strokeWidth="1.2" />
+              <text x="519" y="160" textAnchor="middle" fill="#9A3412" fontSize="10" fontWeight="700">
+                Contrast
+              </text>
+            </g>
           </g>
 
+          {/* Marker: tap area */}
           <g className="animate-marker-two">
             <circle cx="344" cy="353" r="20" fill={BRAND_TO} fillOpacity="0.14" className="animate-marker-ring" />
-            <circle cx="344" cy="353" r="17" fill="#FFF" fillOpacity=".96" />
-            <circle cx="344" cy="353" r="11" fill={BRAND_MID} />
-            <path d="M339 353L343 357L350 349" stroke="white" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-            <rect x="278" y="336" width="54" height="22" rx="8" fill="white" fillOpacity=".95" stroke="rgba(246,91,25,0.2)" strokeWidth="1.2" />
-            <text x="286" y="351" fill="#9A3412" fontSize="9.5" fontWeight="700">
-              Tap area
-            </text>
+            <circle cx="344" cy="353" r="16" fill="#FFF" fillOpacity=".97" />
+            <circle cx="344" cy="353" r="10.5" fill={BRAND_MID} />
+            <path d="M339.5 353L343 356.5L349.5 349.5" stroke="white" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+            <g filter={`url(#${uid}-soft)`}>
+              <rect x="272" y="341" width="52" height="24" rx="9" fill="white" fillOpacity=".97" stroke="rgba(246,91,25,0.22)" strokeWidth="1.2" />
+              <text x="298" y="357" textAnchor="middle" fill="#9A3412" fontSize="10" fontWeight="700">
+                Tap area
+              </text>
+            </g>
           </g>
         </g>
 
-        {/* Category scores pill */}
-        <g className="animate-pill-one">
-          <rect x="18" y="148" width="154" height="72" rx="18" fill="rgba(255,255,255,0.82)" stroke="rgba(246,91,25,0.14)" strokeWidth="2" />
-          <text x="36" y="172" fill="#0F172A" fontSize="11" fontWeight="700">
-            UX breakdown
+        {/* ===== Floating analytics panel (left) ===== */}
+        <g className="animate-pill-one" filter={`url(#${uid}-soft)`}>
+          <rect x="8" y="210" width="172" height="150" rx="18" fill="rgba(255,255,255,0.94)" stroke="rgba(246,91,25,0.16)" strokeWidth="1.5" />
+
+          <text x="24" y="236" fill="#0F172A" fontSize="11" fontWeight="700">
+            UX analytics
           </text>
-          <text x="36" y="186" fill="#94A3B8" fontSize="8.5" fontWeight="600">
-            8 categories
-          </text>
-          <g transform="translate(36, 194)">
+          <circle cx="158" cy="232" r="4" fill={BRAND_FROM} className="animate-hero-spark-dot" />
+
+          {/* Bar chart: baseline y=314 */}
+          <g transform="translate(24, 258)">
             {[
-              { w: 88, label: "Nav" },
-              { w: 72, label: "Type" },
-              { w: 96, label: "Hier" },
-              { w: 64, label: "CTA" },
-            ].map((row, i) => (
-              <g key={row.label} transform={`translate(0, ${i * 11})`}>
-                <rect x="0" y="0" width="104" height="5" rx="2.5" fill="#FFEDD5" />
-                <rect
-                  x="0"
-                  y="0"
-                  width={row.w * 0.52}
-                  height="5"
-                  rx="2.5"
-                  fill={`url(#${uid}-bar)`}
-                  className={`animate-hero-pill-bar animate-hero-pill-bar-${i + 1}`}
-                />
-              </g>
+              { h: 30 },
+              { h: 44 },
+              { h: 26 },
+              { h: 52 },
+              { h: 38 },
+            ].map((bar, i) => (
+              <rect
+                key={`${uid}-hb-${i}`}
+                x={i * 19}
+                y={56 - bar.h}
+                width="12"
+                height={bar.h}
+                rx="3"
+                fill={`url(#${uid}-bar)`}
+                className={`animate-hero-bar animate-hero-bar-${i + 1}`}
+              />
             ))}
+            {/* 6th bar fills remaining width */}
+            <rect
+              x={95}
+              y={56 - 46}
+              width="12"
+              height="46"
+              rx="3"
+              fill={`url(#${uid}-bar)`}
+              fillOpacity="0.55"
+              className="animate-hero-bar animate-hero-bar-5"
+            />
+            <rect
+              x={114}
+              y={56 - 34}
+              width="12"
+              height="34"
+              rx="3"
+              fill={`url(#${uid}-bar)`}
+              fillOpacity="0.4"
+              className="animate-hero-bar animate-hero-bar-4"
+            />
+            <rect
+              x={133}
+              y={56 - 42}
+              width="12"
+              height="42"
+              rx="3"
+              fill={`url(#${uid}-bar)`}
+              fillOpacity="0.3"
+              className="animate-hero-bar animate-hero-bar-3"
+            />
           </g>
+          <path d="M24 314H164" stroke="rgba(148,163,184,0.3)" strokeWidth="1" />
+
+          {/* Sparkline */}
+          <path
+            d="M24 342C40 336 52 340 68 332C84 324 96 330 112 322C128 314 144 320 164 310"
+            stroke={`url(#${uid}-line)`}
+            strokeWidth="2.6"
+            strokeLinecap="round"
+            className="animate-hero-sparkline"
+          />
+          <circle cx="164" cy="310" r="3.5" fill={BRAND_FROM} className="animate-hero-spark-dot" />
         </g>
 
-        {/* Score ring pill */}
-        <g className="animate-pill-two">
-          <rect x="468" y="368" width="154" height="78" rx="20" fill="rgba(255,255,255,0.84)" stroke="rgba(246,91,25,0.14)" strokeWidth="2" />
-          <circle cx="528" cy="407" r="24" stroke="#FFEDD5" strokeWidth="7" />
+        {/* ===== Floating score card (right) ===== */}
+        <g className="animate-pill-two" filter={`url(#${uid}-soft)`}>
+          <rect x="472" y="386" width="150" height="76" rx="18" fill="rgba(255,255,255,0.95)" stroke="rgba(246,91,25,0.16)" strokeWidth="1.5" />
+
+          {/* Ring */}
+          <circle cx="510" cy="424" r="23" stroke="#FFEDD5" strokeWidth="6.5" />
           <circle
-            cx="528"
-            cy="407"
-            r="24"
+            cx="510"
+            cy="424"
+            r="23"
             stroke={`url(#${uid}-ring)`}
-            strokeWidth="7"
+            strokeWidth="6.5"
             strokeLinecap="round"
-            strokeDasharray="150.8"
+            strokeDasharray="144.5"
             className="animate-hero-score-ring"
-            transform="rotate(-90 528 407)"
+            transform="rotate(-90 510 424)"
           />
-          <text x="516" y="412" fill="#0F172A" fontSize="17" fontWeight="800">
+          <text x="510" y="429.5" textAnchor="middle" fill="#0F172A" fontSize="15" fontWeight="800">
             92
           </text>
-          <text x="490" y="432" fill="#64748B" fontSize="9" fontWeight="700">
+
+          {/* Label + mini progress */}
+          <text x="546" y="412" fill="#64748B" fontSize="8.5" fontWeight="700" letterSpacing="0.08em">
             UX SCORE
           </text>
-          <g transform="translate(558, 388)">
-            <rect x="0" y="0" width="48" height="5" rx="2.5" fill="#FFEDD5" />
-            <rect x="0" y="0" width="44" height="5" rx="2.5" fill={BRAND_FROM} fillOpacity=".85" />
-            <rect x="0" y="10" width="48" height="5" rx="2.5" fill="#FFEDD5" />
-            <rect x="0" y="10" width="36" height="5" rx="2.5" fill={BRAND_MID} fillOpacity=".8" />
-            <rect x="0" y="20" width="48" height="5" rx="2.5" fill="#FFEDD5" />
-            <rect x="0" y="20" width="40" height="5" rx="2.5" fill={BRAND_TO} fillOpacity=".75" />
+          <g transform="translate(546, 420)">
+            <rect x="0" y="0" width="60" height="5" rx="2.5" fill="#FFEDD5" />
+            <rect x="0" y="0" width="54" height="5" rx="2.5" fill={BRAND_FROM} fillOpacity=".9" className="animate-hero-pill-bar animate-hero-pill-bar-1" />
+            <rect x="0" y="11" width="60" height="5" rx="2.5" fill="#FFEDD5" />
+            <rect x="0" y="11" width="44" height="5" rx="2.5" fill={BRAND_MID} fillOpacity=".85" className="animate-hero-pill-bar animate-hero-pill-bar-2" />
+            <rect x="0" y="22" width="60" height="5" rx="2.5" fill="#FFEDD5" />
+            <rect x="0" y="22" width="50" height="5" rx="2.5" fill={BRAND_TO} fillOpacity=".8" className="animate-hero-pill-bar animate-hero-pill-bar-3" />
           </g>
         </g>
       </svg>

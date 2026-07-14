@@ -161,20 +161,6 @@ export default function ProjectDetailPage() {
                   >
                     {latest.status}
                   </Badge>
-                  {latest.status === "completed" && (
-                    <div className="mt-4">
-                      <Link href={`/analysis/${latest.id}`}>
-                        <GlassButton variant="primary">View report</GlassButton>
-                      </Link>
-                    </div>
-                  )}
-                  {(latest.status === "pending" || latest.status === "processing") && (
-                    <div className="mt-4">
-                      <Link href={`/analysis/${latest.id}`}>
-                        <GlassButton variant="secondary">View progress</GlassButton>
-                      </Link>
-                    </div>
-                  )}
                 </div>
               </div>
             ) : (
@@ -184,8 +170,20 @@ export default function ProjectDetailPage() {
             )}
 
             <div className="mt-6 flex flex-wrap gap-3">
+              {latest?.status === "completed" ? (
+                <Link href={`/analysis/${latest.id}`}>
+                  <GlassButton variant="primary">
+                    View report
+                  </GlassButton>
+                </Link>
+              ) : (latest?.status === "pending" || latest?.status === "processing") ? (
+                <Link href={`/analysis/${latest.id}`}>
+                  <GlassButton variant="secondary">View progress</GlassButton>
+                </Link>
+              ) : null}
+
               <GlassButton
-                variant="primary"
+                variant={latest?.status === "completed" ? "secondary" : "primary"}
                 loading={analyzing}
                 onClick={handleAnalyze}
                 disabled={

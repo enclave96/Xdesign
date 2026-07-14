@@ -21,7 +21,7 @@ const sizeStyles: Record<ProgressBarSize, { track: string; bar: string }> = {
 };
 
 const variantStyles: Record<ProgressBarVariant, string> = {
-  default: "bg-[var(--gradient-accent)]",
+  default: "bg-[var(--gradient-primary)]",
   success: "bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500",
   warning: "bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500",
   danger: "bg-gradient-to-r from-red-400 via-red-500 to-rose-500",

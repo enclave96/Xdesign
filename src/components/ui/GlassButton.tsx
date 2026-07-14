@@ -16,26 +16,29 @@ export interface GlassButtonProps extends ButtonHTMLAttributes<HTMLButtonElement
 
 const variantStyles: Record<GlassButtonVariant, string> = {
   primary: cn(
-    "bg-[var(--gradient-accent)] text-[var(--color-text-inverse)]",
-    "border border-white/40",
-    "shadow-[var(--glow-button)]",
-    "hover:shadow-[var(--glow-button-hover)] hover:brightness-[1.03] hover:-translate-y-px",
-    "active:translate-y-0 active:brightness-95 active:shadow-[var(--glow-button)]",
-    "focus-visible:shadow-[var(--glow-focus)]"
+    "bg-[var(--gradient-primary)] text-white",
+    "border border-white/35",
+    "shadow-[var(--glow-button-primary)]",
+    "font-[var(--font-weight-semibold)] tracking-[-0.01em]",
+    "hover:bg-[var(--gradient-primary-hover)] hover:shadow-[var(--glow-button-primary-hover)] hover:-translate-y-px",
+    "active:translate-y-0 active:brightness-[0.97] active:shadow-[var(--glow-button-primary)]",
+    "focus-visible:shadow-[var(--glow-focus),var(--glow-button-primary)]"
   ),
   secondary: cn(
     "bg-[var(--glass-bg-elevated)] text-[var(--color-text-primary)]",
     "border border-[var(--glass-border-strong)]",
     "backdrop-blur-[var(--blur-md)] backdrop-saturate-150",
     "shadow-[var(--shadow-glass-sm)]",
-    "hover:bg-[var(--glass-bg-strong)] hover:shadow-[var(--shadow-glass-md)] hover:-translate-y-px",
+    "font-[var(--font-weight-medium)]",
+    "hover:bg-[var(--glass-bg-strong)] hover:border-[var(--color-purple-200)] hover:shadow-[var(--shadow-glass-md)] hover:-translate-y-px",
     "active:translate-y-0 active:bg-[var(--glass-bg)]",
     "focus-visible:shadow-[var(--glow-focus)]"
   ),
   outline: cn(
-    "bg-[var(--glass-bg-subtle)] text-[var(--color-text-primary)]",
-    "border border-[var(--glass-border)]",
+    "bg-[var(--glass-bg-subtle)] text-[var(--color-purple-700)]",
+    "border border-[var(--color-purple-200)]",
     "backdrop-blur-[var(--blur-sm)]",
+    "font-[var(--font-weight-medium)]",
     "hover:bg-[var(--glass-bg)] hover:border-[var(--color-purple-300)] hover:shadow-[var(--shadow-glass-sm)]",
     "active:bg-[var(--glass-bg-elevated)]",
     "focus-visible:shadow-[var(--glow-focus)]"
@@ -43,6 +46,7 @@ const variantStyles: Record<GlassButtonVariant, string> = {
   ghost: cn(
     "bg-transparent text-[var(--color-text-secondary)]",
     "border border-transparent",
+    "font-[var(--font-weight-medium)]",
     "hover:bg-[var(--glass-bg-subtle)] hover:text-[var(--color-text-primary)]",
     "active:bg-[var(--glass-bg)]",
     "focus-visible:shadow-[var(--glow-focus)]"
@@ -81,7 +85,6 @@ export const GlassButton = forwardRef<HTMLButtonElement, GlassButtonProps>(
         disabled={isDisabled}
         className={cn(
           "group relative inline-flex items-center justify-center overflow-hidden",
-          "font-[var(--font-weight-medium)]",
           "transition-all duration-[var(--transition-smooth)]",
           "disabled:pointer-events-none disabled:opacity-45 disabled:shadow-none disabled:translate-y-0",
           "focus-visible:outline-none",
@@ -93,13 +96,12 @@ export const GlassButton = forwardRef<HTMLButtonElement, GlassButtonProps>(
         )}
         {...props}
       >
-        {/* Glass top reflection */}
         <span
           aria-hidden
           className={cn(
             "pointer-events-none absolute inset-x-0 top-0 h-[45%]",
             isPrimary
-              ? "bg-gradient-to-b from-white/30 to-transparent"
+              ? "bg-gradient-to-b from-white/35 to-transparent"
               : "bg-[var(--glass-input-shine)] opacity-70"
           )}
         />

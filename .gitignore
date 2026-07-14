@@ -1,0 +1,8 @@
+uploads/
+.env
+node_modules/
+.next/
+*.db
+*.db-journal
+test-design.png
+tsconfig.tsbuildinfo

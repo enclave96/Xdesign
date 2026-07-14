@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, MagicStar, TrendUp } from "iconsax-reactjs";
+import { ArrowRight, MagicStar } from "iconsax-reactjs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -99,11 +99,7 @@ export default function LandingPage() {
             </Badge>
 
             <h1 className="mx-auto max-w-xl text-[2.7rem] font-bold leading-[1.08] tracking-tight text-foreground sm:text-[3.4rem] lg:mx-0">
-              Smarter design decisions{" "}
-              <span className="inline-flex h-[0.85em] w-[0.85em] translate-y-[0.08em] items-center justify-center rounded-[0.22em] bg-brand-gradient align-baseline shadow-sm">
-                <TrendUp {...iconProps("md", "h-[60%] w-[60%]", "Bold", { tone: "light", interactive: false })} />
-              </span>{" "}
-              powered by AI
+              Smarter design decisions powered by AI
             </h1>
 
             <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-muted-foreground lg:mx-0">

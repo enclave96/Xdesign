@@ -60,7 +60,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                leftIcon={<Message {...iconProps("sm")} />}
+                leftIcon={<Message {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />}
               />
             </GlassField>
 
@@ -73,7 +73,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                leftIcon={<Lock {...iconProps("sm")} />}
+                leftIcon={<Lock {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />}
               />
             </GlassField>
 

@@ -63,7 +63,7 @@ export default function RegisterPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Jane Designer"
-                leftIcon={<User {...iconProps("sm")} />}
+                leftIcon={<User {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />}
               />
             </GlassField>
 
@@ -76,7 +76,7 @@ export default function RegisterPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                leftIcon={<Message {...iconProps("sm")} />}
+                leftIcon={<Message {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />}
               />
             </GlassField>
 
@@ -90,7 +90,7 @@ export default function RegisterPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                leftIcon={<Lock {...iconProps("sm")} />}
+                leftIcon={<Lock {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />}
               />
             </GlassField>
 

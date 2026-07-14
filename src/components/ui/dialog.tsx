@@ -52,8 +52,8 @@ const DialogContent = forwardRef<
     >
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-[var(--glass-shine)]" />
       <div className="relative">{children}</div>
-      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-[var(--radius-sm)] p-1.5 text-[var(--color-text-muted)] transition-colors hover:bg-white/60 hover:text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]">
-        <CloseCircle {...iconProps("sm")} />
+      <DialogPrimitive.Close className="group absolute right-4 top-4 rounded-[var(--radius-sm)] p-1.5 text-[var(--color-text-primary)] transition-colors hover:bg-white/60 hover:text-[var(--color-purple-600)] focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]">
+        <CloseCircle {...iconProps("sm", undefined, "Linear", { interactive: false })} />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>

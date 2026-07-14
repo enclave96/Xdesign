@@ -39,9 +39,9 @@ const DropdownMenuItem = forwardRef<
   <DropdownMenuPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center gap-2 rounded-[var(--radius-sm)] px-3 py-2",
+      "relative flex cursor-default select-none items-center gap-2 rounded-[var(--radius-sm)] px-3 py-2 group",
       "text-[var(--text-sm)] text-[var(--color-text-secondary)] outline-none transition-colors",
-      "focus:bg-white/60 focus:text-[var(--color-text-primary)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "focus:bg-white/60 focus:text-[var(--color-purple-600)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       inset && "pl-8",
       className
     )}

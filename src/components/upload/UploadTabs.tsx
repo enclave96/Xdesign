@@ -23,19 +23,19 @@ const tabs: {
     id: "file",
     label: "Upload",
     description: "Images & screenshots",
-    icon: <Gallery {...iconProps("sm")} />,
+    icon: <Gallery {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />,
   },
   {
     id: "url",
     label: "Website",
     description: "Live URL capture",
-    icon: <Global {...iconProps("sm")} />,
+    icon: <Global {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />,
   },
   {
     id: "figma",
     label: "Figma",
     description: "Frame export",
-    icon: <PenTool {...iconProps("sm")} />,
+    icon: <PenTool {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />,
   },
 ];
 
@@ -68,8 +68,9 @@ export function UploadTabs({ activeTab, onTabChange, className }: UploadTabsProp
               className={cn(
                 "relative mb-1.5 flex h-8 w-8 items-center justify-center rounded-[var(--radius-sm)]",
                 "transition-all duration-[var(--transition-smooth)]",
-                "bg-[var(--glass-bg)] text-[var(--color-text-muted)]",
-                "group-data-[state=active]:bg-[var(--gradient-accent)] group-data-[state=active]:text-white"
+                "bg-[var(--glass-bg)] text-[var(--color-text-primary)]",
+                "group-hover:text-[var(--color-purple-600)]",
+                "group-data-[state=active]:bg-[var(--gradient-accent)] group-data-[state=active]:text-white group-data-[state=active]:group-hover:text-white"
               )}
             >
               {tab.icon}

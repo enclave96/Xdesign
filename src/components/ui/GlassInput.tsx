@@ -64,19 +64,19 @@ export const GlassInput = forwardRef<HTMLInputElement, GlassInputProps>(
     }
 
     return (
-      <div className={cn("relative", className)}>
+      <div className={cn("group relative", className)}>
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-1/2 rounded-t-[var(--radius-md)] bg-[var(--glass-input-shine)]"
         />
         {leftIcon && (
-          <span className="pointer-events-none absolute left-3 top-1/2 z-[2] -translate-y-1/2 text-[var(--color-text-muted)]">
+          <span className="pointer-events-none absolute left-3 top-1/2 z-[2] -translate-y-1/2 text-[var(--color-text-primary)] transition-colors duration-[var(--transition-base)] group-hover:text-[var(--color-purple-600)] group-focus-within:text-[var(--color-purple-600)]">
             {leftIcon}
           </span>
         )}
         <input ref={ref} disabled={disabled} className={cn(inputClasses, "relative z-[1]")} {...props} />
         {rightIcon && (
-          <span className="pointer-events-none absolute right-3 top-1/2 z-[2] -translate-y-1/2 text-[var(--color-text-muted)]">
+          <span className="pointer-events-none absolute right-3 top-1/2 z-[2] -translate-y-1/2 text-[var(--color-text-primary)] transition-colors duration-[var(--transition-base)] group-hover:text-[var(--color-purple-600)] group-focus-within:text-[var(--color-purple-600)]">
             {rightIcon}
           </span>
         )}

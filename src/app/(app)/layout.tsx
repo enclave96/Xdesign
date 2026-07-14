@@ -74,16 +74,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <ProfileCircle {...iconProps("sm")} />
+              <ProfileCircle {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />
               Profile
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Setting2 {...iconProps("sm")} />
+              <Setting2 {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />
               Preferences
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onSelect={() => logout()} className="text-[var(--color-severity-critical)] focus:text-[var(--color-severity-critical)]">
-              <Logout {...iconProps("sm")} />
+              <Logout {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

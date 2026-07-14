@@ -21,7 +21,7 @@ const sizeStyles: Record<GlassSelectSize, string> = {
 export const GlassSelect = forwardRef<HTMLSelectElement, GlassSelectProps>(
   ({ className, selectSize = "md", error = false, disabled, children, ...props }, ref) => {
     return (
-      <div className={cn("relative", className)}>
+      <div className={cn("group relative", className)}>
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-1/2 rounded-t-[var(--radius-md)] bg-[var(--glass-input-shine)]"
@@ -49,9 +49,9 @@ export const GlassSelect = forwardRef<HTMLSelectElement, GlassSelectProps>(
         </select>
         <span
           aria-hidden
-          className="pointer-events-none absolute right-3 top-1/2 z-[2] -translate-y-1/2 text-[var(--color-text-muted)]"
+          className="pointer-events-none absolute right-3 top-1/2 z-[2] -translate-y-1/2 text-[var(--color-text-primary)] transition-colors duration-[var(--transition-base)] group-hover:text-[var(--color-purple-600)] group-focus-within:text-[var(--color-purple-600)]"
         >
-          <ArrowDown {...iconProps("sm")} />
+          <ArrowDown {...iconProps("sm", undefined, "Linear", { interactive: false })} />
         </span>
       </div>
     );

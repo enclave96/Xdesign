@@ -19,23 +19,23 @@ const variantConfig: Record<
   error: {
     container:
       "border-[var(--color-severity-critical-border)] bg-[var(--color-severity-critical-bg)]",
-    icon: <Danger {...iconProps("sm", "text-[var(--color-severity-critical)]", "Bold")} />,
+    icon: <Danger {...iconProps("sm", "text-[var(--color-severity-critical)]", "Bold", { interactive: false })} />,
     title: "text-[var(--color-severity-critical)]",
   },
   success: {
     container: "border-[var(--color-severity-low-border)] bg-[var(--color-severity-low-bg)]",
-    icon: <TickCircle {...iconProps("sm", "text-[var(--color-severity-low)]", "Bold")} />,
+    icon: <TickCircle {...iconProps("sm", "text-[var(--color-severity-low)]", "Bold", { interactive: false })} />,
     title: "text-[var(--color-severity-low)]",
   },
   warning: {
     container:
       "border-[var(--color-severity-medium-border)] bg-[var(--color-severity-medium-bg)]",
-    icon: <Warning2 {...iconProps("sm", "text-[var(--color-severity-medium)]", "Bold")} />,
+    icon: <Warning2 {...iconProps("sm", "text-[var(--color-severity-medium)]", "Bold", { interactive: false })} />,
     title: "text-[var(--color-severity-medium)]",
   },
   info: {
     container: "border-[var(--color-severity-info-border)] bg-[var(--color-severity-info-bg)]",
-    icon: <InfoCircle {...iconProps("sm", "text-[var(--color-severity-info)]")} />,
+    icon: <InfoCircle {...iconProps("sm", "text-[var(--color-severity-info)]", "Linear", { interactive: false })} />,
     title: "text-[var(--color-severity-info)]",
   },
 };

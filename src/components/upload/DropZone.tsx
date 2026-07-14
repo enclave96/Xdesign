@@ -109,7 +109,7 @@ export function DropZone({ onFileSelect, disabled, className }: DropZoneProps) {
             )}
           >
             <div className="absolute inset-x-0 top-0 h-1/2 rounded-t-[var(--radius-xl)] bg-gradient-to-b from-white/35 to-transparent" />
-            <DocumentUpload {...iconProps(28, "relative text-white", "Bold")} />
+            <DocumentUpload {...iconProps(28, "relative", "Bold", { tone: "light", interactive: false })} />
           </div>
 
           <div>

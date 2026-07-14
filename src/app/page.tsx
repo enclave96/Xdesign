@@ -122,7 +122,7 @@ export default function LandingPage() {
             </p>
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:items-start">
               <Link href="/register">
-                <GlassButton variant="primary" size="lg" rightIcon={<ArrowRight {...iconProps("sm")} />}>
+                <GlassButton variant="primary" size="lg" rightIcon={<ArrowRight {...iconProps("sm", undefined, "Linear", { tone: "light", interactive: false })} />}>
                   Analyze a design
                 </GlassButton>
               </Link>
@@ -135,7 +135,7 @@ export default function LandingPage() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[var(--text-sm)] text-[var(--color-text-secondary)] lg:justify-start">
               {["WCAG contrast", "Visual hierarchy", "Actionable fixes"].map((item) => (
                 <span key={item} className="inline-flex items-center gap-1.5">
-                  <TickCircle {...iconProps("sm", "text-emerald-500", "Bold")} />
+                  <TickCircle {...iconProps("sm", "text-emerald-600", "Bold", { interactive: false })} />
                   {item}
                 </span>
               ))}
@@ -171,7 +171,7 @@ export default function LandingPage() {
               return (
               <GlassCard key={feature.title} title={feature.title} hoverLift className="animate-enter-up" style={{ animationDelay: `${index * 90}ms` }}>
                 <span className={`mb-5 flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-gradient-to-br ${feature.accent} text-white shadow-[0_8px_20px_rgba(99,102,241,0.22)]`} aria-hidden>
-                  <Icon {...iconProps("md", "text-white", "Bold")} />
+                  <Icon {...iconProps("md", undefined, "Bold", { tone: "light", interactive: false })} />
                 </span>
                 <p className="text-[var(--text-sm)] text-[var(--color-text-secondary)]">
                   {feature.description}
@@ -210,7 +210,7 @@ export default function LandingPage() {
             <div aria-hidden className="absolute -bottom-16 -left-12 h-36 w-36 rounded-full bg-sky-300/35 blur-3xl animate-aurora-breathe [animation-delay:1.2s]" />
             <div className="relative">
               <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-[var(--radius-lg)] bg-[var(--gradient-accent)] text-white shadow-[var(--glow-button)]">
-                <MagicStar {...iconProps("md", "text-white", "Bold")} />
+                <MagicStar {...iconProps("md", undefined, "Bold", { tone: "light", interactive: false })} />
               </div>
               <h2 className="text-[var(--text-2xl)] font-[var(--font-weight-semibold)] tracking-tight sm:text-3xl">
                 Turn every design review into momentum.
@@ -219,7 +219,7 @@ export default function LandingPage() {
                 Start with a screenshot, a Figma frame, or a live link. Xdesign does the first pass for you.
               </p>
               <Link href="/upload" className="mt-8 inline-block">
-                <GlassButton variant="primary" size="lg" rightIcon={<ArrowRight {...iconProps("sm")} />}>
+                <GlassButton variant="primary" size="lg" rightIcon={<ArrowRight {...iconProps("sm", undefined, "Linear", { tone: "light", interactive: false })} />}>
                   Upload your first design
                 </GlassButton>
               </Link>

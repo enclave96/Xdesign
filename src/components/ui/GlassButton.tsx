@@ -135,9 +135,27 @@ export const GlassButton = forwardRef<HTMLButtonElement, GlassButtonProps>(
             loading && "invisible"
           )}
         >
-          {leftIcon && <span className="shrink-0 opacity-90">{leftIcon}</span>}
+          {leftIcon && (
+            <span
+              className={cn(
+                "shrink-0 opacity-90 transition-colors",
+                !isPrimary && "group-hover:text-[var(--color-purple-600)]"
+              )}
+            >
+              {leftIcon}
+            </span>
+          )}
           {children}
-          {rightIcon && <span className="shrink-0 opacity-90">{rightIcon}</span>}
+          {rightIcon && (
+            <span
+              className={cn(
+                "shrink-0 opacity-90 transition-colors",
+                !isPrimary && "group-hover:text-[var(--color-purple-600)]"
+              )}
+            >
+              {rightIcon}
+            </span>
+          )}
         </span>
       </button>
     );

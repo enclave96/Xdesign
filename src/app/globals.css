@@ -334,6 +334,18 @@
     animation: score-ring-fill 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
+  .app-icon {
+    display: inline-flex;
+    color: var(--color-text-primary);
+    transition: color var(--transition-base);
+  }
+
+  .app-icon svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
   .animate-liquid-shimmer {
     animation: liquid-shimmer 2.5s ease-in-out infinite;
   }

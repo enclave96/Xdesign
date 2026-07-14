@@ -40,7 +40,12 @@ const AccordionTrigger = forwardRef<
     >
       {children}
       <ArrowDown
-        {...iconProps("sm", "text-[var(--color-text-muted)] transition-transform duration-[var(--transition-base)] group-data-[state=open]:rotate-180")}
+        {...iconProps(
+          "sm",
+          "transition-transform duration-[var(--transition-base)] group-data-[state=open]:rotate-180",
+          "Linear",
+          { tone: "inherit", interactive: false }
+        )}
       />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>

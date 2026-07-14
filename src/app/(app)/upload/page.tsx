@@ -101,10 +101,10 @@ export default function UploadPage() {
                   <DialogTrigger asChild>
                     <button
                       type="button"
-                      className="rounded-full p-1 text-[var(--color-text-muted)] transition-colors hover:bg-white/60 hover:text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]"
+                      className="group rounded-full p-1 text-[var(--color-text-primary)] transition-colors hover:bg-white/60 hover:text-[var(--color-purple-600)] focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]"
                       aria-label="See supported import formats"
                     >
-                      <MessageQuestion {...iconProps(18)} />
+                      <MessageQuestion {...iconProps(18, undefined, "Linear", { interactive: false })} />
                     </button>
                   </DialogTrigger>
                 </TooltipTrigger>
@@ -120,12 +120,12 @@ export default function UploadPage() {
               </DialogHeader>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-[var(--radius-md)] border border-[var(--glass-border)] bg-white/40 p-4">
-                  <Gallery {...iconProps("md", "text-sky-600")} />
+                  <Gallery {...iconProps("md")} />
                   <p className="mt-3 text-[var(--text-sm)] font-[var(--font-weight-semibold)] text-[var(--color-text-primary)]">Images</p>
                   <p className="mt-1 text-[var(--text-xs)] leading-relaxed text-[var(--color-text-secondary)]">PNG, JPEG, WebP, and GIF files up to 20MB.</p>
                 </div>
                 <div className="rounded-[var(--radius-md)] border border-[var(--glass-border)] bg-white/40 p-4">
-                  <Global {...iconProps("md", "text-violet-600")} />
+                  <Global {...iconProps("md")} />
                   <p className="mt-3 text-[var(--text-sm)] font-[var(--font-weight-semibold)] text-[var(--color-text-primary)]">Live websites</p>
                   <p className="mt-1 text-[var(--text-xs)] leading-relaxed text-[var(--color-text-secondary)]">Paste a public URL and we’ll capture it for analysis.</p>
                 </div>
@@ -191,7 +191,7 @@ export default function UploadPage() {
                     ? "https://www.figma.com/file/..."
                     : "https://example.com"
                 }
-                leftIcon={<Link2 {...iconProps("sm")} />}
+                leftIcon={<Link2 {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />}
               />
             </GlassField>
           )}
@@ -212,7 +212,7 @@ export default function UploadPage() {
         fullWidth
         loading={loading}
         onClick={handleSubmit}
-        leftIcon={<MagicStar {...iconProps("sm")} />}
+        leftIcon={<MagicStar {...iconProps("sm", undefined, "Linear", { tone: "light", interactive: false })} />}
       >
         Analyze design
       </GlassButton>

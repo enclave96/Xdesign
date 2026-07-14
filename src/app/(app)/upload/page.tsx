@@ -9,6 +9,7 @@ import { InputGroup } from "@/components/ui/InputGroup";
 import { FormField } from "@/components/ui/FormField";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { ProgressBar } from "@/components/ui/ProgressBar";
+import { FigmaLogo } from "@/components/brand/FigmaLogo";
 import {
   Dialog,
   DialogContent,
@@ -193,7 +194,13 @@ export default function UploadPage() {
                     ? "https://www.figma.com/file/..."
                     : "https://example.com"
                 }
-                leftIcon={<Link2 {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />}
+                leftIcon={
+                  activeTab === "figma" ? (
+                    <FigmaLogo className="h-4 w-[11px]" />
+                  ) : (
+                    <Link2 {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />
+                  )
+                }
               />
             </FormField>
           )}

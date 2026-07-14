@@ -56,7 +56,7 @@ export function AppSidebarShell({
                 "focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]",
                 isActive
                   ? "bg-[var(--gradient-primary)] text-white shadow-[var(--glow-button-primary)]"
-                  : "text-[var(--color-text-secondary)] hover:bg-white/50 hover:text-[var(--color-purple-600)]"
+                  : "text-[var(--color-text-secondary)] hover:bg-[var(--color-purple-50)] hover:text-[var(--color-purple-700)]"
               )}
             >
               <span
@@ -64,7 +64,7 @@ export function AppSidebarShell({
                   "flex h-8 w-8 items-center justify-center rounded-[var(--radius-sm)]",
                   isActive
                     ? "bg-white/20 text-white"
-                    : "bg-[var(--glass-bg-subtle)] text-[var(--color-text-primary)] group-hover:text-[var(--color-purple-600)]"
+                    : "bg-[var(--color-slate-100)] text-[var(--color-text-primary)] group-hover:bg-[var(--color-purple-100)] group-hover:text-[var(--color-purple-700)]"
                 )}
               >
                 {item.icon ?? defaultIcons[item.href]}

@@ -101,7 +101,7 @@ export default function LandingPage() {
       <main className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-20 lg:px-8">
         <section className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-8">
           <div className="animate-enter-up text-center lg:text-left">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/75 bg-white/45 px-3.5 py-2 text-[var(--text-xs)] font-[var(--font-weight-semibold)] tracking-wide text-[var(--color-text-accent)] shadow-[var(--shadow-glass-sm)] backdrop-blur-xl">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-purple-200)] bg-white/80 px-3.5 py-2 text-[var(--text-xs)] font-[var(--font-weight-semibold)] tracking-wide text-[var(--color-text-accent)] shadow-[var(--shadow-glass-sm)] backdrop-blur-xl">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-400 opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-violet-500" />

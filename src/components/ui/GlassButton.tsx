@@ -20,7 +20,7 @@ export interface GlassButtonProps extends ButtonHTMLAttributes<HTMLButtonElement
 const variantStyles: Record<GlassButtonVariant, string> = {
   primary: cn(
     "bg-[var(--gradient-primary)] text-white hover:text-white",
-    "border border-white/35",
+    "border border-[var(--color-purple-800)]/40",
     "shadow-[var(--glow-button-primary)]",
     "font-[var(--font-weight-semibold)] tracking-[-0.01em]",
     "hover:bg-[var(--gradient-primary-hover)] hover:shadow-[var(--glow-button-primary-hover)] hover:-translate-y-px",
@@ -39,10 +39,10 @@ const variantStyles: Record<GlassButtonVariant, string> = {
   ),
   outline: cn(
     "bg-[var(--glass-bg-subtle)] text-[var(--color-purple-700)]",
-    "border border-[var(--color-purple-200)]",
+    "border border-[var(--color-purple-300)]",
     "backdrop-blur-[var(--blur-sm)]",
-    "font-[var(--font-weight-medium)]",
-    "hover:bg-[var(--glass-bg)] hover:border-[var(--color-purple-300)] hover:shadow-[var(--shadow-glass-sm)]",
+    "font-[var(--font-weight-semibold)]",
+    "hover:bg-[var(--glass-bg)] hover:border-[var(--color-purple-400)] hover:shadow-[var(--shadow-glass-sm)]",
     "active:bg-[var(--glass-bg-elevated)]",
     "focus-visible:shadow-[var(--glow-focus)]"
   ),
@@ -50,8 +50,8 @@ const variantStyles: Record<GlassButtonVariant, string> = {
     "bg-transparent text-[var(--color-text-secondary)]",
     "border border-transparent",
     "font-[var(--font-weight-medium)]",
-    "hover:bg-[var(--glass-bg-subtle)] hover:text-[var(--color-text-primary)]",
-    "active:bg-[var(--glass-bg)]",
+    "hover:bg-[var(--glass-bg)] hover:text-[var(--color-text-primary)]",
+    "active:bg-[var(--glass-bg-elevated)]",
     "focus-visible:shadow-[var(--glow-focus)]"
   ),
 };
@@ -103,7 +103,7 @@ export const GlassButton = forwardRef<HTMLButtonElement, GlassButtonProps>(
           className={cn(
             "pointer-events-none absolute inset-x-0 top-0 h-[45%]",
             isPrimary
-              ? "bg-gradient-to-b from-white/35 to-transparent"
+              ? "bg-gradient-to-b from-white/20 to-transparent"
               : "bg-[var(--glass-input-shine)] opacity-70"
           )}
         />

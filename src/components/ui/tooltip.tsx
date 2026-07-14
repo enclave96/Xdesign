@@ -17,8 +17,8 @@ const TooltipContent = forwardRef<
       ref={ref}
       sideOffset={sideOffset}
       className={cn(
-        "z-[var(--z-tooltip)] rounded-[var(--radius-sm)] border border-white/70",
-        "bg-white/80 px-3 py-2 text-[var(--text-xs)] font-[var(--font-weight-medium)]",
+        "z-[var(--z-tooltip)] rounded-[var(--radius-sm)] border border-[var(--glass-border-strong)]",
+        "bg-[var(--glass-bg-strong)] px-3 py-2 text-[var(--text-xs)] font-[var(--font-weight-medium)]",
         "text-[var(--color-text-primary)] shadow-[var(--shadow-glass-lg)]",
         "backdrop-blur-[var(--blur-md)] animate-enter-up",
         className

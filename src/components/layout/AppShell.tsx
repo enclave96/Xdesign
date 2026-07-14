@@ -86,12 +86,12 @@ export function AppShell({
                     href={item.href}
                     className={cn(
                       "relative inline-flex items-center gap-2 overflow-hidden rounded-[var(--radius-md)] px-3.5 py-2",
-                      "text-[var(--text-sm)] font-[var(--font-weight-medium)]",
+                      "text-[var(--text-sm)]",
                       "transition-all duration-[var(--transition-smooth)]",
                       "focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]",
                       isActive
-                        ? "bg-[var(--glass-bg-strong)] text-[var(--color-text-primary)] shadow-[var(--shadow-glass-sm)] border border-[var(--glass-border)]"
-                        : "text-[var(--color-text-secondary)] hover:bg-[var(--glass-bg-subtle)] hover:text-[var(--color-text-primary)]"
+                        ? "bg-[var(--gradient-primary)] font-[var(--font-weight-semibold)] text-white shadow-[var(--glow-button-primary)]"
+                        : "font-[var(--font-weight-medium)] text-[var(--color-text-secondary)] hover:bg-[var(--glass-bg)] hover:text-[var(--color-text-primary)]"
                     )}
                   >
                     {item.icon}

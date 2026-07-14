@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
 import { GlassButton } from "@/components/ui/GlassButton";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { ProjectCard } from "@/components/projects/ProjectCard";
@@ -50,9 +49,9 @@ export default function DashboardPage() {
             Your design analysis history
           </p>
         </div>
-        <Link href="/upload">
-          <GlassButton variant="primary">New analysis</GlassButton>
-        </Link>
+        <GlassButton href="/upload" variant="primary">
+          New analysis
+        </GlassButton>
       </div>
 
       {error && (
@@ -79,11 +78,9 @@ export default function DashboardPage() {
             Upload your first design to get an instant UX analysis with scores and
             recommendations.
           </p>
-          <Link href="/upload" className="mt-6 inline-block">
-            <GlassButton variant="primary" size="lg">
-              Upload a design
-            </GlassButton>
-          </Link>
+          <GlassButton href="/upload" variant="primary" size="lg" className="mt-6">
+            Upload a design
+          </GlassButton>
         </GlassPanel>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -12,11 +13,13 @@ export interface GlassButtonProps extends ButtonHTMLAttributes<HTMLButtonElement
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   children?: ReactNode;
+  /** Renders as a Next.js link with button styling (avoids invalid nested anchor + button). */
+  href?: string;
 }
 
 const variantStyles: Record<GlassButtonVariant, string> = {
   primary: cn(
-    "bg-[var(--gradient-primary)] text-white",
+    "bg-[var(--gradient-primary)] text-white hover:text-white",
     "border border-white/35",
     "shadow-[var(--glow-button-primary)]",
     "font-[var(--font-weight-semibold)] tracking-[-0.01em]",
@@ -71,6 +74,8 @@ export const GlassButton = forwardRef<HTMLButtonElement, GlassButtonProps>(
       leftIcon,
       rightIcon,
       children,
+      href,
+      type = "button",
       ...props
     },
     ref
@@ -78,24 +83,21 @@ export const GlassButton = forwardRef<HTMLButtonElement, GlassButtonProps>(
     const isDisabled = disabled || loading;
     const isPrimary = variant === "primary";
 
-    return (
-      <button
-        ref={ref}
-        type="button"
-        disabled={isDisabled}
-        className={cn(
-          "group relative inline-flex items-center justify-center overflow-hidden",
-          "transition-all duration-[var(--transition-smooth)]",
-          "disabled:pointer-events-none disabled:opacity-45 disabled:shadow-none disabled:translate-y-0",
-          "focus-visible:outline-none",
-          variantStyles[variant],
-          sizeStyles[size],
-          fullWidth && "w-full",
-          isPrimary && "liquid-shine",
-          className
-        )}
-        {...props}
-      >
+    const buttonClassName = cn(
+      "group relative inline-flex items-center justify-center overflow-hidden no-underline",
+      "transition-all duration-[var(--transition-smooth)]",
+      "disabled:pointer-events-none disabled:opacity-45 disabled:shadow-none disabled:translate-y-0",
+      "focus-visible:outline-none",
+      variantStyles[variant],
+      sizeStyles[size],
+      fullWidth && "w-full",
+      isPrimary && "liquid-shine",
+      isDisabled && "pointer-events-none opacity-45 shadow-none translate-y-0",
+      className
+    );
+
+    const content = (
+      <>
         <span
           aria-hidden
           className={cn(
@@ -132,6 +134,7 @@ export const GlassButton = forwardRef<HTMLButtonElement, GlassButtonProps>(
         <span
           className={cn(
             "relative z-[1] inline-flex items-center gap-inherit",
+            isPrimary && "text-white",
             loading && "invisible"
           )}
         >
@@ -157,6 +160,26 @@ export const GlassButton = forwardRef<HTMLButtonElement, GlassButtonProps>(
             </span>
           )}
         </span>
+      </>
+    );
+
+    if (href && !isDisabled) {
+      return (
+        <Link href={href} className={buttonClassName}>
+          {content}
+        </Link>
+      );
+    }
+
+    return (
+      <button
+        ref={ref}
+        type={type}
+        disabled={isDisabled}
+        className={buttonClassName}
+        {...props}
+      >
+        {content}
       </button>
     );
   }

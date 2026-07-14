@@ -2,12 +2,12 @@ import { cn } from "@/lib/utils";
 
 export interface XdesignLogoProps {
   className?: string;
-  /** Height / sizing classes applied to the full logo lockup */
+  /** Height / sizing classes applied to the logo mark */
   markClassName?: string;
   priority?: boolean;
 }
 
-const LOGO_SRC = "/brand/orbital-logo.svg";
+const LOGO_SRC = "/brand/orbital-logo.png";
 
 export function XdesignLogo({
   className,
@@ -19,7 +19,10 @@ export function XdesignLogo({
       <img
         src={LOGO_SRC}
         alt="Orbital"
-        className={cn("h-8 w-auto shrink-0 object-contain", markClassName)}
+        className={cn(
+          "aspect-square h-9 w-9 shrink-0 object-contain",
+          markClassName
+        )}
       />
     </div>
   );

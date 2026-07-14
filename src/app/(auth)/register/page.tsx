@@ -38,7 +38,7 @@ export default function RegisterPage() {
       <div className="relative z-10 w-full max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="inline-flex transition-opacity hover:opacity-80">
-            <XdesignLogo markClassName="h-10 w-auto" />
+            <XdesignLogo markClassName="h-10 w-10" />
           </Link>
         </div>
 

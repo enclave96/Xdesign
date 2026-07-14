@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: xdesign
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: DATABASE_URL
+        value: file:/app/data/prod.db
+      - key: JWT_SECRET
+        generateValue: true
+      - key: UPLOAD_DIR
+        value: /app/uploads
+    disk:
+      name: xdesign-data
+      mountPath: /app/data
+      sizeGB: 1

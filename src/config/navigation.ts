@@ -2,6 +2,7 @@ export interface NavLink {
   label: string;
   href: string;
   badge?: string;
+  icon?: string;
 }
 
 /** Landing / marketing header — UpTier-style breadth */
@@ -50,10 +51,10 @@ export const appSidebarNav: NavLink[] = [
 
 /** App top bar — secondary horizontal nav (desktop) */
 export const appTopNav: NavLink[] = [
-  { label: "Overview", href: "/dashboard" },
-  { label: "Analytics", href: "/dashboard" },
-  { label: "Reports", href: "/dashboard" },
-  { label: "Compare", href: "/dashboard" },
-  { label: "Team", href: "/dashboard" },
-  { label: "Settings", href: "/dashboard" },
+  { label: "Overview", href: "/dashboard", icon: "overview" },
+  { label: "Analytics", href: "/dashboard", icon: "analytics" },
+  { label: "Reports", href: "/dashboard", icon: "reports" },
+  { label: "Compare", href: "/dashboard", icon: "compare" },
+  { label: "Team", href: "/dashboard", icon: "team" },
+  { label: "Settings", href: "/dashboard", icon: "settings" },
 ];

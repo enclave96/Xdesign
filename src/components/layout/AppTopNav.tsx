@@ -6,6 +6,7 @@ import { Notification, SearchNormal1 } from "iconsax-reactjs";
 import { cn } from "@/lib/utils";
 import { appTopNav } from "@/config/navigation";
 import { iconProps } from "@/components/icons";
+import { appNavIcon, isAppNavIconKey } from "@/components/icons/app-nav-icons";
 import type { ReactNode } from "react";
 
 export interface AppTopNavProps {
@@ -35,12 +36,15 @@ export function AppTopNav({ actions, className }: AppTopNavProps) {
                 key={item.label}
                 href={item.href}
                 className={cn(
-                  "shrink-0 rounded-md px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  "inline-flex shrink-0 items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   isActive
                     ? "bg-brand-gradient text-white shadow-sm"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
               >
+                {item.icon && isAppNavIconKey(item.icon)
+                  ? appNavIcon(item.icon, isActive)
+                  : null}
                 {item.label}
               </Link>
             );

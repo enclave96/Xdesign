@@ -4,7 +4,7 @@ AI-powered design analysis platform. Upload screenshots, images, PDFs, Figma exp
 
 ## Live Demo
 
-**https://sculpture-above-computation-bibliography.trycloudflare.com**
+**https://customized-noticed-average-tech.trycloudflare.com**
 
 > Demo account: `demo@xdesign.app` / `demo1234`
 

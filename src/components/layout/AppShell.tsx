@@ -11,6 +11,7 @@ export interface NavItem {
   label: string;
   href: string;
   icon?: ReactNode;
+  badge?: string;
 }
 
 export interface AppShellProps {
@@ -61,12 +62,12 @@ export function AppShell({
 
                 return (
                   <Link
-                    key={item.href}
+                    key={`${item.label}-${item.href}`}
                     href={item.href}
                     className={cn(
                       "relative inline-flex items-center gap-2 rounded-md px-3.5 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                       isActive
-                        ? "bg-primary font-semibold text-primary-foreground"
+                        ? "bg-brand-gradient font-semibold text-white shadow-sm"
                         : "font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
                     )}
                   >

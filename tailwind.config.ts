@@ -44,6 +44,12 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      backgroundImage: {
+        "brand-gradient":
+          "linear-gradient(135deg, #F65B19 0%, #FF934D 100%)",
+        "brand-gradient-hover":
+          "linear-gradient(135deg, #E85210 0%, #FFA366 100%)",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

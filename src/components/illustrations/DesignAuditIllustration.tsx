@@ -15,7 +15,7 @@ export function DesignAuditIllustration() {
       aria-hidden
       className="relative mx-auto w-full max-w-[620px] select-none"
     >
-      <div className="absolute inset-[12%] rounded-full bg-violet-300/30 blur-3xl animate-aurora-breathe" />
+      <div className="absolute inset-[12%] rounded-full bg-orange-300/25 blur-3xl animate-aurora-breathe" />
       <svg
         viewBox="0 0 640 500"
         fill="none"

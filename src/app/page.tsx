@@ -9,7 +9,8 @@ import {
   FeatureIllustration,
   type FeatureIllustrationType,
 } from "@/components/illustrations/FeatureIllustrations";
-import { XdesignLogo } from "@/components/brand/XdesignLogo";
+import { MarketingHeader } from "@/components/layout/MarketingHeader";
+import { MarketingFooter } from "@/components/layout/MarketingFooter";
 import { iconProps } from "@/components/icons";
 
 const features: {
@@ -43,6 +44,28 @@ const features: {
   },
 ];
 
+const solutions = [
+  {
+    title: "Product teams",
+    description: "Ship confident UI changes with objective scores before every release.",
+  },
+  {
+    title: "Design agencies",
+    description: "Deliver polished audit reports clients can act on in minutes, not days.",
+  },
+  {
+    title: "Growth & marketing",
+    description: "Catch conversion-killing UX issues on landing pages before they cost leads.",
+  },
+];
+
+const platformStats = [
+  { value: "8", label: "UX dimensions scored" },
+  { value: "WCAG", label: "Accessibility checks" },
+  { value: "HTML", label: "Exportable reports" },
+  { value: "3", label: "Import sources" },
+];
+
 const faqs = [
   {
     question: "What can I analyze?",
@@ -64,60 +87,19 @@ const faqs = [
 export default function LandingPage() {
   return (
     <div className="relative min-h-screen bg-background">
-      <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="shrink-0">
-            <XdesignLogo markClassName="h-8 w-auto" />
-          </Link>
-
-          <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
-            {[
-              { label: "Features", href: "#features" },
-              { label: "FAQ", href: "#faq" },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="rounded-md px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex shrink-0 items-center gap-2 sm:gap-4">
-            <Link
-              href="/login"
-              className="text-sm font-medium text-foreground transition-colors hover:text-primary"
-            >
-              Login
-            </Link>
-            <Button
-              href="/register"
-              size="sm"
-              rightIcon={
-                <ArrowRight
-                  {...iconProps("xs", "-rotate-45", "Linear", { tone: "light", interactive: false })}
-                />
-              }
-            >
-              See a demo
-            </Button>
-          </div>
-        </div>
-      </header>
+      <MarketingHeader />
 
       <main className="relative z-10 mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
         <section className="grid items-center gap-12 lg:grid-cols-[1.02fr_1fr] lg:gap-10">
           <div className="animate-enter-up text-center lg:text-left">
-            <Badge variant="outline" className="mb-7 gap-2 px-3 py-1.5 text-sm font-medium">
-              <MagicStar {...iconProps("xs", "text-primary", "Bold", { interactive: false })} />
+            <Badge variant="outline" className="mb-7 gap-2 border-orange-200 bg-orange-50 px-3 py-1.5 text-sm font-medium text-orange-800">
+              <MagicStar {...iconProps("xs", "text-[#F65B19]", "Bold", { interactive: false })} />
               Made for better interfaces
             </Badge>
 
             <h1 className="mx-auto max-w-xl text-[2.7rem] font-bold leading-[1.08] tracking-tight text-foreground sm:text-[3.4rem] lg:mx-0">
               Smarter design decisions{" "}
-              <span className="inline-flex h-[0.85em] w-[0.85em] translate-y-[0.08em] items-center justify-center rounded-[0.22em] bg-primary align-baseline">
+              <span className="inline-flex h-[0.85em] w-[0.85em] translate-y-[0.08em] items-center justify-center rounded-[0.22em] bg-brand-gradient align-baseline shadow-sm">
                 <TrendUp {...iconProps("md", "h-[60%] w-[60%]", "Bold", { tone: "light", interactive: false })} />
               </span>{" "}
               powered by AI
@@ -128,7 +110,7 @@ export default function LandingPage() {
               continuously improved user experiences.
             </p>
 
-            <div className="mt-8 flex justify-center lg:justify-start">
+            <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
               <Button
                 href="/register"
                 size="lg"
@@ -138,7 +120,10 @@ export default function LandingPage() {
                   />
                 }
               >
-                See a demo
+                Get started free
+              </Button>
+              <Button href="#platform" variant="outline" size="lg">
+                See how it works
               </Button>
             </div>
 
@@ -162,7 +147,7 @@ export default function LandingPage() {
           <div className="animate-enter-scale relative">
             <div
               aria-hidden
-              className="absolute -inset-10 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(196,181,253,0.35)_0%,transparent_65%)]"
+              className="absolute -inset-10 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(246,91,25,0.18)_0%,transparent_65%)]"
             />
 
             <Card className="relative p-3 shadow-md">
@@ -170,27 +155,19 @@ export default function LandingPage() {
             </Card>
 
             <div className="absolute -left-4 top-[30%] hidden items-center sm:flex" aria-hidden>
-              <svg viewBox="0 0 12 12" className="h-3 w-3 -rotate-12 text-primary" fill="currentColor">
+              <svg viewBox="0 0 12 12" className="h-3 w-3 -rotate-12 text-[#F65B19]" fill="currentColor">
                 <path d="M0 0L12 5L5.5 6.5L4 12L0 0Z" />
               </svg>
-              <span className="ml-1 rounded-full bg-violet-100 px-3 py-1 text-xs font-semibold text-violet-800 shadow-sm">
+              <span className="ml-1 rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-800 shadow-sm">
                 Maya Chen
               </span>
-            </div>
-            <div className="absolute -right-3 top-[58%] hidden items-center sm:flex" aria-hidden>
-              <span className="mr-1 rounded-full bg-pink-100 px-3 py-1 text-xs font-semibold text-pink-800 shadow-sm">
-                Sam Park
-              </span>
-              <svg viewBox="0 0 12 12" className="h-3 w-3 rotate-[100deg] text-pink-500" fill="currentColor">
-                <path d="M0 0L12 5L5.5 6.5L4 12L0 0Z" />
-              </svg>
             </div>
 
             <div className="absolute -bottom-6 left-1/2 hidden w-max -translate-x-1/2 items-center gap-3 sm:flex" aria-hidden>
               {[
-                { dot: "bg-violet-400", label: "Score", value: "92" },
-                { dot: "bg-sky-300", label: "Issues", value: "14" },
-                { dot: "bg-pink-300", label: "Contrast", value: "AA" },
+                { dot: "bg-[#F65B19]", label: "Score", value: "92" },
+                { dot: "bg-orange-300", label: "Issues", value: "14" },
+                { dot: "bg-amber-300", label: "Contrast", value: "AA" },
               ].map((chip) => (
                 <span
                   key={chip.label}
@@ -205,10 +182,33 @@ export default function LandingPage() {
           </div>
         </section>
 
+        <section id="platform" className="mt-28 scroll-mt-24">
+          <div className="text-center">
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Platform</p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-4xl">
+              One workspace for every design review
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+              Upload, score, annotate, and share — Orbital brings UX analysis, accessibility checks,
+              and exportable reports into a single connected workflow.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {platformStats.map((stat) => (
+              <Card key={stat.label} className="text-center">
+                <CardContent className="py-6">
+                  <p className="text-2xl font-bold text-brand-gradient">{stat.value}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
         <section id="features" className="mt-28 scroll-mt-24">
           <div className="text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">
-              One intelligent workspace
+              Features
             </p>
             <h2 className="mt-3 text-center text-2xl font-semibold tracking-tight sm:text-4xl">
               Feedback your whole team can act on
@@ -240,6 +240,112 @@ export default function LandingPage() {
           </div>
         </section>
 
+        <section id="solutions" className="mt-28 scroll-mt-24">
+          <div className="text-center">
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Solutions</p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-4xl">
+              Built for every team that ships interfaces
+            </h2>
+          </div>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {solutions.map((item) => (
+              <Card key={item.title} className="border-orange-100 bg-gradient-to-b from-orange-50/80 to-card">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section id="reports" className="mt-28 scroll-mt-24 rounded-2xl border bg-muted/30 p-8 sm:p-12">
+          <div className="grid items-center gap-8 lg:grid-cols-2">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-widest text-primary">Reports</p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+                Annotated reports your stakeholders understand
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Export HTML reports with scores, issue markers, severity filters, and prioritised
+                recommendations — ready to share with product, design, and engineering.
+              </p>
+              <Button href="/register" className="mt-6">
+                Start analyzing
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {["Score breakdown", "Issue markers", "WCAG checks", "Export HTML"].map((item) => (
+                <div key={item} className="rounded-lg border bg-card p-4 text-sm font-medium shadow-sm">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="integrations" className="mt-28 scroll-mt-24 text-center">
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary">Integrations</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+            Bring designs from anywhere
+          </h2>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            {["Figma", "Screenshots", "Live URLs", "Slack", "Notion", "Jira"].map((name) => (
+              <Badge key={name} variant="outline" className="px-4 py-2 text-sm">
+                {name}
+              </Badge>
+            ))}
+          </div>
+        </section>
+
+        <section id="pricing" className="mt-28 scroll-mt-24">
+          <Card className="overflow-hidden">
+            <CardContent className="grid gap-8 p-8 sm:p-12 lg:grid-cols-2 lg:items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-widest text-primary">Pricing</p>
+                <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+                  Start free. Scale when your team does.
+                </h2>
+                <p className="mt-4 text-muted-foreground">
+                  Run your first analyses at no cost. Upgrade when you need team workspaces,
+                  compare mode, and advanced reporting.
+                </p>
+              </div>
+              <div className="rounded-xl bg-brand-gradient p-8 text-white shadow-lg">
+                <p className="text-sm font-medium opacity-90">Starter</p>
+                <p className="mt-2 text-4xl font-bold">$0</p>
+                <p className="mt-1 text-sm opacity-90">per month · unlimited trial analyses</p>
+                <Button href="/register" variant="secondary" className="mt-6 w-full bg-white text-orange-700 hover:bg-white/90">
+                  Sign up free
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section id="resources" className="mt-28 scroll-mt-24">
+          <div className="text-center">
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Resources</p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-4xl">
+              Learn, compare, and improve
+            </h2>
+          </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {[
+              { title: "UX audit checklist", desc: "A practical guide for pre-release reviews." },
+              { title: "WCAG quick reference", desc: "Contrast, targets, and typography basics." },
+              { title: "Design review playbook", desc: "How high-performing teams run critiques." },
+            ].map((item) => (
+              <Card key={item.title}>
+                <CardContent className="p-5">
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
         <section id="faq" className="mx-auto mt-24 max-w-3xl scroll-mt-24">
           <div className="text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">FAQ</p>
@@ -264,17 +370,17 @@ export default function LandingPage() {
         <section className="mt-24">
           <Card className="overflow-visible text-center">
             <CardContent className="relative px-8 py-12">
-              <div aria-hidden className="absolute -right-20 -top-20 h-44 w-44 rounded-full bg-violet-300/35 blur-3xl animate-aurora-breathe" />
-              <div aria-hidden className="absolute -bottom-16 -left-12 h-36 w-36 rounded-full bg-sky-300/35 blur-3xl animate-aurora-breathe [animation-delay:1.2s]" />
+              <div aria-hidden className="absolute -right-20 -top-20 h-44 w-44 rounded-full bg-orange-300/35 blur-3xl animate-aurora-breathe" />
+              <div aria-hidden className="absolute -bottom-16 -left-12 h-36 w-36 rounded-full bg-amber-300/35 blur-3xl animate-aurora-breathe [animation-delay:1.2s]" />
               <div className="relative">
-                <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-brand-gradient text-white shadow-sm">
                   <MagicStar {...iconProps("md", undefined, "Bold", { tone: "light", interactive: false })} />
                 </div>
                 <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
                   Turn every design review into momentum.
                 </h2>
                 <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
-                  Start with a screenshot, a Figma frame, or a live link. Xdesign does the first pass for you.
+                  Start with a screenshot, a Figma frame, or a live link. Orbital does the first pass for you.
                 </p>
                 <Button
                   href="/upload"
@@ -290,11 +396,7 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className="relative z-10 border-t py-8 text-center">
-        <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Xdesign. All rights reserved.
-        </p>
-      </footer>
+      <MarketingFooter />
     </div>
   );
 }

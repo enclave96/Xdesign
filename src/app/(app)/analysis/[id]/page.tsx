@@ -3,8 +3,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { GlassButton } from "@/components/ui/GlassButton";
-import { GlassPanel } from "@/components/ui/GlassPanel";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { ScoreRing } from "@/components/ui/ScoreRing";
 import { ScoreGrid } from "@/components/analysis/ScoreGrid";
 import { IssueList } from "@/components/analysis/IssueList";
@@ -79,19 +80,21 @@ export default function AnalysisPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-24">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-[var(--color-purple-500)] border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
       </div>
     );
   }
 
   if (!analysis) {
     return (
-      <GlassPanel variant="elevated" padding="lg" className="text-center">
-        <p className="text-[var(--color-text-secondary)]">Analysis not found.</p>
-        <Link href="/dashboard" className="mt-4 inline-block">
-          <GlassButton variant="secondary">Back to dashboard</GlassButton>
-        </Link>
-      </GlassPanel>
+      <Card>
+        <CardContent className="py-12 text-center">
+          <p className="text-muted-foreground">Analysis not found.</p>
+          <Button href="/dashboard" variant="secondary" className="mt-4">
+            Back to dashboard
+          </Button>
+        </CardContent>
+      </Card>
     );
   }
 
@@ -112,34 +115,32 @@ export default function AnalysisPage() {
         <div>
           <Link
             href={`/projects/${analysis.project.id}`}
-            className="text-[var(--text-sm)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
+            className="text-sm text-muted-foreground hover:text-foreground"
           >
             ← {analysis.project.name}
           </Link>
-          <h1 className="mt-2 text-[var(--text-2xl)] font-[var(--font-weight-bold)]">
-            Analysis Report
-          </h1>
+          <h1 className="mt-2 text-2xl font-bold">Analysis Report</h1>
         </div>
 
         {isComplete && (
-          <GlassButton variant="secondary" onClick={handleDownloadReport}>
+          <Button variant="secondary" onClick={handleDownloadReport}>
             Download HTML report
-          </GlassButton>
+          </Button>
         )}
       </div>
 
       {error && (
-        <GlassPanel variant="subtle" padding="md" className="mb-6 border-[var(--color-severity-critical-border)]">
-          <p className="text-[var(--text-sm)] text-[var(--color-severity-critical)]">{error}</p>
-        </GlassPanel>
+        <Alert variant="destructive" className="mb-6">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
 
       {isProcessing && <AnalysisProgress status={analysis.status} className="mb-8" />}
 
       {isComplete && (
         <>
-          <GlassPanel variant="elevated" padding="lg" className="mb-8">
-            <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
+          <Card className="mb-8">
+            <CardContent className="flex flex-col items-center gap-6 py-8 sm:flex-row sm:justify-center">
               {analysis.overallScore != null && (
                 <ScoreRing
                   score={analysis.overallScore}
@@ -148,21 +149,21 @@ export default function AnalysisPage() {
                 />
               )}
               <div className="max-w-md text-center sm:text-left">
-                <h2 className="text-[var(--text-lg)] font-[var(--font-weight-semibold)]">
+                <h2 className="text-lg font-semibold">
                   {analysis.overallScore != null && analysis.overallScore >= 80
                     ? "Great work!"
                     : analysis.overallScore != null && analysis.overallScore >= 60
                       ? "Good foundation"
                       : "Room for improvement"}
                 </h2>
-                <p className="mt-2 text-[var(--text-sm)] text-[var(--color-text-secondary)]">
+                <p className="mt-2 text-sm text-muted-foreground">
                   {analysis.issues.length} issue
                   {analysis.issues.length !== 1 ? "s" : ""} identified across{" "}
                   {categoryScores ? Object.keys(categoryScores).length : 8} categories.
                 </p>
               </div>
-            </div>
-          </GlassPanel>
+            </CardContent>
+          </Card>
 
           {categoryScores && <ScoreGrid scores={categoryScores} className="mb-8" />}
 
@@ -181,22 +182,18 @@ export default function AnalysisPage() {
           </div>
 
           {selectedIssue && (
-            <GlassPanel variant="subtle" padding="md" className="mb-8">
-              <h3 className="text-[var(--text-base)] font-[var(--font-weight-semibold)]">
-                {selectedIssue.title}
-              </h3>
-              <p className="mt-2 text-[var(--text-sm)] text-[var(--color-text-secondary)]">
-                {selectedIssue.description}
-              </p>
-              <p className="mt-3 text-[var(--text-sm)]">
-                <span className="font-[var(--font-weight-medium)] text-[var(--color-text-primary)]">
-                  Recommendation:{" "}
-                </span>
-                <span className="text-[var(--color-text-secondary)]">
-                  {selectedIssue.recommendation}
-                </span>
-              </p>
-            </GlassPanel>
+            <Card className="mb-8">
+              <CardContent className="py-6">
+                <h3 className="text-base font-semibold">{selectedIssue.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {selectedIssue.description}
+                </p>
+                <p className="mt-3 text-sm">
+                  <span className="font-medium text-foreground">Recommendation: </span>
+                  <span className="text-muted-foreground">{selectedIssue.recommendation}</span>
+                </p>
+              </CardContent>
+            </Card>
           )}
 
           <RecommendationsPanel report={analysis.report} />
@@ -204,17 +201,17 @@ export default function AnalysisPage() {
       )}
 
       {analysis.status === "failed" && (
-        <GlassPanel variant="elevated" padding="lg" className="text-center">
-          <h2 className="text-[var(--text-xl)] font-[var(--font-weight-semibold)] text-[var(--color-severity-critical)]">
-            Analysis failed
-          </h2>
-          <p className="mt-2 text-[var(--color-text-secondary)]">
-            Something went wrong during analysis. Please try again from the project page.
-          </p>
-          <Link href={`/projects/${analysis.project.id}`} className="mt-6 inline-block">
-            <GlassButton variant="primary">Go to project</GlassButton>
-          </Link>
-        </GlassPanel>
+        <Card>
+          <CardContent className="py-12 text-center">
+            <h2 className="text-xl font-semibold text-destructive">Analysis failed</h2>
+            <p className="mt-2 text-muted-foreground">
+              Something went wrong during analysis. Please try again from the project page.
+            </p>
+            <Button href={`/projects/${analysis.project.id}`} className="mt-6">
+              Go to project
+            </Button>
+          </CardContent>
+        </Card>
       )}
     </div>
   );

@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Gallery, Global, Link2, MagicStar, MessageQuestion } from "iconsax-reactjs";
-import { GlassButton } from "@/components/ui/GlassButton";
-import { GlassCard } from "@/components/ui/GlassCard";
-import { GlassInput } from "@/components/ui/GlassInput";
-import { GlassField } from "@/components/ui/GlassField";
-import { GlassAlert } from "@/components/ui/GlassAlert";
+import { Button } from "@/components/ui/button";
+import { SectionCard } from "@/components/ui/SectionCard";
+import { InputGroup } from "@/components/ui/InputGroup";
+import { FormField } from "@/components/ui/FormField";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import {
   Dialog,
@@ -91,9 +91,7 @@ export default function UploadPage() {
     <div className="mx-auto max-w-2xl">
       <div className="mb-8">
         <div className="flex items-center gap-2">
-          <h1 className="text-[var(--text-2xl)] font-[var(--font-weight-bold)] tracking-tight">
-            Upload Design
-          </h1>
+          <h1 className="text-2xl font-bold tracking-tight">Upload Design</h1>
           <Dialog>
             <TooltipProvider delayDuration={200}>
               <Tooltip>
@@ -101,7 +99,7 @@ export default function UploadPage() {
                   <DialogTrigger asChild>
                     <button
                       type="button"
-                      className="group rounded-full p-1 text-[var(--color-text-primary)] transition-colors hover:bg-white/60 hover:text-[var(--color-purple-600)] focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]"
+                      className="rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       aria-label="See supported import formats"
                     >
                       <MessageQuestion {...iconProps(18, undefined, "Linear", { interactive: false })} />
@@ -119,30 +117,34 @@ export default function UploadPage() {
                 </DialogDescription>
               </DialogHeader>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-[var(--radius-md)] border border-[var(--glass-border)] bg-white/40 p-4">
+                <div className="rounded-md border bg-muted/30 p-4">
                   <Gallery {...iconProps("md")} />
-                  <p className="mt-3 text-[var(--text-sm)] font-[var(--font-weight-semibold)] text-[var(--color-text-primary)]">Images</p>
-                  <p className="mt-1 text-[var(--text-xs)] leading-relaxed text-[var(--color-text-secondary)]">PNG, JPEG, WebP, and GIF files up to 20MB.</p>
+                  <p className="mt-3 text-sm font-semibold text-foreground">Images</p>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    PNG, JPEG, WebP, and GIF files up to 20MB.
+                  </p>
                 </div>
-                <div className="rounded-[var(--radius-md)] border border-[var(--glass-border)] bg-white/40 p-4">
+                <div className="rounded-md border bg-muted/30 p-4">
                   <Global {...iconProps("md")} />
-                  <p className="mt-3 text-[var(--text-sm)] font-[var(--font-weight-semibold)] text-[var(--color-text-primary)]">Live websites</p>
-                  <p className="mt-1 text-[var(--text-xs)] leading-relaxed text-[var(--color-text-secondary)]">Paste a public URL and we’ll capture it for analysis.</p>
+                  <p className="mt-3 text-sm font-semibold text-foreground">Live websites</p>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    Paste a public URL and we&apos;ll capture it for analysis.
+                  </p>
                 </div>
               </div>
             </DialogContent>
           </Dialog>
         </div>
-        <p className="mt-1.5 text-[var(--color-text-secondary)]">
+        <p className="mt-1.5 text-muted-foreground">
           Choose how you want to import your design for analysis
         </p>
       </div>
 
       <UploadTabs activeTab={activeTab} onTabChange={setActiveTab} className="mb-6" />
 
-      <GlassCard variant="elevated" className="mb-6">
-        <GlassField label="Project name" htmlFor="project-name">
-          <GlassInput
+      <SectionCard className="mb-6">
+        <FormField label="Project name" htmlFor="project-name">
+          <InputGroup
             id="project-name"
             type="text"
             value={name}
@@ -150,20 +152,20 @@ export default function UploadPage() {
             disabled={loading}
             placeholder="e.g. Homepage redesign v2"
           />
-        </GlassField>
+        </FormField>
 
         <div className="mt-6">
           {activeTab === "file" ? (
             <>
               <DropZone onFileSelect={setSelectedFile} disabled={loading} />
               {selectedFile && (
-                <div className="mt-4 rounded-[var(--radius-md)] border border-[var(--glass-border)] bg-[var(--glass-bg-subtle)] px-4 py-3 text-center backdrop-blur-[var(--blur-sm)]">
-                  <p className="text-[var(--text-sm)] text-[var(--color-text-secondary)]">
+                <div className="mt-4 rounded-md border bg-muted/50 px-4 py-3 text-center">
+                  <p className="text-sm text-muted-foreground">
                     Selected:{" "}
-                    <strong className="font-[var(--font-weight-semibold)] text-[var(--color-text-primary)]">
+                    <strong className="font-semibold text-foreground">
                       {selectedFile.name}
                     </strong>{" "}
-                    <span className="text-[var(--color-text-muted)]">
+                    <span className="text-muted-foreground">
                       ({(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
                     </span>
                   </p>
@@ -171,7 +173,7 @@ export default function UploadPage() {
               )}
             </>
           ) : (
-            <GlassField
+            <FormField
               label={activeTab === "figma" ? "Figma frame URL" : "Website URL"}
               htmlFor="source-url"
               hint={
@@ -180,7 +182,7 @@ export default function UploadPage() {
                   : "We'll capture a screenshot of the live website for analysis."
               }
             >
-              <GlassInput
+              <InputGroup
                 id="source-url"
                 type="url"
                 value={url}
@@ -193,12 +195,16 @@ export default function UploadPage() {
                 }
                 leftIcon={<Link2 {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />}
               />
-            </GlassField>
+            </FormField>
           )}
         </div>
-      </GlassCard>
+      </SectionCard>
 
-      {error && <GlassAlert variant="error" className="mb-4">{error}</GlassAlert>}
+      {error && (
+        <Alert variant="destructive" className="mb-4">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
 
       {loading && (
         <div className="mb-5">
@@ -206,16 +212,15 @@ export default function UploadPage() {
         </div>
       )}
 
-      <GlassButton
-        variant="primary"
+      <Button
         size="lg"
-        fullWidth
+        className="w-full"
         loading={loading}
         onClick={handleSubmit}
         leftIcon={<MagicStar {...iconProps("sm", undefined, "Linear", { tone: "light", interactive: false })} />}
       >
         Analyze design
-      </GlassButton>
+      </Button>
     </div>
   );
 }

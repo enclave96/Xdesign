@@ -3,7 +3,6 @@
 import { useCallback, useRef, useState, type DragEvent } from "react";
 import { DocumentUpload } from "iconsax-reactjs";
 import { cn } from "@/lib/utils";
-import { GlassPanel } from "@/components/ui/GlassPanel";
 import { validateFile } from "@/lib/api";
 import { iconProps } from "@/components/icons";
 
@@ -58,16 +57,12 @@ export function DropZone({ onFileSelect, disabled, className }: DropZoneProps) {
 
   return (
     <div className={className}>
-      <GlassPanel
-        variant={isDragging ? "strong" : "subtle"}
-        padding="lg"
-        shine
+      <div
         className={cn(
-          "group/drop cursor-pointer border-2 border-dashed",
-          "transition-all duration-[var(--transition-liquid)]",
+          "group/drop cursor-pointer rounded-lg border-2 border-dashed bg-muted/30 p-8 transition-colors",
           isDragging
-            ? "scale-[1.01] border-[var(--color-purple-400)] bg-[var(--glass-bg-strong)] shadow-[var(--glow-focus-input)]"
-            : "border-[var(--glass-border)] hover:border-[var(--color-blue-300)] hover:bg-[var(--glass-bg)] hover:shadow-[var(--shadow-glass-md)]",
+            ? "border-primary bg-primary/5"
+            : "border-border hover:border-primary/50 hover:bg-muted/50",
           disabled && "pointer-events-none opacity-50"
         )}
         onClick={() => !disabled && inputRef.current?.click()}
@@ -96,37 +91,30 @@ export function DropZone({ onFileSelect, disabled, className }: DropZoneProps) {
           }}
         />
 
-        <div className="flex flex-col items-center gap-5 py-10 text-center">
+        <div className="flex flex-col items-center gap-5 py-6 text-center">
           <div
             aria-hidden
             className={cn(
-              "relative flex h-[4.5rem] w-[4.5rem] items-center justify-center",
-              "rounded-[var(--radius-xl)] bg-[var(--gradient-accent)]",
-              "shadow-[var(--glow-button)]",
-              "transition-all duration-[var(--transition-smooth)]",
-              "group-hover/drop:scale-105 group-hover/drop:shadow-[var(--glow-button-hover)]",
-              isDragging && "scale-110 animate-glass-pulse"
+              "flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm transition-transform group-hover/drop:scale-105",
+              isDragging && "scale-110"
             )}
           >
-            <div className="absolute inset-x-0 top-0 h-1/2 rounded-t-[var(--radius-xl)] bg-gradient-to-b from-white/35 to-transparent" />
-            <DocumentUpload {...iconProps(28, "relative", "Bold", { tone: "light", interactive: false })} />
+            <DocumentUpload {...iconProps(28, undefined, "Bold", { tone: "light", interactive: false })} />
           </div>
 
           <div>
-            <p className="text-[var(--text-lg)] font-[var(--font-weight-semibold)] text-[var(--color-text-primary)]">
+            <p className="text-lg font-semibold text-foreground">
               {isDragging ? "Release to upload" : "Drop your design here"}
             </p>
-            <p className="mt-1.5 text-[var(--text-sm)] text-[var(--color-text-secondary)]">
+            <p className="mt-1.5 text-sm text-muted-foreground">
               or click to browse — PNG, JPEG, WebP, GIF up to 20MB
             </p>
           </div>
         </div>
-      </GlassPanel>
+      </div>
 
       {error && (
-        <p className="mt-3 text-center text-[var(--text-sm)] font-[var(--font-weight-medium)] text-[var(--color-severity-critical)]">
-          {error}
-        </p>
+        <p className="mt-3 text-center text-sm font-medium text-destructive">{error}</p>
       )}
     </div>
   );

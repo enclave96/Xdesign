@@ -97,7 +97,7 @@ export function ScoreRing({
         {/* Solid backdrop — no backdrop-filter so the ring stays crisp */}
         <div
           aria-hidden
-          className="absolute inset-0 rounded-full border border-[var(--glass-border-strong)] bg-white/90 shadow-[var(--shadow-glass-sm)]"
+          className="absolute inset-0 rounded-full border border-border bg-card shadow-sm"
         />
 
         <div
@@ -154,7 +154,7 @@ export function ScoreRing({
           <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
             <span
               className={cn(
-                "font-[var(--font-weight-bold)] tabular-nums text-[var(--color-text-primary)]",
+                "font-bold tabular-nums text-foreground",
                 config.fontSize
               )}
             >
@@ -167,7 +167,7 @@ export function ScoreRing({
       {label && (
         <span
           className={cn(
-            "text-center font-[var(--font-weight-medium)] text-[var(--color-text-secondary)]",
+            "text-center font-medium text-muted-foreground",
             config.labelSize
           )}
         >

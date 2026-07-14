@@ -1,6 +1,6 @@
 "use client";
 
-import { GlassCard } from "@/components/ui/GlassCard";
+import { SectionCard } from "@/components/ui/SectionCard";
 import type { AnalysisReport } from "@/lib/analysis/types";
 
 export interface RecommendationsPanelProps {
@@ -14,57 +14,48 @@ export function RecommendationsPanel({
 }: RecommendationsPanelProps) {
   if (!report) {
     return (
-      <GlassCard title="Recommendations" className={className}>
-        <p className="text-[var(--text-sm)] text-[var(--color-text-muted)]">
+      <SectionCard title="Recommendations" className={className}>
+        <p className="text-sm text-muted-foreground">
           Recommendations will appear once analysis is complete.
         </p>
-      </GlassCard>
+      </SectionCard>
     );
   }
 
   return (
     <div className={className}>
-      <GlassCard
-        title="Summary"
-        description={report.summary}
-        className="mb-6"
-      />
+      <SectionCard title="Summary" description={report.summary} className="mb-6" />
 
       {report.strengths.length > 0 && (
-        <GlassCard title="Strengths" className="mb-6">
+        <SectionCard title="Strengths" className="mb-6">
           <ul className="space-y-2">
             {report.strengths.map((strength, i) => (
-              <li
-                key={i}
-                className="flex gap-2 text-[var(--text-sm)] text-[var(--color-text-secondary)]"
-              >
-                <span className="mt-0.5 text-[var(--color-blue-500)]" aria-hidden>
+              <li key={i} className="flex gap-2 text-sm text-muted-foreground">
+                <span className="mt-0.5 text-blue-600" aria-hidden>
                   ✓
                 </span>
                 {strength}
               </li>
             ))}
           </ul>
-        </GlassCard>
+        </SectionCard>
       )}
 
-      <GlassCard title="Actionable Recommendations">
+      <SectionCard title="Actionable Recommendations">
         <ol className="space-y-4">
           {report.recommendations.map((rec, i) => (
             <li key={i} className="flex gap-3">
               <span
-                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--gradient-accent)] text-[var(--text-xs)] font-bold text-white"
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground"
                 aria-hidden
               >
                 {i + 1}
               </span>
-              <p className="text-[var(--text-sm)] leading-[var(--leading-relaxed)] text-[var(--color-text-secondary)]">
-                {rec}
-              </p>
+              <p className="text-sm leading-relaxed text-muted-foreground">{rec}</p>
             </li>
           ))}
         </ol>
-      </GlassCard>
+      </SectionCard>
     </div>
   );
 }

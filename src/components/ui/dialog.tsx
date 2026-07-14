@@ -22,9 +22,7 @@ const DialogOverlay = forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-[var(--z-modal)] bg-slate-950/20 backdrop-blur-sm",
-      "data-[state=open]:animate-in data-[state=open]:fade-in-0",
-      "data-[state=closed]:animate-out data-[state=closed]:fade-out-0",
+      "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className
     )}
     {...props}
@@ -41,18 +39,13 @@ const DialogContent = forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-1/2 top-1/2 z-[calc(var(--z-modal)+1)] w-[calc(100%-2rem)] max-w-lg",
-        "-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[var(--radius-xl)]",
-        "border border-[var(--glass-border-strong)] bg-[var(--glass-bg-elevated)] p-6",
-        "shadow-[var(--shadow-glass-xl)] backdrop-blur-[var(--blur-xl)]",
-        "data-[state=open]:animate-enter-scale focus:outline-none",
+        "fixed left-1/2 top-1/2 z-50 grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
         className
       )}
       {...props}
     >
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-[var(--glass-shine)]" />
-      <div className="relative">{children}</div>
-      <DialogPrimitive.Close className="group absolute right-4 top-4 rounded-[var(--radius-sm)] p-1.5 text-[var(--color-text-primary)] transition-colors hover:bg-white/60 hover:text-[var(--color-purple-600)] focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]">
+      {children}
+      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
         <CloseCircle {...iconProps("sm", undefined, "Linear", { interactive: false })} />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
@@ -72,7 +65,7 @@ const DialogTitle = forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={cn("text-[var(--text-xl)] font-[var(--font-weight-semibold)] tracking-tight text-[var(--color-text-primary)]", className)}
+    className={cn("text-lg font-semibold leading-none tracking-tight", className)}
     {...props}
   />
 ));
@@ -84,7 +77,7 @@ const DialogDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("text-[var(--text-sm)] leading-relaxed text-[var(--color-text-secondary)]", className)}
+    className={cn("text-sm text-muted-foreground", className)}
     {...props}
   />
 ));

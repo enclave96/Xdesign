@@ -4,7 +4,7 @@ import { type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { GlassPanel } from "@/components/ui/GlassPanel";
+import { Card } from "@/components/ui/card";
 import { XdesignLogo } from "@/components/brand/XdesignLogo";
 
 export interface NavItem {
@@ -15,13 +15,9 @@ export interface NavItem {
 
 export interface AppShellProps {
   children: ReactNode;
-  /** Application title shown in header */
   title?: string;
-  /** Logo element or image */
   logo?: ReactNode;
-  /** Navigation items for the header */
   navItems?: NavItem[];
-  /** Right-side header actions (user menu, settings, etc.) */
   headerActions?: ReactNode;
   className?: string;
 }
@@ -44,37 +40,20 @@ export function AppShell({
   const pathname = usePathname();
 
   return (
-    <div className={cn("relative min-h-screen", className)}>
-      {/* Ambient background orbs */}
-      <div aria-hidden className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-[var(--color-blue-200)] opacity-30 blur-3xl" />
-        <div className="absolute -right-24 top-1/4 h-80 w-80 rounded-full bg-[var(--color-purple-200)] opacity-25 blur-3xl" />
-        <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-[var(--color-blue-300)] opacity-20 blur-3xl" />
-      </div>
-
-      {/* Glass header */}
-      <header className="sticky top-0 z-[var(--z-header)] px-4 pt-4 sm:px-6 lg:px-8">
-        <GlassPanel
-          variant="elevated"
-          padding="none"
-          className="mx-auto max-w-7xl"
-        >
+    <div className={cn("relative min-h-screen bg-muted/20", className)}>
+      <header className="sticky top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
+        <Card className="mx-auto max-w-7xl">
           <div className="flex h-16 items-center justify-between gap-4 px-4 sm:px-6">
-            {/* Brand */}
             <div className="flex items-center gap-3">
               {logo ?? <XdesignLogo />}
               {logo && (
-                <span className="text-[var(--text-lg)] font-[var(--font-weight-semibold)] tracking-tight text-[var(--color-text-primary)]">
+                <span className="text-lg font-semibold tracking-tight text-foreground">
                   {title}
                 </span>
               )}
             </div>
 
-            {/* Navigation */}
-            <nav
-              aria-label="Main navigation"
-              className="hidden items-center gap-1 md:flex"
-            >
+            <nav aria-label="Main navigation" className="hidden items-center gap-1 md:flex">
               {navItems.map((item) => {
                 const isActive =
                   pathname === item.href ||
@@ -85,13 +64,10 @@ export function AppShell({
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "relative inline-flex items-center gap-2 overflow-hidden rounded-[var(--radius-md)] px-3.5 py-2",
-                      "text-[var(--text-sm)]",
-                      "transition-all duration-[var(--transition-smooth)]",
-                      "focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]",
+                      "relative inline-flex items-center gap-2 rounded-md px-3.5 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                       isActive
-                        ? "bg-[var(--gradient-primary)] font-[var(--font-weight-semibold)] text-white shadow-[var(--glow-button-primary)]"
-                        : "font-[var(--font-weight-medium)] text-[var(--color-text-secondary)] hover:bg-[var(--glass-bg)] hover:text-[var(--color-text-primary)]"
+                        ? "bg-primary font-semibold text-primary-foreground"
+                        : "font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
                     )}
                   >
                     {item.icon}
@@ -101,16 +77,14 @@ export function AppShell({
               })}
             </nav>
 
-            {/* Header actions */}
             {headerActions && (
               <div className="flex items-center gap-2">{headerActions}</div>
             )}
           </div>
-        </GlassPanel>
+        </Card>
       </header>
 
-      {/* Main content */}
-      <main className="relative z-[var(--z-base)] mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <main className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {children}
       </main>
     </div>

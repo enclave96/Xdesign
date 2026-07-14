@@ -47,40 +47,22 @@ export function UploadTabs({ activeTab, onTabChange, className }: UploadTabsProp
       className={className}
     >
       <TabsList
-        className="relative flex h-auto w-full flex-col gap-1.5 sm:flex-row sm:gap-1"
+        className="flex h-auto w-full flex-col gap-1.5 sm:flex-row sm:gap-1"
         aria-label="Upload method"
       >
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-[var(--radius-xl)] bg-[var(--glass-input-shine)] opacity-60"
-        />
         {tabs.map((tab) => (
           <TabsTrigger
             key={tab.id}
             value={tab.id}
             className={cn(
-              "group relative flex h-auto flex-1 flex-col items-center px-4 py-3.5",
-              "text-center transition-all duration-[var(--transition-smooth)]",
-              "data-[state=active]:bg-[var(--glass-bg-elevated)]"
+              "flex h-auto flex-1 flex-col items-center px-4 py-3.5 text-center"
             )}
           >
-            <span
-              className={cn(
-                "relative mb-1.5 flex h-8 w-8 items-center justify-center rounded-[var(--radius-sm)]",
-                "transition-all duration-[var(--transition-smooth)]",
-                "bg-[var(--glass-bg)] text-[var(--color-text-primary)]",
-                "group-hover:text-[var(--color-purple-600)]",
-                "group-data-[state=active]:bg-[var(--gradient-accent)] group-data-[state=active]:text-white group-data-[state=active]:group-hover:text-white"
-              )}
-            >
+            <span className="mb-1.5 flex h-8 w-8 items-center justify-center rounded-sm bg-muted text-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
               {tab.icon}
             </span>
-            <span className="relative text-[var(--text-sm)] font-[var(--font-weight-semibold)]">
-              {tab.label}
-            </span>
-            <span className="relative mt-0.5 text-[var(--text-xs)] text-[var(--color-text-muted)]">
-              {tab.description}
-            </span>
+            <span className="text-sm font-semibold">{tab.label}</span>
+            <span className="mt-0.5 text-xs text-muted-foreground">{tab.description}</span>
           </TabsTrigger>
         ))}
       </TabsList>

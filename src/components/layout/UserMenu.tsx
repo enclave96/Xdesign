@@ -17,7 +17,6 @@ import type { User } from "@/lib/api";
 export interface UserMenuProps {
   user: User;
   onLogout: () => void;
-  /** Compact trigger for sidebar footer */
   compact?: boolean;
 }
 
@@ -41,8 +40,8 @@ export function UserMenu({ user, onLogout, compact = false }: UserMenuProps) {
           type="button"
           className={
             compact
-              ? "group flex w-full items-center gap-3 rounded-[var(--radius-md)] px-3 py-2.5 text-left transition-colors hover:bg-white/50 focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]"
-              : "flex items-center gap-2 rounded-[var(--radius-full)] p-0.5 transition-transform hover:scale-[1.04] focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]"
+              ? "group flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              : "flex items-center gap-2 rounded-full p-0.5 transition-transform hover:scale-[1.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           }
           aria-label="Open account menu"
         >
@@ -51,16 +50,16 @@ export function UserMenu({ user, onLogout, compact = false }: UserMenuProps) {
           </Avatar>
           {compact ? (
             <span className="min-w-0 flex-1">
-              <span className="block truncate text-[var(--text-sm)] font-[var(--font-weight-medium)] text-[var(--color-text-primary)]">
+              <span className="block truncate text-sm font-medium text-foreground">
                 {user.name ?? "Your account"}
               </span>
-              <span className="block truncate text-[var(--text-xs)] text-[var(--color-text-muted)]">
+              <span className="block truncate text-xs text-muted-foreground">
                 {user.email}
               </span>
             </span>
           ) : (
             <span className="hidden text-right sm:block">
-              <span className="block max-w-32 truncate text-[var(--text-sm)] font-[var(--font-weight-medium)] text-[var(--color-text-primary)]">
+              <span className="block max-w-32 truncate text-sm font-medium text-foreground">
                 {user.name ?? "Your account"}
               </span>
             </span>
@@ -69,10 +68,10 @@ export function UserMenu({ user, onLogout, compact = false }: UserMenuProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align={compact ? "start" : "end"} side={compact ? "top" : "bottom"}>
         <DropdownMenuLabel>
-          <span className="block text-[var(--text-sm)] font-[var(--font-weight-semibold)] text-[var(--color-text-primary)]">
+          <span className="block text-sm font-semibold text-foreground">
             {user.name ?? "Your account"}
           </span>
-          <span className="mt-0.5 block truncate text-[var(--text-xs)] font-[var(--font-weight-normal)]">
+          <span className="mt-0.5 block truncate text-xs font-normal text-muted-foreground">
             {user.email}
           </span>
         </DropdownMenuLabel>
@@ -88,7 +87,7 @@ export function UserMenu({ user, onLogout, compact = false }: UserMenuProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onSelect={() => onLogout()}
-          className="text-[var(--color-severity-critical)] focus:text-[var(--color-severity-critical)]"
+          className="text-destructive focus:text-destructive"
         >
           <Logout {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />
           Log out

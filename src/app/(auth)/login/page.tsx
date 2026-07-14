@@ -3,9 +3,11 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Eye, EyeSlash, Lock, Sms } from "iconsax-reactjs";
-import { GlassButton } from "@/components/ui/GlassButton";
-import { GlassInput } from "@/components/ui/GlassInput";
-import { GlassAlert } from "@/components/ui/GlassAlert";
+import { Button } from "@/components/ui/button";
+import { InputGroup } from "@/components/ui/InputGroup";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Separator } from "@/components/ui/separator";
+import { Label } from "@/components/ui/label";
 import { useAuth, getAuthErrorMessage } from "@/hooks/useAuth";
 import { iconProps } from "@/components/icons";
 
@@ -62,32 +64,26 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center px-4 py-12">
-      <div aria-hidden className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -left-32 -top-32 h-[28rem] w-[28rem] rounded-full bg-[var(--color-blue-200)] opacity-25 blur-3xl animate-float-soft" />
-        <div className="absolute -right-24 top-1/3 h-80 w-80 rounded-full bg-[var(--color-purple-200)] opacity-20 blur-3xl" style={{ animationDelay: "1s" }} />
-      </div>
-
+    <div className="relative flex min-h-screen items-center justify-center bg-muted/30 px-4 py-12">
       <div className="relative z-10 w-full max-w-[26rem]">
-        <div className="rounded-[var(--radius-2xl)] border border-[var(--glass-border-subtle)] bg-white p-8 shadow-[var(--shadow-glass-xl)] sm:p-9">
-          <h1 className="text-[1.6rem] font-[var(--font-weight-bold)] tracking-tight text-[var(--color-text-primary)]">
+        <div className="rounded-xl border bg-card p-8 shadow-sm sm:p-9">
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">
             Log In
           </h1>
-          <p className="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+          <p className="mt-1 text-sm text-muted-foreground">
             Welcome back to Orbital 👋
           </p>
 
           <form onSubmit={handleSubmit} className="mt-7 space-y-5">
-            {error && <GlassAlert variant="error">{error}</GlassAlert>}
+            {error && (
+              <Alert variant="destructive">
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
 
             <div className="space-y-2">
-              <label
-                htmlFor="email"
-                className="block text-[var(--text-sm)] font-[var(--font-weight-medium)] text-[var(--color-text-primary)]"
-              >
-                Email Address
-              </label>
-              <GlassInput
+              <Label htmlFor="email">Email Address</Label>
+              <InputGroup
                 id="email"
                 type="email"
                 required
@@ -101,20 +97,15 @@ export default function LoginPage() {
 
             <div className="space-y-2">
               <div className="flex items-baseline justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-[var(--text-sm)] font-[var(--font-weight-medium)] text-[var(--color-text-primary)]"
-                >
-                  Password
-                </label>
+                <Label htmlFor="password">Password</Label>
                 <Link
                   href="/login"
-                  className="text-[var(--text-xs)] font-[var(--font-weight-medium)] text-[var(--color-text-muted)] hover:text-[var(--color-purple-700)]"
+                  className="text-xs font-medium text-muted-foreground hover:text-primary"
                 >
                   Forgot password
                 </Link>
               </div>
-              <GlassInput
+              <InputGroup
                 id="password"
                 type={showPassword ? "text" : "password"}
                 required
@@ -128,7 +119,7 @@ export default function LoginPage() {
                     type="button"
                     onClick={() => setShowPassword((v) => !v)}
                     aria-label={showPassword ? "Hide password" : "Show password"}
-                    className="pointer-events-auto -m-1 rounded p-1 text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-purple-700)] focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]"
+                    className="rounded p-1 text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {showPassword ? (
                       <EyeSlash {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />
@@ -140,48 +131,31 @@ export default function LoginPage() {
               />
             </div>
 
-            <GlassButton
-              type="submit"
-              variant="primary"
-              fullWidth
-              loading={loading}
-              className="mt-1"
-            >
+            <Button type="submit" className="mt-1 w-full" loading={loading}>
               Login
-            </GlassButton>
+            </Button>
           </form>
 
-          <div className="my-6 flex items-center gap-4" aria-hidden>
-            <span className="h-px flex-1 bg-[var(--color-slate-200)]" />
-            <span className="text-[var(--text-sm)] text-[var(--color-text-muted)]">Or</span>
-            <span className="h-px flex-1 bg-[var(--color-slate-200)]" />
+          <div className="my-6 flex items-center gap-4">
+            <Separator className="flex-1" />
+            <span className="text-sm text-muted-foreground">Or</span>
+            <Separator className="flex-1" />
           </div>
 
           <div className="space-y-3">
-            <button
-              type="button"
-              title="Coming soon"
-              className="flex h-11 w-full items-center justify-center gap-2.5 rounded-[var(--radius-md)] border border-[var(--color-slate-200)] bg-white text-[var(--text-sm)] font-[var(--font-weight-medium)] text-[var(--color-text-primary)] transition-all duration-[var(--transition-fast)] hover:border-[var(--color-slate-300)] hover:bg-[var(--color-slate-50)] focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]"
-            >
+            <Button type="button" variant="outline" className="w-full" title="Coming soon">
               <GoogleIcon />
               Continue with Google
-            </button>
-            <button
-              type="button"
-              title="Coming soon"
-              className="flex h-11 w-full items-center justify-center gap-2.5 rounded-[var(--radius-md)] border border-[var(--color-slate-200)] bg-white text-[var(--text-sm)] font-[var(--font-weight-medium)] text-[var(--color-text-primary)] transition-all duration-[var(--transition-fast)] hover:border-[var(--color-slate-300)] hover:bg-[var(--color-slate-50)] focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]"
-            >
+            </Button>
+            <Button type="button" variant="outline" className="w-full" title="Coming soon">
               <GithubIcon />
               Continue with Github
-            </button>
+            </Button>
           </div>
 
-          <p className="mt-7 text-center text-[var(--text-sm)] text-[var(--color-text-secondary)]">
+          <p className="mt-7 text-center text-sm text-muted-foreground">
             Don&apos;t have an account?{" "}
-            <Link
-              href="/register"
-              className="font-[var(--font-weight-semibold)] text-[var(--color-text-accent)] underline underline-offset-2 hover:text-[var(--color-purple-600)]"
-            >
+            <Link href="/register" className="font-semibold text-primary underline-offset-2 hover:underline">
               Sign up
             </Link>
           </p>

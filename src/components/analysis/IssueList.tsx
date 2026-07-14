@@ -1,9 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Badge } from "@/components/ui/Badge";
-import { GlassCard } from "@/components/ui/GlassCard";
-import { GlassSelect } from "@/components/ui/GlassSelect";
+import { SeverityBadge } from "@/components/ui/SeverityBadge";
+import { SectionCard } from "@/components/ui/SectionCard";
 import { CATEGORY_LABELS, type IssueRecord } from "@/lib/api";
 import type { IssueCategory, IssueSeverity } from "@/lib/analysis/types";
 import { cn } from "@/lib/utils";
@@ -16,6 +15,9 @@ export interface IssueListProps {
 }
 
 const ALL = "all";
+
+const selectClassName =
+  "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50";
 
 export function IssueList({
   issues,
@@ -42,18 +44,17 @@ export function IssueList({
   }, [issues, categoryFilter, severityFilter]);
 
   return (
-    <GlassCard
+    <SectionCard
       title="Issues"
       description={`${filtered.length} of ${issues.length} issues`}
-      variant="elevated"
       className={className}
     >
       <div className="mb-4 flex flex-col gap-3 sm:flex-row">
-        <GlassSelect
+        <select
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
           aria-label="Filter by category"
-          className="flex-1"
+          className={cn(selectClassName, "flex-1")}
         >
           <option value={ALL}>All categories</option>
           {categories.map((cat) => (
@@ -61,13 +62,13 @@ export function IssueList({
               {CATEGORY_LABELS[cat as IssueCategory]}
             </option>
           ))}
-        </GlassSelect>
+        </select>
 
-        <GlassSelect
+        <select
           value={severityFilter}
           onChange={(e) => setSeverityFilter(e.target.value)}
           aria-label="Filter by severity"
-          className="flex-1"
+          className={cn(selectClassName, "flex-1")}
         >
           <option value={ALL}>All severities</option>
           {severities.map((sev) => (
@@ -75,12 +76,12 @@ export function IssueList({
               {sev.charAt(0).toUpperCase() + sev.slice(1)}
             </option>
           ))}
-        </GlassSelect>
+        </select>
       </div>
 
-      <div className="glass-scrollbar max-h-[480px] space-y-2 overflow-y-auto pr-1">
+      <div className="max-h-[480px] space-y-2 overflow-y-auto pr-1">
         {filtered.length === 0 ? (
-          <p className="py-8 text-center text-[var(--text-sm)] text-[var(--color-text-muted)]">
+          <p className="py-8 text-center text-sm text-muted-foreground">
             No issues match the current filters.
           </p>
         ) : (
@@ -90,37 +91,28 @@ export function IssueList({
               type="button"
               onClick={() => onSelect?.(issue)}
               className={cn(
-                "group relative w-full overflow-hidden rounded-[var(--radius-md)] border p-4 text-left",
-                "backdrop-blur-[var(--blur-sm)] backdrop-saturate-150",
-                "transition-all duration-[var(--transition-smooth)]",
-                "focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]",
+                "w-full rounded-md border p-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 selectedId === issue.id
-                  ? "border-[var(--color-purple-400)] bg-[var(--glass-bg-strong)] shadow-[var(--shadow-glass-md)]"
-                  : "border-[var(--glass-border-subtle)] bg-[var(--glass-bg-subtle)] hover:border-[var(--glass-border)] hover:bg-[var(--glass-bg)] hover:shadow-[var(--shadow-glass-sm)] hover:-translate-y-px"
+                  ? "border-primary bg-primary/5"
+                  : "border-border bg-card hover:bg-muted/50"
               )}
             >
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-[var(--glass-input-shine)] opacity-0 transition-opacity duration-[var(--transition-smooth)] group-hover:opacity-60"
-              />
-              <div className="relative flex flex-wrap items-center gap-2">
-                <Badge severity={issue.severity} size="sm">
+              <div className="flex flex-wrap items-center gap-2">
+                <SeverityBadge severity={issue.severity} size="sm">
                   {issue.severity}
-                </Badge>
-                <span className="text-[var(--text-xs)] font-[var(--font-weight-medium)] text-[var(--color-text-muted)]">
+                </SeverityBadge>
+                <span className="text-xs font-medium text-muted-foreground">
                   {CATEGORY_LABELS[issue.category]}
                 </span>
               </div>
-              <h4 className="relative mt-2 text-[var(--text-sm)] font-[var(--font-weight-semibold)] text-[var(--color-text-primary)]">
-                {issue.title}
-              </h4>
-              <p className="relative mt-1 line-clamp-2 text-[var(--text-sm)] text-[var(--color-text-secondary)]">
+              <h4 className="mt-2 text-sm font-semibold text-foreground">{issue.title}</h4>
+              <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
                 {issue.description}
               </p>
             </button>
           ))
         )}
       </div>
-    </GlassCard>
+    </SectionCard>
   );
 }

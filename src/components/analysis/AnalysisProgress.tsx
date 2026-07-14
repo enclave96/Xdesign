@@ -1,6 +1,6 @@
 "use client";
 
-import { GlassCard } from "@/components/ui/GlassCard";
+import { SectionCard } from "@/components/ui/SectionCard";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { cn } from "@/lib/utils";
 import type { AnalysisStatus } from "@/lib/analysis/types";
@@ -39,7 +39,7 @@ export function AnalysisProgress({ status, className }: AnalysisProgressProps) {
   const isProcessing = status === "pending" || status === "processing";
 
   return (
-    <GlassCard
+    <SectionCard
       title="Analysis in Progress"
       description={
         status === "failed"
@@ -56,17 +56,11 @@ export function AnalysisProgress({ status, className }: AnalysisProgressProps) {
               <div key={step.key} className="flex flex-1 items-center gap-3">
                 <div
                   className={cn(
-                    "flex h-10 w-10 shrink-0 items-center justify-center rounded-full",
-                    "text-[var(--text-sm)] font-[var(--font-weight-bold)]",
-                    "border-2 transition-colors",
-                    state === "done" &&
-                      "border-[var(--color-blue-500)] bg-[var(--color-blue-500)] text-white",
-                    state === "active" &&
-                      "border-[var(--color-purple-500)] bg-[var(--color-purple-100)] text-[var(--color-purple-700)]",
-                    state === "failed" &&
-                      "border-[var(--color-severity-critical)] bg-[var(--color-severity-critical-bg)] text-[var(--color-severity-critical)]",
-                    state === "pending" &&
-                      "border-[var(--glass-border)] bg-[var(--glass-bg-subtle)] text-[var(--color-text-muted)]"
+                    "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold transition-colors",
+                    state === "done" && "border-blue-600 bg-blue-600 text-white",
+                    state === "active" && "border-primary bg-primary/10 text-primary",
+                    state === "failed" && "border-destructive bg-destructive/10 text-destructive",
+                    state === "pending" && "border-border bg-muted text-muted-foreground"
                   )}
                 >
                   {state === "done" ? (
@@ -78,12 +72,8 @@ export function AnalysisProgress({ status, className }: AnalysisProgressProps) {
                   )}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[var(--text-sm)] font-[var(--font-weight-semibold)] text-[var(--color-text-primary)]">
-                    {step.label}
-                  </p>
-                  <p className="text-[var(--text-xs)] text-[var(--color-text-muted)]">
-                    {step.description}
-                  </p>
+                  <p className="text-sm font-semibold text-foreground">{step.label}</p>
+                  <p className="text-xs text-muted-foreground">{step.description}</p>
                 </div>
               </div>
             );
@@ -99,6 +89,6 @@ export function AnalysisProgress({ status, className }: AnalysisProgressProps) {
           />
         )}
       </div>
-    </GlassCard>
+    </SectionCard>
   );
 }

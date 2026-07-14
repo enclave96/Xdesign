@@ -3,11 +3,11 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Lock, Message, User } from "iconsax-reactjs";
-import { GlassButton } from "@/components/ui/GlassButton";
-import { GlassCard } from "@/components/ui/GlassCard";
-import { GlassInput } from "@/components/ui/GlassInput";
-import { GlassField } from "@/components/ui/GlassField";
-import { GlassAlert } from "@/components/ui/GlassAlert";
+import { Button } from "@/components/ui/button";
+import { SectionCard } from "@/components/ui/SectionCard";
+import { InputGroup } from "@/components/ui/InputGroup";
+import { FormField } from "@/components/ui/FormField";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useAuth, getAuthErrorMessage } from "@/hooks/useAuth";
 import { XdesignLogo } from "@/components/brand/XdesignLogo";
 import { iconProps } from "@/components/icons";
@@ -34,12 +34,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center px-4 py-12">
-      <div aria-hidden className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -left-32 -top-32 h-[28rem] w-[28rem] rounded-full bg-[var(--color-blue-200)] opacity-35 blur-3xl animate-float-soft" />
-        <div className="absolute -right-24 top-1/3 h-80 w-80 rounded-full bg-[var(--color-purple-200)] opacity-30 blur-3xl" />
-      </div>
-
+    <div className="relative flex min-h-screen items-center justify-center bg-muted/30 px-4 py-12">
       <div className="relative z-10 w-full max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="inline-flex transition-opacity hover:opacity-80">
@@ -47,16 +42,19 @@ export default function RegisterPage() {
           </Link>
         </div>
 
-        <GlassCard
+        <SectionCard
           title="Create your account"
           description="Start analyzing designs in minutes"
-          variant="elevated"
         >
           <form onSubmit={handleSubmit} className="space-y-5">
-            {error && <GlassAlert variant="error">{error}</GlassAlert>}
+            {error && (
+              <Alert variant="destructive">
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
 
-            <GlassField label="Name" htmlFor="name" optional>
-              <GlassInput
+            <FormField label="Name" htmlFor="name" optional>
+              <InputGroup
                 id="name"
                 type="text"
                 autoComplete="name"
@@ -65,10 +63,10 @@ export default function RegisterPage() {
                 placeholder="Jane Designer"
                 leftIcon={<User {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />}
               />
-            </GlassField>
+            </FormField>
 
-            <GlassField label="Email" htmlFor="email">
-              <GlassInput
+            <FormField label="Email" htmlFor="email">
+              <InputGroup
                 id="email"
                 type="email"
                 required
@@ -78,10 +76,10 @@ export default function RegisterPage() {
                 placeholder="you@company.com"
                 leftIcon={<Message {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />}
               />
-            </GlassField>
+            </FormField>
 
-            <GlassField label="Password" htmlFor="password" hint="At least 8 characters">
-              <GlassInput
+            <FormField label="Password" htmlFor="password" hint="At least 8 characters">
+              <InputGroup
                 id="password"
                 type="password"
                 required
@@ -92,30 +90,20 @@ export default function RegisterPage() {
                 placeholder="••••••••"
                 leftIcon={<Lock {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />}
               />
-            </GlassField>
+            </FormField>
 
-            <GlassButton
-              type="submit"
-              variant="primary"
-              size="lg"
-              fullWidth
-              loading={loading}
-              className="mt-1"
-            >
+            <Button type="submit" size="lg" className="mt-1 w-full" loading={loading}>
               Create account
-            </GlassButton>
+            </Button>
           </form>
 
-          <p className="mt-6 text-center text-[var(--text-sm)] text-[var(--color-text-secondary)]">
+          <p className="mt-6 text-center text-sm text-muted-foreground">
             Already have an account?{" "}
-            <Link
-              href="/login"
-              className="font-[var(--font-weight-semibold)] text-[var(--color-text-accent)] hover:text-[var(--color-purple-600)]"
-            >
+            <Link href="/login" className="font-semibold text-primary hover:underline">
               Sign in
             </Link>
           </p>
-        </GlassCard>
+        </SectionCard>
       </div>
     </div>
   );

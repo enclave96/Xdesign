@@ -3,10 +3,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { GlassButton } from "@/components/ui/GlassButton";
-import { GlassCard } from "@/components/ui/GlassCard";
-import { GlassPanel } from "@/components/ui/GlassPanel";
-import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/button";
+import { SectionCard } from "@/components/ui/SectionCard";
+import { Card, CardContent } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { SeverityBadge } from "@/components/ui/SeverityBadge";
 import { ScoreRing } from "@/components/ui/ScoreRing";
 import { api, getAssetUrl, type ProjectDetail } from "@/lib/api";
 import { getAuthErrorMessage } from "@/hooks/useAuth";
@@ -68,19 +69,21 @@ export default function ProjectDetailPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-24">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-[var(--color-purple-500)] border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
       </div>
     );
   }
 
   if (!project) {
     return (
-      <GlassPanel variant="elevated" padding="lg" className="text-center">
-        <p className="text-[var(--color-text-secondary)]">Project not found.</p>
-        <Link href="/dashboard" className="mt-4 inline-block">
-          <GlassButton variant="secondary">Back to dashboard</GlassButton>
-        </Link>
-      </GlassPanel>
+      <Card>
+        <CardContent className="py-12 text-center">
+          <p className="text-muted-foreground">Project not found.</p>
+          <Button href="/dashboard" variant="secondary" className="mt-4">
+            Back to dashboard
+          </Button>
+        </CardContent>
+      </Card>
     );
   }
 
@@ -91,16 +94,13 @@ export default function ProjectDetailPage() {
   return (
     <div>
       <div className="mb-6">
-        <Link
-          href="/dashboard"
-          className="text-[var(--text-sm)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
-        >
+        <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground">
           ← Back to dashboard
         </Link>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
-        <div className="overflow-hidden rounded-[var(--radius-lg)] border border-[var(--glass-border)] bg-[var(--color-slate-100)]">
+        <div className="overflow-hidden rounded-lg border bg-muted">
           {(imageUrl ?? thumbnailUrl) ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -110,47 +110,40 @@ export default function ProjectDetailPage() {
             />
           ) : (
             <div className="flex aspect-video items-center justify-center">
-              <p className="text-[var(--text-sm)] text-[var(--color-text-muted)]">
-                No preview available
-              </p>
+              <p className="text-sm text-muted-foreground">No preview available</p>
             </div>
           )}
         </div>
 
         <div>
-          <h1 className="text-[var(--text-2xl)] font-[var(--font-weight-bold)]">
-            {project.name}
-          </h1>
-          <p className="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+          <h1 className="text-2xl font-bold">{project.name}</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
             {sourceLabels[project.sourceType] ?? project.sourceType} ·{" "}
             {new Date(project.createdAt).toLocaleDateString()}
           </p>
 
           {project.sourceUrl && (
-            <p className="mt-2 truncate text-[var(--text-sm)] text-[var(--color-text-secondary)]">
-              <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer">
+            <p className="mt-2 truncate text-sm text-muted-foreground">
+              <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary">
                 {project.sourceUrl}
               </a>
             </p>
           )}
 
           {error && (
-            <div
-              role="alert"
-              className="mt-4 rounded-[var(--radius-md)] border border-[var(--color-severity-critical-border)] bg-[var(--color-severity-critical-bg)] px-4 py-3 text-[var(--text-sm)] text-[var(--color-severity-critical)]"
-            >
-              {error}
-            </div>
+            <Alert variant="destructive" className="mt-4">
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
           )}
 
-          <GlassCard className="mt-6" title="Analysis">
+          <SectionCard className="mt-6" title="Analysis">
             {latest ? (
               <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-start">
                 {latest.overallScore != null && (
                   <ScoreRing score={latest.overallScore} size="md" label="Overall" />
                 )}
                 <div className="flex-1 text-center sm:text-left">
-                  <Badge
+                  <SeverityBadge
                     severity={
                       latest.status === "failed"
                         ? "critical"
@@ -160,30 +153,24 @@ export default function ProjectDetailPage() {
                     }
                   >
                     {latest.status}
-                  </Badge>
+                  </SeverityBadge>
                 </div>
               </div>
             ) : (
-              <p className="text-[var(--text-sm)] text-[var(--color-text-secondary)]">
-                No analysis has been run yet.
-              </p>
+              <p className="text-sm text-muted-foreground">No analysis has been run yet.</p>
             )}
 
             <div className="mt-6 flex flex-wrap gap-3">
               {latest?.status === "completed" ? (
-                <Link href={`/analysis/${latest.id}`}>
-                  <GlassButton variant="primary">
-                    View report
-                  </GlassButton>
-                </Link>
-              ) : (latest?.status === "pending" || latest?.status === "processing") ? (
-                <Link href={`/analysis/${latest.id}`}>
-                  <GlassButton variant="secondary">View progress</GlassButton>
-                </Link>
+                <Button href={`/analysis/${latest.id}`}>View report</Button>
+              ) : latest?.status === "pending" || latest?.status === "processing" ? (
+                <Button href={`/analysis/${latest.id}`} variant="secondary">
+                  View progress
+                </Button>
               ) : null}
 
-              <GlassButton
-                variant={latest?.status === "completed" ? "secondary" : "primary"}
+              <Button
+                variant={latest?.status === "completed" ? "secondary" : "default"}
                 loading={analyzing}
                 onClick={handleAnalyze}
                 disabled={
@@ -193,12 +180,12 @@ export default function ProjectDetailPage() {
                 }
               >
                 {latest?.status === "completed" ? "Re-analyze" : "Start analysis"}
-              </GlassButton>
-              <GlassButton variant="ghost" onClick={handleDelete}>
+              </Button>
+              <Button variant="ghost" onClick={handleDelete}>
                 Delete project
-              </GlassButton>
+              </Button>
             </div>
-          </GlassCard>
+          </SectionCard>
         </div>
       </div>
     </div>

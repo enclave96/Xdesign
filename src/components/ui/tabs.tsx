@@ -13,9 +13,7 @@ const TabsList = forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      "inline-flex rounded-[var(--radius-xl)] border border-[var(--glass-border)]",
-      "bg-[var(--glass-bg-subtle)] p-1.5 backdrop-blur-[var(--blur-md)] backdrop-saturate-150",
-      "shadow-[var(--shadow-glass-sm)]",
+      "inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground",
       className
     )}
     {...props}
@@ -30,15 +28,7 @@ const TabsTrigger = forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "relative inline-flex items-center justify-center whitespace-nowrap rounded-[var(--radius-lg)]",
-      "px-4 py-3 text-[var(--text-sm)] font-[var(--font-weight-semibold)]",
-      "text-[var(--color-text-secondary)] outline-none transition-all duration-[var(--transition-smooth)]",
-      "hover:bg-[var(--glass-bg-subtle)] hover:text-[var(--color-text-primary)]",
-      "focus-visible:shadow-[var(--glow-focus)]",
-      "data-[state=active]:border data-[state=active]:border-[var(--glass-border-strong)]",
-      "data-[state=active]:bg-[var(--glass-bg-elevated)] data-[state=active]:text-[var(--color-text-primary)]",
-      "data-[state=active]:shadow-[var(--shadow-glass-md)]",
-      "disabled:pointer-events-none disabled:opacity-50",
+      "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
       className
     )}
     {...props}
@@ -52,10 +42,7 @@ const TabsContent = forwardRef<
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.Content
     ref={ref}
-    className={cn(
-      "mt-2 outline-none data-[state=active]:animate-enter-up",
-      className
-    )}
+    className={cn("mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2", className)}
     {...props}
   />
 ));

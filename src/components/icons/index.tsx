@@ -20,14 +20,14 @@ export interface IconStyleOptions {
 }
 
 const toneClasses: Record<IconTone, string> = {
-  default: "text-[var(--color-text-primary)]",
+  default: "text-foreground",
   light: "text-white",
-  muted: "text-[var(--color-text-muted)]",
+  muted: "text-muted-foreground",
   inherit: "text-current",
 };
 
 const interactiveClasses =
-  "transition-colors duration-[var(--transition-base)] group-hover:text-[var(--color-purple-600)] hover:text-[var(--color-purple-600)] group-focus-within:text-[var(--color-purple-600)]";
+  "transition-colors group-hover:text-primary hover:text-primary group-focus-within:text-primary";
 
 export function iconProps(
   size: IconSize | number = "sm",

@@ -7,7 +7,7 @@ export interface XdesignLogoProps {
   priority?: boolean;
 }
 
-const LOGO_SRC = "/brand/orbital-logo.png";
+const LOGO_SRC = "/brand/xdesign-logo.png";
 
 export function XdesignLogo({
   className,
@@ -18,9 +18,9 @@ export function XdesignLogo({
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={LOGO_SRC}
-        alt="Orbital"
+        alt="Xdesign"
         className={cn(
-          "h-8 w-auto shrink-0 rounded-md object-contain object-left",
+          "h-8 w-auto shrink-0 object-contain object-left",
           markClassName
         )}
       />

@@ -209,6 +209,105 @@
     }
   }
 
+  @keyframes enter-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes enter-scale {
+    from {
+      opacity: 0;
+      transform: translateY(14px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes aurora-breathe {
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(0.92);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes illustration-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-9px);
+    }
+  }
+
+  @keyframes scan-line {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    12%,
+    78% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(270px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes marker-one {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-7px) scale(1.07);
+    }
+  }
+
+  @keyframes marker-two {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(5px) scale(1.05);
+    }
+  }
+
+  @keyframes pill-one {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-1deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(1deg);
+    }
+  }
+
+  @keyframes pill-two {
+    0%,
+    100% {
+      transform: translateY(0) rotate(1deg);
+    }
+    50% {
+      transform: translateY(8px) rotate(-1deg);
+    }
+  }
+
   .animate-progress-indeterminate {
     animation: progress-indeterminate 1.5s ease-in-out infinite;
   }
@@ -229,6 +328,48 @@
     animation: float-soft 4s ease-in-out infinite;
   }
 
+  .animate-enter-up {
+    animation: enter-up 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-enter-scale {
+    animation: enter-scale 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: 100ms;
+  }
+
+  .animate-aurora-breathe {
+    animation: aurora-breathe 6s ease-in-out infinite;
+  }
+
+  .animate-illustration-float {
+    animation: illustration-float 5.5s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .animate-scan-line {
+    animation: scan-line 4.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  .animate-marker-one {
+    animation: marker-one 3.4s ease-in-out infinite;
+    transform-origin: 473px 156px;
+  }
+
+  .animate-marker-two {
+    animation: marker-two 4s ease-in-out infinite 0.5s;
+    transform-origin: 344px 353px;
+  }
+
+  .animate-pill-one {
+    animation: pill-one 4.8s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .animate-pill-two {
+    animation: pill-two 5.4s ease-in-out infinite 0.7s;
+    transform-origin: center;
+  }
+
   /* Smooth custom scrollbar for glass panels */
   .glass-scrollbar::-webkit-scrollbar {
     width: 6px;
@@ -246,5 +387,16 @@
 
   .glass-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(139, 92, 246, 0.35);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

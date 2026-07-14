@@ -1,10 +1,5 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  Gallery,
-  MagicStar,
-  TickCircle,
-} from "iconsax-reactjs";
+import { ArrowRight, MagicStar, TrendUp } from "iconsax-reactjs";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { GlassButton } from "@/components/ui/GlassButton";
 import { GlassCard } from "@/components/ui/GlassCard";
@@ -77,77 +72,158 @@ export default function LandingPage() {
       </div>
 
       {/* Header */}
-      <header className="relative z-10 px-4 pt-4 sm:px-6 lg:px-8">
-        <GlassPanel variant="elevated" padding="none" className="mx-auto max-w-7xl">
-          <div className="flex h-16 items-center justify-between px-4 sm:px-6">
-            <XdesignLogo />
-            <div className="flex items-center gap-2 sm:gap-3">
-              <Link href="/login">
-                <GlassButton variant="ghost" size="sm">
-                  Log in
-                </GlassButton>
-              </Link>
-              <Link href="/register">
-                <GlassButton variant="primary" size="sm">
-                  Get started
-                </GlassButton>
-              </Link>
-            </div>
+      <header className="sticky top-0 z-[var(--z-header)] border-b border-[var(--color-slate-200)]/70 bg-white/90 backdrop-blur-[var(--blur-md)]">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
+          <Link href="/" className="shrink-0">
+            <XdesignLogo markClassName="h-8 w-auto" />
+          </Link>
+
+          <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
+            {[
+              { label: "Features", href: "#features" },
+              { label: "FAQ", href: "#faq" },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="rounded-[var(--radius-sm)] px-3.5 py-2 text-[var(--text-sm)] font-[var(--font-weight-medium)] text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-slate-100)] hover:text-[var(--color-text-primary)]"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex shrink-0 items-center gap-2 sm:gap-4">
+            <Link
+              href="/login"
+              className="text-[var(--text-sm)] font-[var(--font-weight-medium)] text-[var(--color-text-primary)] transition-colors hover:text-[var(--color-purple-700)]"
+            >
+              Login
+            </Link>
+            <GlassButton
+              href="/register"
+              variant="primary"
+              size="sm"
+              rightIcon={
+                <ArrowRight
+                  {...iconProps("xs", "-rotate-45", "Linear", { tone: "light", interactive: false })}
+                />
+              }
+            >
+              See a demo
+            </GlassButton>
           </div>
-        </GlassPanel>
+        </div>
       </header>
 
       {/* Hero */}
-      <main className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-20 lg:px-8">
-        <section className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-8">
+      <main className="relative z-10 mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+        <section className="grid items-center gap-12 lg:grid-cols-[1.02fr_1fr] lg:gap-10">
           <div className="animate-enter-up text-center lg:text-left">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-purple-200)] bg-white/80 px-3.5 py-2 text-[var(--text-xs)] font-[var(--font-weight-semibold)] tracking-wide text-[var(--color-text-accent)] shadow-[var(--shadow-glass-sm)] backdrop-blur-xl">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-400 opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-violet-500" />
-              </span>
-              AI-powered design intelligence
+            <div className="mb-7 inline-flex items-center gap-2 rounded-[10px] border border-[var(--color-slate-200)] bg-white px-3 py-1.5 text-[var(--text-sm)] font-[var(--font-weight-medium)] text-[var(--color-text-primary)] shadow-[var(--shadow-glass-sm)]">
+              <MagicStar {...iconProps("xs", "text-[var(--color-purple-600)]", "Bold", { interactive: false })} />
+              Made for better interfaces
             </div>
-            <h1 className="max-w-3xl text-[2.9rem] font-[var(--font-weight-bold)] leading-[1.05] tracking-[-0.055em] text-[var(--color-text-primary)] sm:text-6xl">
-              Make every screen{" "}
-              <span className="text-gradient">feel effortless.</span>
+
+            <h1 className="mx-auto max-w-xl text-[2.7rem] font-[var(--font-weight-bold)] leading-[1.08] tracking-[-0.045em] text-[var(--color-text-primary)] sm:text-[3.4rem] lg:mx-0">
+              Smarter design decisions{" "}
+              <span className="inline-flex h-[0.85em] w-[0.85em] translate-y-[0.08em] items-center justify-center rounded-[0.22em] bg-[var(--gradient-primary)] align-baseline shadow-[var(--glow-button-primary)]">
+                <TrendUp {...iconProps("md", "h-[60%] w-[60%]", "Bold", { tone: "light", interactive: false })} />
+              </span>{" "}
+              powered by AI
             </h1>
-            <p className="mx-auto mt-6 max-w-xl text-[var(--text-lg)] leading-[1.7] text-[var(--color-text-secondary)] lg:mx-0">
-              Upload a design and get a clear, visual UX audit in minutes—complete
-              with accessibility checks, annotated issues, and fixes your team can use.
+
+            <p className="mx-auto mt-6 max-w-md text-[var(--text-lg)] leading-[1.65] text-[var(--color-text-muted)] lg:mx-0">
+              Turn your screens into clear insights, better decisions, and
+              continuously improved user experiences.
             </p>
-            <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:items-start">
-              <Link href="/register">
-                <GlassButton variant="primary" size="lg" rightIcon={<ArrowRight {...iconProps("sm", undefined, "Linear", { tone: "light", interactive: false })} />}>
-                  Analyze a design
-                </GlassButton>
-              </Link>
-              <Link href="/upload">
-                <GlassButton variant="secondary" size="lg" leftIcon={<Gallery {...iconProps("sm")} />}>
-                  Try an upload
-                </GlassButton>
-              </Link>
+
+            <div className="mt-8 flex justify-center lg:justify-start">
+              <GlassButton
+                href="/register"
+                variant="primary"
+                size="lg"
+                rightIcon={
+                  <ArrowRight
+                    {...iconProps("sm", "-rotate-45", "Linear", { tone: "light", interactive: false })}
+                  />
+                }
+              >
+                See a demo
+              </GlassButton>
             </div>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[var(--text-sm)] text-[var(--color-text-secondary)] lg:justify-start">
-              {["WCAG contrast", "Visual hierarchy", "Actionable fixes"].map((item) => (
-                <span key={item} className="inline-flex items-center gap-1.5">
-                  <TickCircle {...iconProps("sm", "text-emerald-600", "Bold", { interactive: false })} />
-                  {item}
+
+            <dl className="mt-12 flex items-start justify-center gap-10 text-left sm:gap-14 lg:justify-start">
+              {[
+                { value: "5k+", label: "Screens analyzed" },
+                { value: "40%+", label: "Fewer UX issues" },
+                { value: "3×", label: "Faster reviews" },
+              ].map((stat) => (
+                <div key={stat.label}>
+                  <dt className="sr-only">{stat.label}</dt>
+                  <dd className="text-[1.7rem] font-[var(--font-weight-bold)] tracking-tight text-[var(--color-text-primary)]">
+                    {stat.value}
+                  </dd>
+                  <dd className="mt-0.5 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+                    {stat.label}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="animate-enter-scale relative">
+            <div
+              aria-hidden
+              className="absolute -inset-10 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(196,181,253,0.35)_0%,transparent_65%)]"
+            />
+
+            <div className="relative rounded-[var(--radius-xl)] border border-[var(--color-slate-200)]/80 bg-white p-3 shadow-[var(--shadow-glass-xl)]">
+              <DesignAuditIllustration />
+            </div>
+
+            {/* Floating collaborator cursors */}
+            <div className="absolute -left-4 top-[30%] hidden items-center sm:flex" aria-hidden>
+              <svg viewBox="0 0 12 12" className="h-3 w-3 -rotate-12 text-[var(--color-purple-600)]" fill="currentColor">
+                <path d="M0 0L12 5L5.5 6.5L4 12L0 0Z" />
+              </svg>
+              <span className="ml-1 rounded-full bg-[var(--color-purple-100)] px-3 py-1 text-[var(--text-xs)] font-[var(--font-weight-semibold)] text-[var(--color-purple-800)] shadow-[var(--shadow-glass-sm)]">
+                Maya Chen
+              </span>
+            </div>
+            <div className="absolute -right-3 top-[58%] hidden items-center sm:flex" aria-hidden>
+              <span className="mr-1 rounded-full bg-pink-100 px-3 py-1 text-[var(--text-xs)] font-[var(--font-weight-semibold)] text-pink-800 shadow-[var(--shadow-glass-sm)]">
+                Sam Park
+              </span>
+              <svg viewBox="0 0 12 12" className="h-3 w-3 rotate-[100deg] text-pink-500" fill="currentColor">
+                <path d="M0 0L12 5L5.5 6.5L4 12L0 0Z" />
+              </svg>
+            </div>
+
+            {/* Stat chips */}
+            <div className="absolute -bottom-6 left-1/2 hidden w-max -translate-x-1/2 items-center gap-3 sm:flex" aria-hidden>
+              {[
+                { dot: "bg-[var(--color-purple-400)]", label: "Score", value: "92" },
+                { dot: "bg-sky-300", label: "Issues", value: "14" },
+                { dot: "bg-pink-300", label: "Contrast", value: "AA" },
+              ].map((chip) => (
+                <span
+                  key={chip.label}
+                  className="inline-flex items-center gap-2 rounded-[12px] border border-[var(--color-slate-200)] bg-white px-3.5 py-2 text-[var(--text-sm)] shadow-[var(--shadow-glass-md)]"
+                >
+                  <span className={`h-2.5 w-2.5 rounded-[3px] ${chip.dot}`} />
+                  <span className="text-[var(--color-text-muted)]">{chip.label}</span>
+                  <span className="font-[var(--font-weight-bold)] text-[var(--color-text-primary)]">
+                    {chip.value}
+                  </span>
                 </span>
               ))}
             </div>
           </div>
-
-          <div className="animate-enter-scale relative">
-            <div className="absolute -inset-5 rounded-[2.5rem] bg-white/25 blur-2xl" />
-            <GlassPanel variant="subtle" padding="sm" className="relative border-white/80" shine>
-              <DesignAuditIllustration />
-            </GlassPanel>
-          </div>
         </section>
 
         {/* Features */}
-        <section className="mt-24">
+        <section id="features" className="mt-28 scroll-mt-24">
           <div className="text-center">
             <p className="text-[var(--text-sm)] font-[var(--font-weight-semibold)] uppercase tracking-[0.16em] text-[var(--color-text-accent)]">
               One intelligent workspace
@@ -184,7 +260,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className="mx-auto mt-24 max-w-3xl">
+        <section id="faq" className="mx-auto mt-24 max-w-3xl scroll-mt-24">
           <div className="text-center">
             <p className="text-[var(--text-sm)] font-[var(--font-weight-semibold)] uppercase tracking-[0.16em] text-[var(--color-text-accent)]">
               FAQ

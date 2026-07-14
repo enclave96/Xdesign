@@ -26,11 +26,11 @@ const sidebarNavItems: NavItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: <Category2 {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} /> },
   { label: "New Analysis", href: "/upload", icon: <DocumentUpload {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} /> },
   { label: "Projects", href: "/dashboard", icon: <Element3 {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} /> },
-  { label: "Reports", href: "/dashboard", icon: <DocumentText {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />, badge: "Soon" },
-  { label: "Compare", href: "/dashboard", icon: <Chart {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />, badge: "Soon" },
-  { label: "Team", href: "/dashboard", icon: <People {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />, badge: "Soon" },
-  { label: "Integrations", href: "/dashboard", icon: <Link2 {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />, badge: "Soon" },
-  { label: "Settings", href: "/dashboard", icon: <Setting2 {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} />, badge: "Soon" },
+  { label: "Reports", href: "/dashboard", icon: <DocumentText {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} /> },
+  { label: "Compare", href: "/dashboard", icon: <Chart {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} /> },
+  { label: "Team", href: "/dashboard", icon: <People {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} /> },
+  { label: "Integrations", href: "/dashboard", icon: <Link2 {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} /> },
+  { label: "Settings", href: "/dashboard", icon: <Setting2 {...iconProps("sm", undefined, "Linear", { tone: "inherit", interactive: false })} /> },
 ];
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {

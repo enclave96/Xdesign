@@ -42,11 +42,11 @@ export const appSidebarNav: NavLink[] = [
   { label: "Dashboard", href: "/dashboard" },
   { label: "New Analysis", href: "/upload" },
   { label: "Projects", href: "/dashboard" },
-  { label: "Reports", href: "/dashboard", badge: "Soon" },
-  { label: "Compare", href: "/dashboard", badge: "Soon" },
-  { label: "Team", href: "/dashboard", badge: "Soon" },
-  { label: "Integrations", href: "/dashboard", badge: "Soon" },
-  { label: "Settings", href: "/dashboard", badge: "Soon" },
+  { label: "Reports", href: "/dashboard" },
+  { label: "Compare", href: "/dashboard" },
+  { label: "Team", href: "/dashboard" },
+  { label: "Integrations", href: "/dashboard" },
+  { label: "Settings", href: "/dashboard" },
 ];
 
 /** App top bar — secondary horizontal nav (desktop) */

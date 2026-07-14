@@ -19,6 +19,23 @@ export type { GlassFieldProps } from "./GlassField";
 export { GlassAlert } from "./GlassAlert";
 export type { GlassAlertProps, GlassAlertVariant } from "./GlassAlert";
 
+export { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs";
+export {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./tooltip";
+export {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./dialog";
+
 export { Badge } from "./Badge";
 export type { BadgeProps, BadgeSeverity, BadgeSize } from "./Badge";
 

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useId, useMemo } from "react";
 import { cn } from "@/lib/utils";
 
 export type ScoreRingSize = "sm" | "md" | "lg" | "xl";
@@ -28,19 +28,19 @@ const sizeConfig: Record<
 
 const variantColors: Record<ScoreRingVariant, { track: string; fill: string }> = {
   default: {
-    track: "rgba(148, 163, 184, 0.25)",
+    track: "rgba(148, 163, 184, 0.35)",
     fill: "url(#score-gradient-default)",
   },
   success: {
-    track: "rgba(74, 222, 128, 0.2)",
+    track: "rgba(74, 222, 128, 0.28)",
     fill: "#16a34a",
   },
   warning: {
-    track: "rgba(251, 191, 36, 0.2)",
+    track: "rgba(251, 191, 36, 0.28)",
     fill: "#d97706",
   },
   danger: {
-    track: "rgba(248, 113, 113, 0.2)",
+    track: "rgba(248, 113, 113, 0.28)",
     fill: "#dc2626",
   },
 };
@@ -60,19 +60,26 @@ export function ScoreRing({
   animated = true,
   className,
 }: ScoreRingProps) {
+  const uid = useId().replace(/:/g, "");
   const clampedScore = Math.min(100, Math.max(0, score));
   const resolvedVariant = variant ?? getAutoVariant(clampedScore);
   const config = sizeConfig[size];
   const colors = variantColors[resolvedVariant];
+  const gradientId = `score-gradient-default-${uid}`;
 
-  const { radius, circumference, offset } = useMemo(() => {
+  const { radius, circumference, offset, svgSize, center } = useMemo(() => {
+    // Extra padding prevents round stroke caps from being clipped at the viewBox edge.
+    const capPadding = Math.ceil(config.stroke / 2) + 1;
+    const svgSize = config.dimension + capPadding * 2;
+    const center = svgSize / 2;
     const r = (config.dimension - config.stroke) / 2;
     const c = 2 * Math.PI * r;
     const o = c - (clampedScore / 100) * c;
-    return { radius: r, circumference: c, offset: o };
+    return { radius: r, circumference: c, offset: o, svgSize, center };
   }, [config.dimension, config.stroke, clampedScore]);
 
-  const center = config.dimension / 2;
+  const fill =
+    resolvedVariant === "default" ? `url(#${gradientId})` : colors.fill;
 
   return (
     <div
@@ -84,87 +91,83 @@ export function ScoreRing({
       aria-label={label ? `${label}: ${clampedScore}` : `Score: ${clampedScore}`}
     >
       <div
-        className="relative flex items-center justify-center rounded-full p-1"
-        style={{ width: config.dimension + 8, height: config.dimension + 8 }}
+        className="relative flex items-center justify-center"
+        style={{ width: svgSize, height: svgSize }}
       >
-        {/* Glass backdrop ring */}
+        {/* Solid backdrop — no backdrop-filter so the ring stays crisp */}
         <div
           aria-hidden
-          className="absolute inset-0 rounded-full border border-[var(--glass-border-strong)] bg-[var(--glass-bg-elevated)] shadow-[var(--shadow-glass-md)] backdrop-blur-[var(--blur-md)]"
+          className="absolute inset-0 rounded-full border border-[var(--glass-border-strong)] bg-white/90 shadow-[var(--shadow-glass-sm)]"
         />
 
-        <div className="relative" style={{ width: config.dimension, height: config.dimension }}>
-        <svg
-          width={config.dimension}
-          height={config.dimension}
-          viewBox={`0 0 ${config.dimension} ${config.dimension}`}
-          className="-rotate-90"
+        <div
+          className="relative overflow-visible"
+          style={{ width: svgSize, height: svgSize }}
         >
-          <defs>
-            <linearGradient id="score-gradient-default" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#4a94f7" />
-              <stop offset="100%" stopColor="#8b5cf6" />
-            </linearGradient>
-            <filter id="score-glow">
-              <feGaussianBlur stdDeviation="2" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
-          {/* Track */}
-          <circle
-            cx={center}
-            cy={center}
-            r={radius}
-            fill="none"
-            stroke={colors.track}
-            strokeWidth={config.stroke}
-          />
-
-          {/* Progress arc */}
-          <circle
-            cx={center}
-            cy={center}
-            r={radius}
-            fill="none"
-            stroke={colors.fill}
-            strokeWidth={config.stroke}
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            strokeDashoffset={animated ? undefined : offset}
-            filter="url(#score-glow)"
-            className={cn(animated && "animate-score-ring")}
-            style={
-              animated
-                ? ({
-                    "--score-circumference": circumference,
-                    "--score-offset": offset,
-                  } as React.CSSProperties)
-                : undefined
-            }
-          />
-        </svg>
-
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span
-            className={cn(
-              "font-[var(--font-weight-bold)] tabular-nums text-[var(--color-text-primary)]",
-              config.fontSize
-            )}
+          <svg
+            width={svgSize}
+            height={svgSize}
+            viewBox={`0 0 ${svgSize} ${svgSize}`}
+            className="-rotate-90 overflow-visible"
+            shapeRendering="geometricPrecision"
           >
-            {Math.round(clampedScore)}
-          </span>
-        </div>
+            <defs>
+              <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#4a94f7" />
+                <stop offset="100%" stopColor="#8b5cf6" />
+              </linearGradient>
+            </defs>
+
+            {/* Track */}
+            <circle
+              cx={center}
+              cy={center}
+              r={radius}
+              fill="none"
+              stroke={colors.track}
+              strokeWidth={config.stroke}
+            />
+
+            {/* Progress arc */}
+            <circle
+              cx={center}
+              cy={center}
+              r={radius}
+              fill="none"
+              stroke={fill}
+              strokeWidth={config.stroke}
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              strokeDashoffset={animated ? undefined : offset}
+              className={cn(animated && "animate-score-ring")}
+              style={
+                animated
+                  ? ({
+                      "--score-circumference": circumference,
+                      "--score-offset": offset,
+                    } as React.CSSProperties)
+                  : undefined
+              }
+            />
+          </svg>
+
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+            <span
+              className={cn(
+                "font-[var(--font-weight-bold)] tabular-nums text-[var(--color-text-primary)]",
+                config.fontSize
+              )}
+            >
+              {Math.round(clampedScore)}
+            </span>
+          </div>
         </div>
       </div>
 
       {label && (
         <span
           className={cn(
-            "font-[var(--font-weight-medium)] text-[var(--color-text-secondary)]",
+            "text-center font-[var(--font-weight-medium)] text-[var(--color-text-secondary)]",
             config.labelSize
           )}
         >

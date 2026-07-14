@@ -62,7 +62,7 @@ export function ProjectCard({ project, onDelete, className }: ProjectCardProps) 
           )}
 
           {score != null && (
-            <div className="absolute right-3 top-3 rounded-[var(--radius-md)] bg-white/90 p-1 shadow-[var(--shadow-glass-sm)] backdrop-blur-sm">
+            <div className="absolute right-3 top-3 rounded-[var(--radius-md)] bg-white/95 p-1.5 shadow-[var(--shadow-glass-sm)]">
               <ScoreRing score={score} size="sm" />
             </div>
           )}

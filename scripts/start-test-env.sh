@@ -41,7 +41,7 @@ fi
 
 URL=$(rg -o 'https://[a-z0-9-]+\.trycloudflare\.com' "$LOG_DIR/tunnel.log" 2>/dev/null | tail -1 || true)
 if [ -z "$URL" ]; then
-  URL="https://customized-noticed-average-tech.trycloudflare.com"
+  URL="https://floor-michel-contacted-decrease.trycloudflare.com"
 fi
 
 echo "$URL" >"$LOG_DIR/public-url.txt"

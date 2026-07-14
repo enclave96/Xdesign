@@ -4,7 +4,7 @@ AI-powered design analysis platform. Upload screenshots, images, PDFs, Figma exp
 
 ## Live Demo
 
-**https://customized-noticed-average-tech.trycloudflare.com**
+**https://floor-michel-contacted-decrease.trycloudflare.com**
 
 > Demo account: `demo@xdesign.app` / `demo1234`
 

@@ -43,7 +43,7 @@ export function SectionCard({
         </CardHeader>
       )}
       {children && (
-        <CardContent className={cn(hasHeader && "pt-0", contentClassName)}>
+        <CardContent className={cn(hasHeader ? "pt-0" : "pt-6", contentClassName)}>
           {children}
         </CardContent>
       )}

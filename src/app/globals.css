@@ -82,8 +82,8 @@
   .glass-surface {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    backdrop-filter: blur(var(--blur-lg));
-    -webkit-backdrop-filter: blur(var(--blur-lg));
+    backdrop-filter: blur(var(--blur-lg)) saturate(1.4);
+    -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(1.4);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-glass-md);
   }
@@ -91,10 +91,30 @@
   .glass-surface-elevated {
     background: var(--glass-bg-elevated);
     border: 1px solid var(--glass-border-strong);
-    backdrop-filter: blur(var(--blur-lg));
-    -webkit-backdrop-filter: blur(var(--blur-lg));
+    backdrop-filter: blur(var(--blur-lg)) saturate(1.5);
+    -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(1.5);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-glass-lg);
+  }
+
+  .glass-border-gradient {
+    position: relative;
+    border: none;
+    background-clip: padding-box;
+  }
+
+  .glass-border-gradient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--glass-border-gradient);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
 
   .text-gradient {
@@ -102,6 +122,31 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  .liquid-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .liquid-shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.45) 48%,
+      rgba(255, 255, 255, 0.15) 52%,
+      transparent 65%
+    );
+    transform: translateX(-120%);
+    transition: transform var(--transition-liquid);
+    pointer-events: none;
+  }
+
+  .liquid-shine:hover::after {
+    transform: translateX(120%);
   }
 }
 
@@ -125,11 +170,81 @@
     }
   }
 
+  @keyframes liquid-shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(200%);
+    }
+  }
+
+  @keyframes glass-pulse {
+    0%,
+    100% {
+      box-shadow: var(--shadow-glass-md);
+    }
+    50% {
+      box-shadow: var(--shadow-glass-lg), 0 0 24px rgba(139, 92, 246, 0.12);
+    }
+  }
+
+  @keyframes float-soft {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  @keyframes glow-breathe {
+    0%,
+    100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
   .animate-progress-indeterminate {
     animation: progress-indeterminate 1.5s ease-in-out infinite;
   }
 
   .animate-score-ring {
-    animation: score-ring-fill 1s ease-out forwards;
+    animation: score-ring-fill 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .animate-liquid-shimmer {
+    animation: liquid-shimmer 2.5s ease-in-out infinite;
+  }
+
+  .animate-glass-pulse {
+    animation: glass-pulse 3s ease-in-out infinite;
+  }
+
+  .animate-float-soft {
+    animation: float-soft 4s ease-in-out infinite;
+  }
+
+  /* Smooth custom scrollbar for glass panels */
+  .glass-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .glass-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .glass-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.2);
+    border-radius: var(--radius-full);
+  }
+
+  .glass-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.35);
   }
 }

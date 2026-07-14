@@ -64,7 +64,7 @@ export function AppShell({
               {logo ?? (
                 <div
                   aria-hidden
-                  className="flex h-9 w-9 items-center justify-center rounded-[var(--radius-md)] bg-[var(--gradient-accent)] shadow-[var(--shadow-glass-sm)]"
+                  className="flex h-9 w-9 items-center justify-center rounded-[var(--radius-md)] bg-[var(--gradient-accent)] shadow-[var(--glow-button)]"
                 >
                   <span className="text-sm font-bold text-white">X</span>
                 </div>
@@ -89,11 +89,12 @@ export function AppShell({
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "inline-flex items-center gap-2 rounded-[var(--radius-md)] px-3 py-2",
+                      "relative inline-flex items-center gap-2 overflow-hidden rounded-[var(--radius-md)] px-3.5 py-2",
                       "text-[var(--text-sm)] font-[var(--font-weight-medium)]",
-                      "transition-colors duration-[var(--transition-fast)]",
+                      "transition-all duration-[var(--transition-smooth)]",
+                      "focus-visible:outline-none focus-visible:shadow-[var(--glow-focus)]",
                       isActive
-                        ? "bg-[var(--glass-bg-strong)] text-[var(--color-text-primary)] shadow-[var(--shadow-glass-sm)]"
+                        ? "bg-[var(--glass-bg-strong)] text-[var(--color-text-primary)] shadow-[var(--shadow-glass-sm)] border border-[var(--glass-border)]"
                         : "text-[var(--color-text-secondary)] hover:bg-[var(--glass-bg-subtle)] hover:text-[var(--color-text-primary)]"
                     )}
                   >

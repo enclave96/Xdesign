@@ -74,7 +74,7 @@ export default function LandingPage() {
       {/* Hero */}
       <main className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <section className="text-center">
-          <GlassPanel variant="subtle" padding="lg" className="mx-auto max-w-4xl">
+          <GlassPanel variant="elevated" padding="lg" className="mx-auto max-w-4xl" hoverLift>
             <p className="mb-4 text-[var(--text-sm)] font-[var(--font-weight-medium)] uppercase tracking-wider text-[var(--color-text-accent)]">
               AI-Powered Design Analysis
             </p>
@@ -113,7 +113,7 @@ export default function LandingPage() {
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((feature) => (
-              <GlassCard key={feature.title} title={feature.title}>
+              <GlassCard key={feature.title} title={feature.title} hoverLift>
                 <span className="mb-3 block text-2xl" aria-hidden>
                   {feature.icon}
                 </span>

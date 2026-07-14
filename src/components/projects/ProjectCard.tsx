@@ -34,7 +34,16 @@ export function ProjectCard({ project, onDelete, className }: ProjectCardProps) 
   const status = latestAnalysis?.status;
 
   return (
-    <GlassCard className={cn("group overflow-hidden transition-shadow hover:shadow-[var(--shadow-glass-lg)]", className)} padding="none">
+    <GlassCard
+      className={cn(
+        "group overflow-hidden transition-all duration-[var(--transition-smooth)]",
+        "hover:-translate-y-0.5 hover:shadow-[var(--shadow-glass-lg)]",
+        className
+      )}
+      padding="none"
+      variant="elevated"
+      hoverLift
+    >
       <Link href={`/projects/${project.id}`} className="block">
         <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-slate-100)]">
           {thumbnailUrl ? (
@@ -95,7 +104,7 @@ export function ProjectCard({ project, onDelete, className }: ProjectCardProps) 
               e.preventDefault();
               onDelete(project.id);
             }}
-            className="text-[var(--text-sm)] text-[var(--color-severity-critical)] hover:underline"
+            className="rounded-[var(--radius-sm)] px-2 py-1 text-[var(--text-sm)] font-[var(--font-weight-medium)] text-[var(--color-severity-critical)] transition-colors hover:bg-[var(--color-severity-critical-bg)]"
           >
             Delete project
           </button>

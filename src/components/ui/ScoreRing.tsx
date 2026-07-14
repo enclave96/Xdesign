@@ -83,7 +83,17 @@ export function ScoreRing({
       aria-valuemax={100}
       aria-label={label ? `${label}: ${clampedScore}` : `Score: ${clampedScore}`}
     >
-      <div className="relative" style={{ width: config.dimension, height: config.dimension }}>
+      <div
+        className="relative flex items-center justify-center rounded-full p-1"
+        style={{ width: config.dimension + 8, height: config.dimension + 8 }}
+      >
+        {/* Glass backdrop ring */}
+        <div
+          aria-hidden
+          className="absolute inset-0 rounded-full border border-[var(--glass-border-strong)] bg-[var(--glass-bg-elevated)] shadow-[var(--shadow-glass-md)] backdrop-blur-[var(--blur-md)]"
+        />
+
+        <div className="relative" style={{ width: config.dimension, height: config.dimension }}>
         <svg
           width={config.dimension}
           height={config.dimension}
@@ -147,6 +157,7 @@ export function ScoreRing({
           >
             {Math.round(clampedScore)}
           </span>
+        </div>
         </div>
       </div>
 

@@ -4,32 +4,27 @@ export type ProgressBarVariant = "default" | "success" | "warning" | "danger";
 export type ProgressBarSize = "sm" | "md" | "lg";
 
 export interface ProgressBarProps {
-  /** Progress value from 0 to 100 */
   value: number;
   variant?: ProgressBarVariant;
   size?: ProgressBarSize;
-  /** Show percentage label */
   showLabel?: boolean;
-  /** Custom label text (overrides percentage) */
   label?: string;
-  /** Indeterminate loading animation */
   indeterminate?: boolean;
-  /** Animate value changes */
   animated?: boolean;
   className?: string;
 }
 
 const sizeStyles: Record<ProgressBarSize, { track: string; bar: string }> = {
-  sm: { track: "h-1.5", bar: "h-1.5" },
-  md: { track: "h-2.5", bar: "h-2.5" },
+  sm: { track: "h-2", bar: "h-2" },
+  md: { track: "h-3", bar: "h-3" },
   lg: { track: "h-4", bar: "h-4" },
 };
 
 const variantStyles: Record<ProgressBarVariant, string> = {
   default: "bg-[var(--gradient-accent)]",
-  success: "bg-gradient-to-r from-emerald-400 to-emerald-600",
-  warning: "bg-gradient-to-r from-amber-400 to-orange-500",
-  danger: "bg-gradient-to-r from-red-400 to-red-600",
+  success: "bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500",
+  warning: "bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500",
+  danger: "bg-gradient-to-r from-red-400 via-red-500 to-rose-500",
 };
 
 export function ProgressBar({
@@ -48,7 +43,7 @@ export function ProgressBar({
   return (
     <div className={cn("w-full", className)}>
       {(showLabel || label) && (
-        <div className="mb-2 flex items-center justify-between">
+        <div className="mb-2.5 flex items-center justify-between">
           <span className="text-[var(--text-sm)] font-[var(--font-weight-medium)] text-[var(--color-text-secondary)]">
             {label ? label : "Progress"}
           </span>
@@ -69,34 +64,39 @@ export function ProgressBar({
         className={cn(
           "relative w-full overflow-hidden rounded-[var(--radius-full)]",
           "bg-[var(--glass-bg-subtle)] border border-[var(--glass-border-subtle)]",
-          "backdrop-blur-[var(--blur-sm)] shadow-[var(--shadow-inner-glow)]",
+          "backdrop-blur-[var(--blur-sm)]",
+          "shadow-[inset_0_1px_3px_rgba(15,23,42,0.06),var(--shadow-inner-glow)]",
           sizeStyles[size].track
         )}
       >
         {indeterminate ? (
           <div
             className={cn(
-              "absolute inset-y-0 w-1/3 rounded-[var(--radius-full)]",
+              "absolute inset-y-0 w-2/5 rounded-[var(--radius-full)]",
               variantStyles[variant],
+              "shadow-[0_0_16px_rgba(99,102,241,0.4)]",
               "animate-progress-indeterminate"
             )}
-          />
+          >
+            <div className="absolute inset-0 animate-liquid-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+          </div>
         ) : (
           <div
             className={cn(
-              "h-full rounded-[var(--radius-full)]",
+              "relative h-full overflow-hidden rounded-[var(--radius-full)]",
               variantStyles[variant],
-              "shadow-[0_0_12px_rgba(99,102,241,0.35)]",
-              animated && "transition-[width] duration-[var(--transition-slow)] ease-out"
+              "shadow-[0_0_16px_rgba(99,102,241,0.35)]",
+              animated && "transition-[width] duration-[var(--transition-liquid)] ease-out"
             )}
             style={{ width: `${clampedValue}%` }}
-          />
+          >
+            <div className="absolute inset-0 animate-liquid-shimmer bg-gradient-to-r from-transparent via-white/35 to-transparent" />
+          </div>
         )}
 
-        {/* Glass shine overlay on track */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[var(--gradient-reflection)] opacity-50"
+          className="pointer-events-none absolute inset-0 bg-[var(--gradient-reflection)] opacity-40"
         />
       </div>
     </div>

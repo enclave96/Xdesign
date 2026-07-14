@@ -59,7 +59,7 @@ export function AppSidebarShell({
     <>
       <div className="border-b px-5 py-5">
         <Link href="/dashboard" onClick={() => setMobileOpen(false)}>
-          <XdesignLogo markClassName="h-8 w-8" />
+          <XdesignLogo markClassName="h-8 w-auto rounded-md" />
         </Link>
       </div>
 
@@ -114,7 +114,7 @@ export function AppSidebarShell({
       <header className="sticky top-0 z-50 border-b bg-background px-4 py-3 lg:hidden">
         <div className="flex items-center justify-between gap-3">
           <Link href="/dashboard">
-            <XdesignLogo markClassName="h-7 w-7" />
+            <XdesignLogo markClassName="h-7 w-auto rounded-md" />
           </Link>
           <button
             type="button"

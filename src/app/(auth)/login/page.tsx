@@ -9,6 +9,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { useAuth, getAuthErrorMessage } from "@/hooks/useAuth";
+import { XdesignLogo } from "@/components/brand/XdesignLogo";
 import { iconProps } from "@/components/icons";
 
 function GoogleIcon() {
@@ -66,6 +67,12 @@ export default function LoginPage() {
   return (
     <div className="relative flex min-h-screen items-center justify-center bg-muted/30 px-4 py-12">
       <div className="relative z-10 w-full max-w-[26rem]">
+        <div className="mb-8 text-center">
+          <Link href="/" className="inline-flex transition-opacity hover:opacity-80">
+            <XdesignLogo markClassName="h-10 w-auto rounded-md" />
+          </Link>
+        </div>
+
         <div className="rounded-xl border bg-card p-8 shadow-sm sm:p-9">
           <h1 className="text-2xl font-bold tracking-tight text-foreground">
             Log In

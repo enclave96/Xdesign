@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 export interface XdesignLogoProps {
   className?: string;
-  /** Height / sizing classes applied to the logo mark */
+  /** Height / sizing classes applied to the full logo lockup */
   markClassName?: string;
   priority?: boolean;
 }
@@ -20,7 +20,7 @@ export function XdesignLogo({
         src={LOGO_SRC}
         alt="Orbital"
         className={cn(
-          "aspect-square h-9 w-9 shrink-0 object-contain",
+          "h-8 w-auto shrink-0 rounded-md object-contain object-left",
           markClassName
         )}
       />

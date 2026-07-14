@@ -308,6 +308,102 @@
     }
   }
 
+  @keyframes feat-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  @keyframes feat-score-ring {
+    0% {
+      stroke-dashoffset: 213.6;
+    }
+    100% {
+      stroke-dashoffset: 42;
+    }
+  }
+
+  @keyframes feat-bar-rise {
+    0%,
+    15% {
+      transform: scaleY(0.15);
+      opacity: 0.45;
+    }
+    100% {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes feat-shield-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes feat-check-draw {
+    0% {
+      stroke-dashoffset: 40;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes feat-pill-drift-a {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @keyframes feat-pill-drift-b {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(4px);
+    }
+  }
+
+  @keyframes feat-marker-pop {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.12);
+    }
+  }
+
+  @keyframes feat-dash-march {
+    to {
+      stroke-dashoffset: -24;
+    }
+  }
+
+  @keyframes feat-source-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
   @keyframes accordion-down {
     from {
       height: 0;
@@ -398,6 +494,81 @@
   .animate-pill-two {
     animation: pill-two 5.4s ease-in-out infinite 0.7s;
     transform-origin: center;
+  }
+
+  .animate-feat-float {
+    animation: feat-float 4.8s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .animate-feat-score-ring {
+    animation: feat-score-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
+  }
+
+  .animate-feat-bar-1,
+  .animate-feat-bar-2,
+  .animate-feat-bar-3,
+  .animate-feat-bar-4,
+  .animate-feat-bar-5,
+  .animate-feat-bar-6 {
+    transform-box: fill-box;
+    transform-origin: bottom center;
+    animation: feat-bar-rise 2.2s ease-out infinite alternate;
+  }
+
+  .animate-feat-bar-1 { animation-delay: 0s; }
+  .animate-feat-bar-2 { animation-delay: 0.1s; }
+  .animate-feat-bar-3 { animation-delay: 0.2s; }
+  .animate-feat-bar-4 { animation-delay: 0.3s; }
+  .animate-feat-bar-5 { animation-delay: 0.4s; }
+  .animate-feat-bar-6 { animation-delay: 0.5s; }
+
+  .animate-feat-shield-pulse {
+    animation: feat-shield-pulse 3.2s ease-in-out infinite;
+  }
+
+  .animate-feat-check-draw {
+    stroke-dasharray: 40;
+    animation: feat-check-draw 2s ease-out infinite alternate;
+  }
+
+  .animate-feat-pill-a {
+    animation: feat-pill-drift-a 3.6s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .animate-feat-pill-b {
+    animation: feat-pill-drift-b 4s ease-in-out infinite 0.4s;
+    transform-origin: center;
+  }
+
+  .animate-feat-marker-a {
+    animation: feat-marker-pop 2.8s ease-in-out infinite;
+    transform-origin: 198px 75px;
+  }
+
+  .animate-feat-marker-b {
+    animation: feat-marker-pop 3.2s ease-in-out infinite 0.6s;
+    transform-origin: 156px 105px;
+  }
+
+  .animate-feat-dash {
+    animation: feat-dash-march 2.5s linear infinite;
+  }
+
+  .animate-feat-source-1 {
+    animation: feat-source-float 3.8s ease-in-out infinite;
+    transform-origin: 84px 84px;
+  }
+
+  .animate-feat-source-2 {
+    animation: feat-source-float 3.8s ease-in-out infinite 0.35s;
+    transform-origin: 140px 76px;
+  }
+
+  .animate-feat-source-3 {
+    animation: feat-source-float 3.8s ease-in-out infinite 0.7s;
+    transform-origin: 196px 84px;
   }
 
   .animate-accordion-down {

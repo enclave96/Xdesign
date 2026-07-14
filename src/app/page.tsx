@@ -2,53 +2,49 @@ import Link from "next/link";
 import {
   ArrowRight,
   Gallery,
-  Global,
   MagicStar,
-  ShieldTick,
   TickCircle,
 } from "iconsax-reactjs";
-import type { Icon } from "iconsax-reactjs";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { GlassButton } from "@/components/ui/GlassButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { DesignAuditIllustration } from "@/components/illustrations/DesignAuditIllustration";
+import {
+  FeatureIllustration,
+  type FeatureIllustrationType,
+} from "@/components/illustrations/FeatureIllustrations";
 import { XdesignLogo } from "@/components/brand/XdesignLogo";
 import { iconProps } from "@/components/icons";
 
 const features: {
   title: string;
   description: string;
-  icon: Icon;
-  accent: string;
+  illustration: FeatureIllustrationType;
 }[] = [
   {
     title: "Instant UX Scoring",
     description:
       "Get an overall score plus category breakdowns for hierarchy, navigation, readability, and more.",
-    icon: MagicStar,
-    accent: "from-sky-400 to-blue-600",
+    illustration: "scoring",
   },
   {
     title: "Accessibility Checks",
     description:
       "Identify WCAG contrast issues, touch target problems, and typography concerns automatically.",
-    icon: ShieldTick,
-    accent: "from-violet-400 to-purple-600",
+    illustration: "accessibility",
   },
   {
     title: "Annotated Reports",
     description:
       "Visual issue markers on your design with actionable recommendations you can share with your team.",
-    icon: TickCircle,
-    accent: "from-emerald-400 to-teal-600",
+    illustration: "reports",
   },
   {
     title: "Multiple Sources",
     description:
       "Upload screenshots, capture live websites, or import Figma frames — all in one workflow.",
-    icon: Global,
-    accent: "from-orange-400 to-pink-600",
+    illustration: "sources",
   },
 ];
 
@@ -166,19 +162,25 @@ export default function LandingPage() {
           </p>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-              <GlassCard key={feature.title} title={feature.title} hoverLift className="animate-enter-up" style={{ animationDelay: `${index * 90}ms` }}>
-                <span className={`mb-5 flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-gradient-to-br ${feature.accent} text-white shadow-[0_8px_20px_rgba(99,102,241,0.22)]`} aria-hidden>
-                  <Icon {...iconProps("md", undefined, "Bold", { tone: "light", interactive: false })} />
-                </span>
-                <p className="text-[var(--text-sm)] text-[var(--color-text-secondary)]">
-                  {feature.description}
-                </p>
+            {features.map((feature, index) => (
+              <GlassCard
+                key={feature.title}
+                hoverLift
+                padding="none"
+                className="animate-enter-up overflow-hidden"
+                style={{ animationDelay: `${index * 90}ms` }}
+              >
+                <div className="p-5">
+                  <FeatureIllustration type={feature.illustration} />
+                  <h3 className="mt-4 text-[var(--text-lg)] font-[var(--font-weight-semibold)] leading-[var(--leading-tight)] text-[var(--color-text-primary)]">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-2 text-[var(--text-sm)] leading-[var(--leading-normal)] text-[var(--color-text-secondary)]">
+                    {feature.description}
+                  </p>
+                </div>
               </GlassCard>
-              );
-            })}
+            ))}
           </div>
         </section>
 

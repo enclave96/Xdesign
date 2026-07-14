@@ -42,7 +42,7 @@ export default function LoginPage() {
       <div className="relative z-10 w-full max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="inline-flex transition-opacity hover:opacity-80">
-            <XdesignLogo markClassName="h-12 w-12" />
+            <XdesignLogo markClassName="h-10 w-auto" />
           </Link>
         </div>
 
